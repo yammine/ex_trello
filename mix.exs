@@ -31,7 +31,8 @@ defmodule ExTrello.Mixfile do
   defp deps do
     [
       {:oauth, github: "tim/erlang-oauth"},
-      {:poison, "~> 2.0"}
+      {:poison, "~> 2.0"},
+      {:ex_doc, ">= 0.0.0", only: :dev}
     ]
   end
 
