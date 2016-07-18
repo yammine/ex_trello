@@ -16,7 +16,7 @@ defmodule ExTrello.Config do
   Set OAuth configuration values.
   """
   def set(value), do: set(current_scope, value)
-  def set(:global, value), do: Application.put_env(:extrello, :oauth, value)
+  def set(:global, value), do: Application.put_env(:ex_trello, :oauth, value)
   def set(:process, value) do
     Process.put(:_ex_trello_oauth, value)
     :ok
