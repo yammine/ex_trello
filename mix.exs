@@ -5,6 +5,7 @@ defmodule ExTrello.Mixfile do
     [app: :ex_trello,
      version: "0.1.0",
      elixir: "~> 1.3",
+     description: "An Elixir package to interface with the Trello API",
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
      deps: deps(),
