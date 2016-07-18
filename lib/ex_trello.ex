@@ -22,8 +22,8 @@ defmodule ExTrello do
   ## Examples
 
       ExTrello.configure(
-        consumer_key: System.get_env("TRELLO_CONSUMER_KEY"),
-        consumer_secret: System.get_env("TRELLO_CONSUMER_SECRET"),
+        app_key: System.get_env("TRELLO_APP_KEY"),
+        app_secret: System.get_env("TRELLO_APP_SECRET"),
         access_token: System.get_env("TRELLO_ACCESS_TOKEN"),
         access_token_secret: System.get_env("TRELLO_ACCESS_SECRET")
       )
@@ -47,8 +47,8 @@ defmodule ExTrello do
 
       ExTrello.configure(
         :process,
-        consumer_key: System.get_env("TRELLO_CONSUMER_KEY"),
-        consumer_secret: System.get_env("TRELLO_CONSUMER_SECRET"),
+        app_key: System.get_env("TRELLO_APP_KEY"),
+        app_secret: System.get_env("TRELLO_APP_SECRET"),
         access_token: System.get_env("TRELLO_ACCESS_TOKEN"),
         access_token_secret: System.get_env("TRELLO_ACCESS_SECRET")
       )

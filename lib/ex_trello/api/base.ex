@@ -12,7 +12,7 @@ defmodule ExTrello.API.Base do
 
   defp do_request(method, url, params) do
     oauth = ExTrello.Config.get_tuples |> verify_params
-    consumer = {oauth[:consumer_key], oauth[:consumer_secret], :hmac_sha1}
+    consumer = {oauth[:app_key], oauth[:app_secret], :hmac_sha1}
     token = oauth[:access_token]
     secret = oauth[:access_token_secret]
     case ExTrello.OAuth.request(method, url, params, consumer, token, secret) do

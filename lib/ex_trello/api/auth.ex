@@ -8,7 +8,7 @@ defmodule ExTrello.API.Auth do
   def request_token(redirect_url \\ nil) do
     oauth = Config.get_tuples |> verify_params
     params = if redirect_url, do: [{"return_url", redirect_url}], else: []
-    consumer = {oauth[:consumer_key], oauth[:consumer_secret], :hmac_sha1}
+    consumer = {oauth[:app_key], oauth[:app_secret], :hmac_sha1}
     {:ok, {{_, 200, _}, _headers, body}} = OAuth.request(:post, request_url("OAuthGetRequestToken"), params, consumer, [], [])
 
     URI.decode_query(to_string body)
@@ -25,7 +25,7 @@ defmodule ExTrello.API.Auth do
 
   def access_token(verifier, request_token) do
     oauth = Config.get_tuples |> verify_params
-    consumer = {oauth[:consumer_key], oauth[:consumer_secret], :hmac_sha1}
+    consumer = {oauth[:app_key], oauth[:app_secret], :hmac_sha1}
     case OAuth.request(:post, request_url("OAuthGetAccessToken"), [oauth_verifier: verifier], consumer, request_token, nil) do
       {:ok, {{_, 200, _}, _headers, body}} ->
         access_token = URI.decode_query(to_string body)
