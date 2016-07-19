@@ -5,10 +5,11 @@ defmodule ExTrello.API.Auth do
   import ExTrello.API.Base
   alias ExTrello.{Config, OAuth, Parser}
 
-  def request_token do
+  def request_token(redirect_url \\ nil) do
     oauth = Config.get_tuples |> verify_params
+    params = if redirect_url, do: [{"oauth_callback", redirect_url}], else: []
     consumer = {oauth[:app_key], oauth[:app_secret], :hmac_sha1}
-    {:ok, {{_, 200, _}, _headers, body}} = OAuth.request(:get, request_url("OAuthGetRequestToken"), [], consumer, [], [])
+    {:ok, {{_, 200, _}, _headers, body}} = OAuth.request(:get, request_url("OAuthGetRequestToken"), params, consumer, [], [])
 
     URI.decode_query(to_string body)
     |> Enum.map(fn {k,v} -> {String.to_atom(k), v} end) #TODO: get rid of the String.to_atom/1 and any expectation downstream.

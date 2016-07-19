@@ -63,21 +63,21 @@ defmodule ExTrello do
 
   ## Examples
 
-      ExTrello.request_token()
+      ExTrello.request_token("http://localhost:4000/auth/trello/callback/1234")
 
   ## Reference
   https://trello.com/app-key
   """
 
-  @spec request_token() :: [ExTrello.Model.RequestToken.t]
-  defdelegate request_token(), to: ExTrello.API.Auth
+  @spec request_token(String.t) :: [ExTrello.Model.RequestToken.t]
+  defdelegate request_token(return_url), to: ExTrello.API.Auth
 
   @doc """
   GET OAuthAuthorizeToken
 
   ## Examples
 
-      token = ExTrello.request_token
+      token = ExTrello.request_token("http://localhost:4000/auth/trello/callback/1234")
       ExTrello.authorize_url(token.oauth_token, %{return_url: "http://localhost:4000/auth/trello/callback/1234", scope: "read,write", expiration: "never", name: "Example Authentication"})
 
   Returns the URL you should redirect the user to for authorization
