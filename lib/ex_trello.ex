@@ -59,7 +59,7 @@ defmodule ExTrello do
   defdelegate configure(scope, oauth), to: ExTrello.Config, as: :set
 
   @doc """
-  POST OAuthGetRequestToken
+  GET OAuthGetRequestToken
 
   ## Examples
 
@@ -99,13 +99,13 @@ defmodule ExTrello do
   defdelegate authorize_url(oauth_token), to: ExTrello.API.Auth
 
   @doc """
-  POST OAuthGetAccessToken
+  GET OAuthGetAccessToken
 
   ## Examples
 
-      ExTrello.access_token("OAUTH_VERIFIER", "OAUTH_TOKEN")
+      ExTrello.access_token("OAUTH_VERIFIER", "OAUTH_TOKEN", "OAUTH_TOKEN_SECRET")
   """
-  @spec access_token(String.t, String.t) :: {:ok, String.t} | {:error, String.t}
-  defdelegate access_token(verifier, request_token), to: ExTrello.API.Auth
+  @spec access_token(String.t, String.t, String.t) :: {:ok, String.t} | {:error, String.t}
+  defdelegate access_token(verifier, request_token, request_token_secret), to: ExTrello.API.Auth
 
 end
