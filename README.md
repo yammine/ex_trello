@@ -1,16 +1,21 @@
 # ExTrello
 
-**TODO: Add description**
+A library for interfacing with the Trello API.
+
+TODO: Usage tutorial. If someone wants to write one I'll happily accept a PR. :)
+
 
 ## Installation
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed as:
 
   1. Add `ex_trello` to your list of dependencies in `mix.exs`:
 
     ```elixir
     def deps do
-      [{:ex_trello, "~> 0.1.0"}]
+      [
+        {:oauth, github: "tim/erlang-oauth"}, # The erlang-oauth package isn't included
+        {:ex_trello, "~> 0.1.9"}
+      ]
     end
     ```
 
