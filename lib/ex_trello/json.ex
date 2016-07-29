@@ -8,14 +8,14 @@ defmodule ExTrello.JSON do
   Decode json string into elixir objects.
   """
   def decode!(json) do
-    Poison.decode!(json, keys: :atoms)
+    Poison.decode!(json)
   end
 
   @doc """
   Decode json string into elixir objects.
   """
   def decode(json) do
-    Poison.decode(json, keys: :atoms)
+    Poison.decode(json)
   end
 
   @doc """
