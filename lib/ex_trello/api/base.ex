@@ -1,7 +1,9 @@
 defmodule ExTrello.API.Base do
   @moduledoc """
-  Provides basic and common functionalities for Twitter API.
+  Provides basic and common functionalities for Trello API.
   """
+
+  alias ExTrello.Utils
 
   @doc """
   Send request to the api.trello.com server.
@@ -34,7 +36,9 @@ defmodule ExTrello.API.Base do
 
   def parse_result(result) do
     {:ok, {_response, header, body}} = result
+
     verify_response(ExTrello.JSON.decode!(body), header)
+    |> Utils.snake_case_keys
   end
 
   defp verify_response(body, header) do
