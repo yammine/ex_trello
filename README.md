@@ -2,12 +2,12 @@
 
 A library for interfacing with the Trello API.
 
-TODO: 
-- [ ] Usage tutorial. If someone wants to write one I'll happily accept a PR. :)
+TODO:
+- [x] Fetch Boards
+- [x] Create & Edit Boards
+- [ ] Usage tutorial. (For now use: https://hexdocs.pm/ex_trello/0.2.1/ExTrello.html)
 - [ ] Support nested resources (fetching cards for a particular board in 1 request)
 - [ ] Pagination
-- [x] Fetch Boards
-- [ ] Create & Edit Boards
 - [ ] Fetch Cards
 - [ ] Create & Edit Cards
 - [ ] Comment on Cards
@@ -33,4 +33,3 @@ TODO:
       [applications: [:ex_trello]]
     end
     ```
-

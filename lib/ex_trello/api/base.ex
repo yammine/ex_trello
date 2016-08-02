@@ -37,8 +37,13 @@ defmodule ExTrello.API.Base do
   def parse_result(result) do
     {:ok, {_response, header, body}} = result
 
-    verify_response(ExTrello.JSON.decode!(body), header)
-    |> Utils.snake_case_keys
+    case List.keyfind(header, 'content-type', 0) |> elem(1) do
+      'application/json; charset=utf-8' ->
+        verify_response(ExTrello.JSON.decode!(body), header)
+        |> Utils.snake_case_keys
+      'text/plain; charset=utf-8' ->
+        raise(ExTrello.Error, code: 400, message: body)
+    end
   end
 
   defp verify_response(body, header) do

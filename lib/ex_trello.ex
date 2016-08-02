@@ -96,6 +96,85 @@ defmodule ExTrello do
   defdelegate boards(user, options), to: ExTrello.API.Boards
 
   @doc """
+  Fetch board with board_id.
+
+  ## Examples
+
+      ExTrello.board("57663306e4b15193fcc97483")
+
+  ## Reference
+  https://developers.trello.com/advanced-reference/board#get-1-boards-board-id
+  """
+  @spec board(String.t) :: ExTrello.Model.Board.t | nil
+  defdelegate board(id), to: ExTrello.API.Boards
+
+  @doc """
+  Fetch board with board_id. See reference for list of options.
+
+  ## Examples
+
+      ExTrello.board("57663306e4b15193fcc97483", [actions_display: true])
+
+  ## Reference
+  https://developers.trello.com/advanced-reference/board#get-1-boards-board-id
+  """
+
+  @spec board(String.t, Keyword.t) :: ExTrello.Model.Board.t | nil
+  defdelegate board(id, options), to: ExTrello.API.Boards
+
+  @doc """
+  Create board with supplied `name`.
+
+  ## Examples
+      # Bad
+      ExTrello.create_board(123) #=> %ExTrello.Error{code: 422, message: "You must provide a name with a length between 1 and 16384 to create a board."}
+
+      # Good
+      ExTrello.create_board("TrelloHub")
+
+
+  ## Reference
+  https://developers.trello.com/advanced-reference/board#post-1-boards
+  """
+
+  @spec create_board(String.t) :: ExTrello.Model.Board.t | nil
+  defdelegate create_board(name), to: ExTrello.API.Boards
+
+  @doc """
+  Create board with supplied `name` & options.
+
+  ## Examples
+      # Bad
+      ExTrello.create_board(123) #=> %ExTrello.Error{code: 422, message: "You must provide a name with a length between 1 and 16384 to create a board."}
+
+      # Good
+      ExTrello.create_board("TrelloHub", desc: "An application to synchronize your Trello boards with your GitHub activity.", powerups: "all")
+
+
+  ## Reference
+  https://developers.trello.com/advanced-reference/board#post-1-boards
+  """
+
+  @spec create_board(String.t, Keyword.t) :: ExTrello.Model.Board.t | nil
+  defdelegate create_board(name, options), to: ExTrello.API.Boards
+
+  @doc """
+  Edit board with supplied field values.
+
+  ## Examples
+      # Capture the id of our newly created board.
+      %ExTrello.Model.Board{id: id} = ExTrello.create_board("Some name")
+      # Let's edit the name of our new board.
+      ExTrello.edit_board(id, name: "Another name entirely.")
+
+  ## Reference
+  https://developers.trello.com/advanced-reference/board#put-1-boards-board-id
+  """
+
+  @spec edit_board(String.t, Keyword.t) :: ExTrello.Model.Board.t | nil
+  defdelegate edit_board(id, options), to: ExTrello.API.Boards
+
+  @doc """
   GET OAuthGetRequestToken
 
   ## Examples
