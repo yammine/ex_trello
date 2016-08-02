@@ -2,8 +2,15 @@
 
 A library for interfacing with the Trello API.
 
-TODO: Usage tutorial. If someone wants to write one I'll happily accept a PR. :)
-
+TODO: 
+- [ ] Usage tutorial. If someone wants to write one I'll happily accept a PR. :)
+- [ ] Support nested resources (fetching cards for a particular board in 1 request)
+- [ ] Pagination
+- [x] Fetch Boards
+- [ ] Create & Edit Boards
+- [ ] Fetch Cards
+- [ ] Create & Edit Cards
+- [ ] Comment on Cards
 
 ## Installation
 
