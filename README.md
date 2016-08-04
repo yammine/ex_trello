@@ -6,7 +6,7 @@ TODO:
 - [x] Fetch Boards
 - [x] Create & Edit Boards
 - [x] Support nested resources
-- [ ] Usage tutorial. (For now use: https://hexdocs.pm/ex_trello/0.2.1/ExTrello.html)
+- [ ] Usage tutorial. (For now use: https://hexdocs.pm/ex_trello/0.2.2/ExTrello.html)
 - [ ] Pagination
 - [ ] Fetch Cards
 - [ ] Create & Edit Cards
