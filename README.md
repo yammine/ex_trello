@@ -1,6 +1,7 @@
 # ExTrello
 
 A library for interfacing with the Trello API.
+Heavily influenced by https://github.com/parroty/extwitter with some stuff straight ripped out of it.
 
 TODO:
 - [x] Fetch Boards
