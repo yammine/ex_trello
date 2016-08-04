@@ -35,34 +35,14 @@ defmodule ExTrello.API.Base do
   end
 
   def parse_result(result) do
-    {:ok, {_response, header, body}} = result
+    {:ok, {{_http_version, status_code, _status_text}, _header, body}} = result
 
-    case List.keyfind(header, 'content-type', 0) |> elem(1) do
-      'application/json; charset=utf-8' ->
-        verify_response(ExTrello.JSON.decode!(body), header)
+    case status_code do
+      code when code >= 200 and code < 300 ->
+        ExTrello.JSON.decode!(body)
         |> Utils.snake_case_keys
-      'text/plain; charset=utf-8' ->
-        raise(ExTrello.Error, code: 400, message: body)
+      _ ->
+        raise %ExTrello.Error{code: status_code, message: to_string(body)}
     end
-  end
-
-  defp verify_response(body, header) do
-    if is_list(body) do
-      body
-    else
-      case Map.get(body, :errors, nil) || Map.get(body, :error, nil) do
-        nil ->
-          body
-        errors when is_list(errors) ->
-          parse_error(List.first(errors), header)
-        error ->
-          raise(ExTrello.Error, message: inspect error)
-      end
-    end
-  end
-
-  defp parse_error(error, header) do
-    %{:code => code, :message => message} = error
-    raise ExTrello.Error, code: code, message: message
   end
 end

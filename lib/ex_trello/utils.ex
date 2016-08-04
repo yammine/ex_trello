@@ -16,31 +16,17 @@ defmodule ExTrello.Utils do
   def snake_case_keys(map) when is_map(map) do
     Enum.reduce(map, %{}, fn
       {key, value}, acc when is_map(value) ->
-        Map.put(acc, snake(key), snake_case_keys(value))
+        Map.put(acc, Macro.underscore(key) |> attempt_atom_conversion, snake_case_keys(value))
       {key, value}, acc when is_list(value) ->
-        Map.put(acc, snake(key), Enum.map(value, &snake_case_keys/1))
+        Map.put(acc, Macro.underscore(key) |> attempt_atom_conversion, Enum.map(value, &snake_case_keys/1))
       {key, value}, acc ->
-        Map.put(acc, snake(key), value)
+        Map.put(acc, Macro.underscore(key) |> attempt_atom_conversion, value)
     end)
   end
   def snake_case_keys(object) when is_list(object) do
     Enum.map(object, &snake_case_keys/1)
   end
   def snake_case_keys(object), do: object
-
-  defp snake(key) when is_atom(key),   do: Atom.to_string(key) |> snake
-  defp snake(key) when is_binary(key), do: key |> do_snake
-
-  defp do_snake(""), do: raise %ExTrello.Error{code: 500, message: "Failed parsing response from Trello."}
-  defp do_snake(key), do: do_snake(key, "")
-
-  defp do_snake(<< first::size(8), rest::binary >>, acc) when <<first>> in @capitalized_letters do
-    do_snake(rest, acc <> "_" <> String.downcase(<<first>>))
-  end
-  defp do_snake(<< first::size(8), rest::binary >>, acc) do
-    do_snake(rest, acc <> <<first>>)
-  end
-  defp do_snake("", acc), do: attempt_atom_conversion(acc)
 
   # Let's keep things nice and atom-y
   defp attempt_atom_conversion(string) do

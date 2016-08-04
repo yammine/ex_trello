@@ -5,12 +5,15 @@ A library for interfacing with the Trello API.
 TODO:
 - [x] Fetch Boards
 - [x] Create & Edit Boards
+- [x] Support nested resources
 - [ ] Usage tutorial. (For now use: https://hexdocs.pm/ex_trello/0.2.1/ExTrello.html)
-- [ ] Support nested resources (fetching cards for a particular board in 1 request)
 - [ ] Pagination
 - [ ] Fetch Cards
 - [ ] Create & Edit Cards
 - [ ] Comment on Cards
+- [ ] Add models for label, checklist, member, notification, organization, session, token
+- [ ] Tests
+- [ ] Implement own OAuth 1.0 library to remove dependency on `erlang-oauth` (or investigate existing solutions)
 
 ## Installation
 
@@ -21,12 +24,12 @@ TODO:
     def deps do
       [
         {:oauth, github: "tim/erlang-oauth"}, # The erlang-oauth package isn't included
-        {:ex_trello, "~> 0.1.9"}
+        {:ex_trello, "~> 0.2.2"}
       ]
     end
     ```
 
-  2. Ensure `ex_trello` is started before your application:
+  2. Ensure `ex_trello` is started before your application: (Technically not necessary right now, but will be soon(tm).)
 
     ```elixir
     def application do

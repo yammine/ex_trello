@@ -42,7 +42,7 @@ defmodule ExTrello.OAuth do
   Send async request with put method.
   """
   def request_async(:put, url, params, consumer, access_token, access_token_secret) do
-    :oauth.put(url, params, {'application/x-www-form-urlencoded', []}, consumer, access_token, access_token_secret, [], stream_option)
+    :oauth.put(url, params, {'application/x-www-form-urlencoded', []}, consumer, access_token, access_token_secret, stream_option)
   end
 
   defp stream_option do

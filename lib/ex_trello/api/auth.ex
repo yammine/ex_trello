@@ -9,12 +9,16 @@ defmodule ExTrello.API.Auth do
     oauth = Config.get_tuples |> verify_params
     params = if redirect_url, do: [{"oauth_callback", redirect_url}], else: []
     consumer = {oauth[:app_key], oauth[:app_secret], :hmac_sha1}
-    {:ok, {{_, 200, _}, _headers, body}} = OAuth.request(:get, request_url("OAuthGetRequestToken"), params, consumer, [], [])
 
-    URI.decode_query(to_string body)
-    |> Enum.map(fn {k,v} -> {String.to_atom(k), v} end) #TODO: get rid of the String.to_atom/1 and any expectation downstream.
-    |> Enum.into(%{})
-    |> Parser.parse_request_token
+    case OAuth.request(:get, request_url("OAuthGetRequestToken"), params, consumer, [], []) do
+      {:ok, {{_, 200, _}, _headers, body}} ->
+        URI.decode_query(to_string body)
+        |> Enum.map(fn {k,v} -> {String.to_atom(k), v} end) #TODO: get rid of the String.to_atom/1 and any expectation downstream.
+        |> Enum.into(%{})
+        |> Parser.parse_request_token
+      {:error, reason} ->
+        raise(ExTrello.ConnectionError, reason: reason)
+    end
   end
 
   def authorize_url(oauth_token, options \\ %{}) do
@@ -33,8 +37,10 @@ defmodule ExTrello.API.Auth do
         |> Enum.into(%{})
         |> Parser.parse_access_token
         {:ok, access_token}
-      {:ok, {{_, code, _}, _, _}} ->
-        {:error, code}
+      {:ok, {{_, code, _}, _, body}} ->
+        raise(ExTrello.Error, code: code, message: to_string(body))
+      {:error, reason} ->
+        raise(ExTrello.ConnectionError, reason: reason)
     end
   end
 end
