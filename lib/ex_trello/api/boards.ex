@@ -5,8 +5,10 @@ defmodule ExTrello.API.Boards do
   """
 
   import ExTrello.API.Base
-  alias ExTrello.Parser
+  alias  ExTrello.Parser
+  alias  ExTrello.Model.{Board}
 
+  # Boards
   def boards(), do: boards([])
   def boards(options) when is_list(options) do
     params = Parser.parse_request_params(options)
@@ -28,16 +30,13 @@ defmodule ExTrello.API.Boards do
     |> Parser.parse_board
   end
 
-  def create_board(name, options) when is_binary(name) and (byte_size(name) >= 1 and byte_size(name) <= 16384) do
-    params = Parser.parse_request_params(options)
+  def create_board(name) when is_binary(name), do: create_board(name, [])
+  def create_board(name, options) when is_binary(name) do
+    params = Parser.parse_request_params [{:name, name}| options]
 
-    request(:post, "boards", [{"name", name} | params]) # Adding name to the params list.
+    request(:post, "boards", params)
     |> Parser.parse_board
   end
-  def create_board(name) when is_binary(name) and (byte_size(name) >= 1 and byte_size(name) <= 16384), do: create_board(name, []) # Creating a board sans options.
-  def create_board(nil), do: raise_name_length_error
-  def create_board(""), do:  raise_name_length_error
-  def create_board(_), do:   raise_name_length_error
 
   def edit_board(id, fields) when is_list(fields) do
     params = Parser.parse_request_params(fields)
@@ -46,7 +45,13 @@ defmodule ExTrello.API.Boards do
     |> Parser.parse_board
   end
 
-  defp raise_name_length_error do
-    raise(ExTrello.Error, code: 422, message: "You must provide a name with a length between 1 and 16384 to create a board.")
+  # Board Cards
+  def cards(board), do: cards(board, [])
+  def cards(%Board{id: id}, options), do: cards(id, options)
+  def cards(board_id, options) when is_binary(board_id) do
+    params = Parser.parse_request_params(options)
+
+    request(:get, "boards/#{board_id}/cards", params)
+    |> Enum.map(&Parser.parse_card/1)
   end
 end

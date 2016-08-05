@@ -6,13 +6,13 @@ TODO:
 - [x] Fetch Boards
 - [x] Create & Edit Boards
 - [x] Support nested resources
-- [ ] Usage tutorial. (For now use: https://hexdocs.pm/ex_trello/0.2.1/ExTrello.html)
-- [ ] Pagination
-- [ ] Fetch Cards
+- [x] Fetch Cards
+- [x] Comment on Cards
 - [ ] Create & Edit Cards
-- [ ] Comment on Cards
-- [ ] Add models for label, checklist, member, notification, organization, session, token
+- [ ] Add models for label, checklist, member, notification, organization, session, token, ~~action~~
+- [ ] Usage tutorial. (For now use: https://hexdocs.pm/ex_trello/0.2.3/ExTrello.html)
 - [ ] Tests
+- [ ] Pagination
 - [ ] Implement own OAuth 1.0 library to remove dependency on `erlang-oauth` (or investigate existing solutions)
 
 ## Installation
@@ -24,7 +24,7 @@ TODO:
     def deps do
       [
         {:oauth, github: "tim/erlang-oauth"}, # The erlang-oauth package isn't included
-        {:ex_trello, "~> 0.2.2"}
+        {:ex_trello, "~> 0.2.3"}
       ]
     end
     ```

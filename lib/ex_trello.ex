@@ -175,6 +175,101 @@ defmodule ExTrello do
   defdelegate edit_board(id, options), to: ExTrello.API.Boards
 
   @doc """
+  Fetch cards associated to %ExTrello.Model.Board{} or board id.
+
+  ## Examples
+
+      # Using a board_id
+      ExTrello.board_cards("57663306e4b15193fcc97483")
+
+      # Using a Board struct (Useful in case you're passing this struct around, you should just use the `cards: "all"` flag to fetch a board and its cards in the same request)
+      # board = %ExTrello.Model.Board{id: "57663306e4b15193fcc97483" blah blah blah}
+      board |> ExTrello.board_cards
+
+  ## Reference
+  https://developers.trello.com/advanced-reference/board#get-1-boards-board-id-cards
+  """
+  @spec board_cards(String.t | ExTrello.Model.Board.t) :: [ExTrello.Model.Card.t] | []
+  defdelegate board_cards(board_or_id), to: ExTrello.API.Boards, as: :cards
+
+  @doc """
+  Fetch cards associated to %ExTrello.Model.Board{} or board id.
+
+  ## Examples
+
+      # Using a board_id
+      ExTrello.board_cards("57663306e4b15193fcc97483", attachments: true, checklists: "all")
+
+      # Using a Board struct (Useful in case you're passing this struct around, you should just use the `cards: "all"` flag to fetch a board and its cards in the same request)
+      # board = %ExTrello.Model.Board{id: "57663306e4b15193fcc97483" blah blah blah}
+      board |> ExTrello.board_cards(members: true)
+
+  ## Reference
+  https://developers.trello.com/advanced-reference/board#get-1-boards-board-id-cards
+  """
+
+  @spec board_cards(String.t | ExTrello.Model.Board.t, Keyword.t) :: [ExTrello.Model.Card.t] | []
+  defdelegate board_cards(board_or_id, options), to: ExTrello.API.Boards, as: :cards
+
+  @doc """
+  Fetch card associated with given id or shortlink.
+
+  ## Examples
+
+      # Using card id
+      ExTrello.card("56e8fa38abbbdd74b978c3cd")
+
+      # Using shortlink
+      ExTrello.card("JyUbYknO")
+
+  ## Reference
+  https://developers.trello.com/advanced-reference/card#get-1-cards-card-id-or-shortlink
+  """
+  @spec card(String.t) :: ExTrello.Model.Card.t
+  defdelegate card(card_id_or_shortlink), to: ExTrello.API.Cards
+
+  @doc """
+  Fetch card associated with given id or shortlink with options. See reference for the different options.
+
+  ## Examples
+
+      ExTrello.card("JyUbYknO", list: true)
+
+  ## Reference
+  https://developers.trello.com/advanced-reference/card#get-1-cards-card-id-or-shortlink
+  """
+
+  @spec card(String.t, Keyword.t) :: ExTrello.Model.Card.t
+  defdelegate card(card_id_or_shortlink, options), to: ExTrello.API.Cards
+
+  @doc """
+  Create a comment on a given card.
+
+  ## Examples
+
+      ExTrello.create_comment("JyUbYknO", "Passed code review, moving this to the `Complete` list.")
+
+  ## Reference
+  https://developers.trello.com/advanced-reference/card#post-1-cards-card-id-or-shortlink-actions-comments
+  """
+  @spec create_comment(String.t | ExTrello.Model.Card.t, String.t) :: ExTrello.Model.Action.t
+  defdelegate create_comment(card_or_id_or_shortlink, text), to: ExTrello.API.Cards
+
+  @doc """
+  Fetch action associated with action_id.
+
+  ## Examples
+
+      ExTrello.action("57a5108615c475280d511795")
+
+  ## Reference
+  https://developers.trello.com/advanced-reference/action#actions-idaction
+  """
+
+  @spec action(String.t) :: ExTrello.Model.Action.t
+  defdelegate action(action_id), to: ExTrello.API.Actions
+
+  @doc """
   GET OAuthGetRequestToken
 
   ## Examples
