@@ -13,12 +13,10 @@ defmodule ExTrello.API.Base do
   end
 
   defp do_request(method, url, params) do
-    oauth = ExTrello.Config.get_tuples |> verify_params
-    consumer = {oauth[:app_key], oauth[:app_secret], :hmac_sha1}
-    token = oauth[:access_token]
-    secret = oauth[:access_token_secret]
-    case ExTrello.OAuth.request(method, url, params, consumer, token, secret) do
-      {:error, reason} -> raise(ExTrello.ConnectionError, reason: reason)
+    credentials = ExTrello.Config.get |> verify_params |> OAuther.credentials
+
+    case ExTrello.OAuth.request(method, url, params, credentials) do
+      %HTTPotion.ErrorResponse{message: message} -> raise(ExTrello.ConnectionError, reason: message)
       r -> r |> parse_result
     end
   end
@@ -31,18 +29,16 @@ defmodule ExTrello.API.Base do
   def verify_params(params), do: params
 
   def request_url(path) do
-    "https://api.trello.com/1/#{path}" |> to_char_list
+    "https://api.trello.com/1/#{path}"
   end
 
   def parse_result(result) do
-    {:ok, {{_http_version, status_code, _status_text}, _header, body}} = result
-
-    case status_code do
-      code when code >= 200 and code < 300 ->
+    case result do
+      %HTTPotion.Response{body: body, status_code: code} when code >= 200 and code < 300 ->
         ExTrello.JSON.decode!(body)
         |> Utils.snake_case_keys
-      _ ->
-        raise %ExTrello.Error{code: status_code, message: to_string(body)}
+      %HTTPotion.Response{body: body, status_code: code} ->
+        raise %ExTrello.Error{code: code, message: body}
     end
   end
 end

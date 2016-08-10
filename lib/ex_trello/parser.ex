@@ -41,13 +41,6 @@ defmodule ExTrello.Parser do
   defp preprocess(object, _), do: object
 
   @doc """
-  Parse request parameters for the API.
-  """
-  def parse_request_params(options) do
-    Enum.map(options, fn({k,v}) -> {to_string(k), to_string(v)} end)
-  end
-
-  @doc """
   Parse board record returned from API response json.
   """
   def parse_board(object) do

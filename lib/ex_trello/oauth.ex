@@ -2,50 +2,20 @@ defmodule ExTrello.OAuth do
   @moduledoc """
   Provide a wrapper for :oauth request methods.
   """
-
   @doc """
-  Send request with get method.
-  """
-  def request(:get, url, params, consumer, access_token, access_token_secret) do
-    :oauth.get(url, params, consumer, access_token, access_token_secret, [])
-  end
+  Send a signed request
 
-  @doc """
-  Send request with post method.
-  """
-  def request(:post, url, params, consumer, access_token, access_token_secret) do
-    :oauth.post(url, params, consumer, access_token, access_token_secret, [])
-  end
+  ## Options
 
-  @doc """
-  Send request with put method.
+      * `stream_to` Specify a process to stream the response to when performing async requests
+      * `follow_redirects` Specify whether redirects should be followed.
   """
-  def request(:put, url, params, consumer, access_token, access_token_secret) do
-    :oauth.put(url, params, {'application/x-www-form-urlencoded', []}, consumer, access_token, access_token_secret)
-  end
+  def request(method, url, params, credentials, opts \\ []) do
+    signed_params = OAuther.sign(to_string(method), url, params, credentials)
+    {header, request_params} = OAuther.header(signed_params)
 
-  @doc """
-  Send async request with get method.
-  """
-  def request_async(:get, url, params, consumer, access_token, access_token_secret) do
-    :oauth.get(url, params, consumer, access_token, access_token_secret, stream_option)
-  end
+    content_type = if opts[:content_type], do: opts[:content_type], else: "application/x-www-form-urlencoded"
 
-  @doc """
-  Send async request with post method.
-  """
-  def request_async(:post, url, params, consumer, access_token, access_token_secret) do
-    :oauth.post(url, params, consumer, access_token, access_token_secret, stream_option)
-  end
-
-  @doc """
-  Send async request with put method.
-  """
-  def request_async(:put, url, params, consumer, access_token, access_token_secret) do
-    :oauth.put(url, params, {'application/x-www-form-urlencoded', []}, consumer, access_token, access_token_secret, stream_option)
-  end
-
-  defp stream_option do
-    [{:sync, false}, {:stream, :self}]
+    HTTPotion.request(method, url <> "?#{URI.encode_query(signed_params)}", header: [{"Content-Type", content_type}, header])
   end
 end

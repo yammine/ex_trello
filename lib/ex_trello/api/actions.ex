@@ -9,9 +9,7 @@ defmodule ExTrello.API.Actions do
 
   def action(id), do: action(id, [])
   def action(id, options) when is_binary(id) and is_list(options) do
-    params = Parser.parse_request_params(options)
-
-    request(:get, "actions/#{id}", params)
+    request(:get, "actions/#{id}", options)
     |> Parser.parse_action
   end
 end

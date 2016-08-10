@@ -21,14 +21,4 @@ defmodule ExTrello.Config do
     Process.put(:_ex_trello_oauth, value)
     :ok
   end
-
-  @doc """
-  Get OAuth configuration values in tuple format.
-  """
-  def get_tuples do
-    case ExTrello.Config.get do
-      nil -> []
-      tuples -> tuples |> Enum.map(fn({k, v}) -> {k, to_char_list(v)} end)
-    end
-  end
 end

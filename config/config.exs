@@ -1,8 +1,8 @@
 use Mix.Config
 
 config :ex_trello, :oauth, [
-  app_key:             System.get_env("TRELLO_APP_KEY"),
-  app_secret:          System.get_env("TRELLO_APP_SECRET"),
-  access_token:        System.get_env("TRELLO_ACCESS_TOKEN"),
-  access_token_secret: System.get_env("TRELLO_ACCESS_SECRET")
+  consumer_key:    System.get_env("TRELLO_APP_KEY"),
+  consumer_secret: System.get_env("TRELLO_APP_SECRET"),
+  token:           System.get_env("TRELLO_ACCESS_TOKEN"),
+  token_secret:    System.get_env("TRELLO_ACCESS_SECRET")
 ]

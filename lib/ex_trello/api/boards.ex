@@ -11,37 +11,27 @@ defmodule ExTrello.API.Boards do
   # Boards
   def boards(), do: boards([])
   def boards(options) when is_list(options) do
-    params = Parser.parse_request_params(options)
-
-    request(:get, "members/me/boards", params)
+    request(:get, "members/me/boards", options)
     |> Enum.map(&Parser.parse_board/1)
   end
   def boards(user, options \\ []) when is_binary(user) do
-    params = Parser.parse_request_params(options)
-
-    request(:get, "members/#{user}/boards", params)
+    request(:get, "members/#{user}/boards", options)
     |> Enum.map(&Parser.parse_board/1)
   end
 
   def board(id, options \\ []) when is_binary(id) do
-    params = Parser.parse_request_params(options)
-
-    request(:get, "boards/#{id}", params)
+    request(:get, "boards/#{id}", options)
     |> Parser.parse_board
   end
 
   def create_board(name) when is_binary(name), do: create_board(name, [])
   def create_board(name, options) when is_binary(name) do
-    params = Parser.parse_request_params [{:name, name}| options]
-
-    request(:post, "boards", params)
+    request(:post, "boards", [{:name, name}| options])
     |> Parser.parse_board
   end
 
   def edit_board(id, fields) when is_list(fields) do
-    params = Parser.parse_request_params(fields)
-
-    request(:put, "boards/#{id}", params)
+    request(:put, "boards/#{id}", fields)
     |> Parser.parse_board
   end
 
@@ -49,9 +39,7 @@ defmodule ExTrello.API.Boards do
   def cards(board), do: cards(board, [])
   def cards(%Board{id: id}, options), do: cards(id, options)
   def cards(board_id, options) when is_binary(board_id) do
-    params = Parser.parse_request_params(options)
-
-    request(:get, "boards/#{board_id}/cards", params)
+    request(:get, "boards/#{board_id}/cards", options)
     |> Enum.map(&Parser.parse_card/1)
   end
 end

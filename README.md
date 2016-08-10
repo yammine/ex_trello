@@ -11,11 +11,11 @@ TODO:
 - [x] ~~Fetch Cards~~
 - [x] ~~Comment on Cards~~
 - [x] ~~Create & Edit Cards~~
+- [x] ~~Implement own OAuth 1.0 library to remove dependency on `erlang-oauth` (or investigate existing solutions)~~
 - [ ] Add models for label, checklist, member, notification, organization, session, token, ~~action~~
 - [ ] Usage tutorial. (For now use: https://hexdocs.pm/ex_trello/0.2.4/ExTrello.html)
 - [ ] Tests
 - [ ] Pagination
-- [ ] Implement own OAuth 1.0 library to remove dependency on `erlang-oauth` (or investigate existing solutions)
 
 ## Installation
 
@@ -25,8 +25,7 @@ TODO:
     ```elixir
     def deps do
       [
-        {:oauth, github: "tim/erlang-oauth"}, # The erlang-oauth package isn't included
-        {:ex_trello, "~> 0.2.4"}
+        {:ex_trello, "~> 0.4.0"}
       ]
     end
     ```

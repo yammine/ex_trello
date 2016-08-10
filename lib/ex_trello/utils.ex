@@ -2,16 +2,18 @@ defmodule ExTrello.Utils do
   @moduledoc """
   A collection of helpful utility functions.
   """
-  @capitalized_letters ~w(A B C D E F G H I J K L M N O P Q R S T U V W X Y Z)
 
   @doc """
   Will parse over any JSON response from the Trello API & snake case any camelCased keys (also convert them to atoms)
 
   Example
-      body = %{"dateLastActivity" => %{ potatoSkins: "asdf", somethingElse: %{ "heyThere" => "sup"}}, rootMap: "right here", someList: [%{keysInHere: "too"}, %{cantBelieve: %{thisIsHappening: "it is tho"}}]}
-      ExTrello.Utils.snake_case_keys(body)
+  body = %{"dateLastActivity" => %{ "potatoSkins" => "asdf", "somethingElse" => %{ "heyThere" => "sup"}}, "rootMap" => "right here", "someList" => [%{"keysInHere" => "too"}, %{"cantBelieve" => %{"thisIsHappening" => "it is tho"}}]}
 
-      %{date_last_activity: %{potato_skins: "asdf", something_else: %{hey_there: "sup"}}, root_map: "right here"}
+  iex> ExTrello.Utils.snake_case_keys body
+    %{date_last_activity: %{potato_skins: "asdf",
+    something_else: %{hey_there: "sup"}}, root_map: "right here",
+    some_list: [%{keys_in_here: "too"},
+    %{cant_believe: %{this_is_happening: "it is tho"}}]}
   """
   def snake_case_keys(map) when is_map(map) do
     Enum.reduce(map, %{}, fn
