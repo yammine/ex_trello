@@ -6,13 +6,22 @@ defmodule ExTrello.API.Cards do
 
   import ExTrello.API.Base
   alias ExTrello.Parser
-  alias ExTrello.Model.{Card}
+  alias ExTrello.Model.{Card, List}
 
   def card(id_or_shortlink), do: card(id_or_shortlink, [])
   def card(id_or_shortlink, options) when is_binary(id_or_shortlink) do
     params = Parser.parse_request_params(options)
 
     request(:get, "cards/#{id_or_shortlink}", params)
+    |> Parser.parse_card
+  end
+
+  def create_card(list, name) when is_binary(name), do: create_card(list, name, [])
+  def create_card(%List{id: id}, name, options) when is_binary(name), do: create_card(id, name, options)
+  def create_card(list_id, name, options) when is_binary(list_id) and is_binary(name) do
+    params = Parser.parse_request_params([{"idList", list_id}, {"name", name}|options])
+
+    request(:post, "cards", params)
     |> Parser.parse_card
   end
 

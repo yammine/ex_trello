@@ -69,7 +69,7 @@ defmodule ExTrello do
   defdelegate boards, to: ExTrello.API.Boards
 
   @doc """
-  Fetch all boards of authenticated user.
+  Fetch all boards of authenticated user. See reference for detailed list of options.
 
   ## Examples
 
@@ -83,7 +83,7 @@ defmodule ExTrello do
 
 
   @doc """
-  Fetch all boards of given username or Trello User ID.
+  Fetch all boards of given username or Trello User ID. See reference for detailed list of options.
 
   ## Examples
 
@@ -141,7 +141,7 @@ defmodule ExTrello do
   defdelegate create_board(name), to: ExTrello.API.Boards
 
   @doc """
-  Create board with supplied `name` & options.
+  Create board with supplied `name`. See reference for detailed list of options.
 
   ## Examples
       # Bad
@@ -159,7 +159,7 @@ defmodule ExTrello do
   defdelegate create_board(name, options), to: ExTrello.API.Boards
 
   @doc """
-  Edit board with supplied field values.
+  Edit board with supplied field values. See reference for detailed list of options.
 
   ## Examples
       # Capture the id of our newly created board.
@@ -193,7 +193,7 @@ defmodule ExTrello do
   defdelegate board_cards(board_or_id), to: ExTrello.API.Boards, as: :cards
 
   @doc """
-  Fetch cards associated to %ExTrello.Model.Board{} or board id.
+  Fetch cards associated to %ExTrello.Model.Board{} or board id. See reference for detailed list of options.
 
   ## Examples
 
@@ -229,7 +229,7 @@ defmodule ExTrello do
   defdelegate card(card_id_or_shortlink), to: ExTrello.API.Cards
 
   @doc """
-  Fetch card associated with given id or shortlink with options. See reference for the different options.
+  Fetch card associated with given id or shortlink with options. See reference for detailed list of options.
 
   ## Examples
 
@@ -241,6 +241,61 @@ defmodule ExTrello do
 
   @spec card(String.t, Keyword.t) :: ExTrello.Model.Card.t
   defdelegate card(card_id_or_shortlink, options), to: ExTrello.API.Cards
+
+  @doc """
+  Create a card for a given %List{} or list id.
+
+  ## Examples
+
+      board = ExTrello.board("57663306e4b15193fcc97483", lists: "all")
+      %ExTrello.Model.List{id: id} = List.first(board.lists) # This happens to be my Icebox list
+      ExTrello.create_card(id, "Should definitely improve documentation and tests for this project.")
+
+  ## Reference
+  https://developers.trello.com/advanced-reference/card#post-1-cards
+  """
+
+  @spec create_card(String.t | ExTrello.Model.List.t, String.t) :: ExTrello.Model.Card.t
+  defdelegate create_card(list_or_id, name), to: ExTrello.API.Cards
+
+  @doc """
+  Create a card for a given %List{} or list id using provided options. See reference for detailed list of options.
+
+  ## Examples
+
+      board = ExTrello.board("57663306e4b15193fcc97483", lists: "all", members: "all")
+
+      List.first(board.lists) # This happens to be my Icebox list
+      |> ExTrello.create_card("This card will be at the top of the list.", pos: "top", idMembers: Enum.map(board.members, &(&1.id)) |> Enum.join(","))
+
+  ## Reference
+  https://developers.trello.com/advanced-reference/card#post-1-cards
+  """
+
+  @spec create_card(String.t | ExTrello.Model.List.t, String.t, Keyword.t) :: ExTrello.Model.Card.t
+  defdelegate create_card(list_or_id, name, options), to: ExTrello.API.Cards
+
+  @doc """
+  Edit a card. A comprehensive list of all properties that can be passed can be found in the reference.
+
+  ## Examples
+
+      # Using ID
+      ExTrello.edit_card("56e8fa38abbbdd74b978c3cd", name: "A different name now.", desc: "Honestly does anyone even read these?", pos: "top", idList: "57663322ac7d147b2c337e34")
+
+      # Using Shortlink
+      ExTrello.edit_card("JyUbYknO", closed: true, subscribed: false)
+
+      # Using a %ExTrello.Model.Card{} struct
+      ExTrello.card("JyUbYknO")
+      |> ExTrello.edit_card(name: "I passed an ExTrello.Model.Card struct to the function to edit this card.")
+
+  ## Reference
+  https://developers.trello.com/advanced-reference/card#put-1-cards-card-id-or-shortlink
+  """
+
+  @spec edit_card(String.t | ExTrello.Model.Card.t, Keyword.t) :: ExTrello.Model.Card.t
+  defdelegate edit_card(card_or_id_or_shortlink, properties_to_edit), to: ExTrello.API.Cards
 
   @doc """
   Create a comment on a given card.
