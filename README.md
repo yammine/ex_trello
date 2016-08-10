@@ -5,14 +5,14 @@ A library for interfacing with the Trello API.
 Heavily influenced by https://github.com/parroty/extwitter with some stuff straight ripped out of it.
 
 TODO:
-- [x] Fetch Boards
-- [x] Create & Edit Boards
-- [x] Support nested resources
-- [x] Fetch Cards
-- [x] Comment on Cards
-- [ ] Create & Edit Cards
+- [x] ~~Fetch Boards~~
+- [x] ~~Create & Edit Boards~~
+- [x] ~~Support nested resources~~
+- [x] ~~Fetch Cards~~
+- [x] ~~Comment on Cards~~
+- [x] ~~Create & Edit Cards~~
 - [ ] Add models for label, checklist, member, notification, organization, session, token, ~~action~~
-- [ ] Usage tutorial. (For now use: https://hexdocs.pm/ex_trello/0.2.3/ExTrello.html)
+- [ ] Usage tutorial. (For now use: https://hexdocs.pm/ex_trello/0.2.4/ExTrello.html)
 - [ ] Tests
 - [ ] Pagination
 - [ ] Implement own OAuth 1.0 library to remove dependency on `erlang-oauth` (or investigate existing solutions)
@@ -26,7 +26,7 @@ TODO:
     def deps do
       [
         {:oauth, github: "tim/erlang-oauth"}, # The erlang-oauth package isn't included
-        {:ex_trello, "~> 0.2.3"}
+        {:ex_trello, "~> 0.2.4"}
       ]
     end
     ```
