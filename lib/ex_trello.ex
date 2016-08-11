@@ -59,6 +59,32 @@ defmodule ExTrello do
   defdelegate configure(scope, oauth), to: ExTrello.Config, as: :set
 
   @doc """
+  Fetch the authenticated member.
+
+  ## Examples
+
+      ExTrello.member()
+
+  ## Reference
+  https://developers.trello.com/advanced-reference/member#get-1-members-idmember-or-username
+  """
+  @spec member() :: ExTrello.Model.Member
+  defdelegate member, to: ExTrello.API.Members
+
+  @doc """
+  Fetch the authenticated member. See reference for list of options.
+
+  ## Examples
+
+      ExTrello.member(organizations: "all")
+
+  ## Reference
+  https://developers.trello.com/advanced-reference/member#get-1-members-idmember-or-username
+  """
+  @spec member(Keyword.t) :: ExTrello.Model.Member
+  defdelegate member(options), to: ExTrello.API.Members
+
+  @doc """
   Fetch all boards of authenticated user.
 
   ## Examples

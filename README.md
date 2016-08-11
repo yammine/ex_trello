@@ -12,8 +12,8 @@ TODO:
 - [x] ~~Comment on Cards~~
 - [x] ~~Create & Edit Cards~~
 - [x] ~~Implement own OAuth 1.0 library to remove dependency on `erlang-oauth` (or investigate existing solutions)~~
-- [ ] Add models for label, checklist, member, notification, organization, session, token, ~~action~~
-- [ ] Usage tutorial. (For now use: https://hexdocs.pm/ex_trello/0.4.0/ExTrello.html)
+- [ ] Add models for label, checklist, ~~member~~, notification, ~~organization~~, session, token, ~~action~~
+- [ ] Usage tutorial. (For now use: https://hexdocs.pm/ex_trello/0.4.1/ExTrello.html)
 - [ ] Tests
 - [ ] Pagination
 
@@ -25,7 +25,7 @@ TODO:
     ```elixir
     def deps do
       [
-        {:ex_trello, "~> 0.4.0"}
+        {:ex_trello, "~> 0.4.1"}
       ]
     end
     ```
