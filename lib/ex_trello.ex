@@ -351,6 +351,78 @@ defmodule ExTrello do
   defdelegate action(action_id), to: ExTrello.API.Actions
 
   @doc """
+  GET request to Trello
+
+  ## Examples
+
+      ExTrello.get("boards/57ae3940f43e6d960e0c45da/boardStars")
+  """
+  @spec get(String.t) :: String.t
+  defdelegate get(path), to: ExTrello.API.BareRequests
+
+  @doc """
+  GET request to Trello
+
+  ## Examples
+
+      ExTrello.get("boards/57ae3940f43e6d960e0c45da/boardStars", filter: "mine")
+  """
+  @spec get(String.t, Keyword.t) :: String.t
+  defdelegate get(path, params), to: ExTrello.API.BareRequests
+
+  @doc """
+  POST request to Trello with no body.
+  """
+  @spec post(String.t) :: String.t
+  defdelegate post(path), to: ExTrello.API.BareRequests
+
+  @doc """
+  POST request to Trello
+
+  ## Examples
+
+      ExTrello.post("boards/57ae3940f43e6d960e0c45da/lists", name: "Best List", pos: "top")
+  """
+  @spec post(String.t, Keyword.t) :: String.t
+  defdelegate post(path, params), to: ExTrello.API.BareRequests
+
+  @doc """
+  PUT request to Trello with no body.
+  """
+  @spec put(String.t) :: String.t
+  defdelegate put(path), to: ExTrello.API.BareRequests
+
+  @doc """
+  PUT request to Trello
+
+  ## Examples
+
+      ExTrello.put("boards/57ae3940f43e6d960e0c45da/labelNames/blue", value: "Bluey")
+  """
+  @spec put(String.t, Keyword.t) :: String.t
+  defdelegate put(path, params), to: ExTrello.API.BareRequests
+
+  @doc """
+  DELETE request to Trello with no body.
+
+  ## Examples
+
+      ExTrello.delete("boards/57ae3940f43e6d960e0c45da/powerUps/calendar")
+  """
+  @spec delete(String.t) :: String.t
+  defdelegate delete(path), to: ExTrello.API.BareRequests
+
+  @doc """
+  DELETE request to Trello
+
+  ## Examples
+
+      ExTrello.delete("boards/57ae3940f43e6d960e0c45da/powerUps/calendar")
+  """
+  @spec delete(String.t, Keyword.t) :: String.t
+  defdelegate delete(path, params), to: ExTrello.API.BareRequests
+
+  @doc """
   GET OAuthGetRequestToken
 
   ## Examples
