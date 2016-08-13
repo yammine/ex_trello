@@ -4,6 +4,10 @@ A library for interfacing with the Trello API.
 
 Heavily influenced by https://github.com/parroty/extwitter with some stuff straight ripped out of it.
 
+## Documentation
+- https://hexdocs.pm/ex_trello
+ 
+
 ## Installation
 
 
@@ -78,7 +82,49 @@ end
 
 ## Samples
 
-Coming soon :)
+#### Authorize your application
+
+Example for authorization. This is a naive solution that only works for demonstration.
+TODO: Set up example application.
+```elixir
+# First we have to get a request token from Trello.
+token = ExTrello.request_token("http://localhost:4000/auth/trello/callback/1234")
+# We have to store this token because we need the `oauth_token_secret` after the callback to obtain our access token & secret.
+# e.g. TokenAgent.store("1234", token.oauth_token_secret)
+
+# Generate the url for authorization
+{:ok, auth_url} = ExTrello.authorize_url(token.oauth_token, %{return_url: "http://localhost:4000/auth/trello/callback/1234", scope: "read,write", expiration: "never", name: "Your Application Name here"})
+
+# Copy the url and visit it using your browser.
+IO.puts auth_url
+```
+After signing in/authorizing the application you will be redirected to the callback URL you specified in the Request token & authorize URL.
+
+Example:
+```
+http://localhost:4000/auth/trello/callback/1234?oauth_token=**copy_this**&oauth_verifier=**copy_this**
+```
+
+Copy the `oauth_token` and `oauth_verifier` above:
+```elixir
+oauth_token = "copied_oauth_token"
+oauth_verifier = "copied_oauth_verifier"
+oauth_token_secret = retrieve_oauth_token_secret_from_before() # e.g. TokenAgent.retrieve("1234") from hypothetical TokenAgent
+
+{:ok, access_token} = ExTrello.access_token(oauth_verifier, oauth_token, oauth_token_secret)
+
+# Let's configure ExTrello with our newly obtained access token
+ExTrello.configure(
+  consumer_key: System.get_env("TRELLO_CONSUMER_KEY"),
+  consumer_secret: System.get_env("TRELLO_CONSUMER_SECRET"),
+  token: access_token.oauth_token,
+  token_secret: access_token.oauth_token_secret
+)
+
+# Testing our token!
+ExTrello.member() # Fetches the authenticated member record from Trello
+```
+
 
 ## TODO:
 - [x] ~~Fetch Boards~~
@@ -88,8 +134,8 @@ Coming soon :)
 - [x] ~~Comment on Cards~~
 - [x] ~~Create & Edit Cards~~
 - [x] ~~Implement own OAuth 1.0 library to remove dependency on `erlang-oauth` (or investigate existing solutions)~~
+- [x] Usage tutorial.
 - [ ] Add models for label, checklist, ~~member~~, notification, ~~organization~~, session, token, ~~action~~
-- [ ] Usage tutorial. (For now use: https://hexdocs.pm/ex_trello/0.4.2/ExTrello.html)
 - [ ] Tests
 - [ ] Pagination
 
