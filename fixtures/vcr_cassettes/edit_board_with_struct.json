@@ -1,0 +1,79 @@
+[
+  {
+    "request": {
+      "body": "",
+      "headers": {
+        "Authorization": "***"
+      },
+      "method": "get",
+      "options": [],
+      "request_body": "",
+      "url": "https://api.trello.com/1/boards/57b0a9692bd632657caf3859?"
+    },
+    "response": {
+      "body": "{\"id\":\"57b0a9692bd632657caf3859\",\"name\":\"Edited Test\",\"desc\":\"\",\"descData\":null,\"closed\":false,\"idOrganization\":null,\"pinned\":false,\"url\":\"https://trello.com/b/bbrTH038/edited-test\",\"shortUrl\":\"https://trello.com/b/bbrTH038\",\"prefs\":{\"permissionLevel\":\"private\",\"voting\":\"disabled\",\"comments\":\"members\",\"invitations\":\"members\",\"selfJoin\":true,\"cardCovers\":true,\"cardAging\":\"regular\",\"calendarFeedEnabled\":false,\"background\":\"blue\",\"backgroundImage\":null,\"backgroundImageScaled\":null,\"backgroundTile\":false,\"backgroundBrightness\":\"dark\",\"backgroundColor\":\"#0079BF\",\"canBePublic\":true,\"canBeOrg\":true,\"canBePrivate\":true,\"canInvite\":true},\"labelNames\":{\"green\":\"\",\"yellow\":\"\",\"orange\":\"\",\"red\":\"\",\"purple\":\"\",\"blue\":\"\",\"sky\":\"\",\"lime\":\"\",\"pink\":\"\",\"black\":\"\"}}",
+      "headers": {
+        "Cache-Control": "max-age=0, must-revalidate, no-cache, no-store",
+        "X-Content-Type-Options": "nosniff",
+        "Strict-Transport-Security": "max-age=15768000",
+        "X-XSS-Protection": "1; mode=block",
+        "X-FRAME-OPTIONS": "DENY",
+        "X-Trello-Version": "1.726.0",
+        "X-Trello-Environment": "Production",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET, PUT, POST, DELETE",
+        "Access-Control-Allow-Headers": "Authorization, Accept, Content-Type",
+        "X-Server-Time": "1471197089521",
+        "Expires": "Thu, 01 Jan 1970 00:00:00",
+        "X-Trello-Index-Last-Update": "4",
+        "Content-Type": "application/json; charset=utf-8",
+        "Content-Length": "758",
+        "ETag": "W/\"2f6-1643622c\"",
+        "Vary": "Accept-Encoding",
+        "Date": "Sun, 14 Aug 2016 17:51:29 GMT",
+        "Connection": "keep-alive",
+        "Set-Cookie": "<REMOVED> Secure"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  },
+  {
+    "request": {
+      "body": "name=Edited+Test+%231&desc=Edited+using+the+%25ExTrello.Model.Board%7B%7D+struct.",
+      "headers": {
+        "Authorization": "***",
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
+      "method": "put",
+      "options": [],
+      "request_body": "",
+      "url": "https://api.trello.com/1/boards/57b0a9692bd632657caf3859"
+    },
+    "response": {
+      "body": "{\"id\":\"57b0a9692bd632657caf3859\",\"name\":\"Edited Test #1\",\"desc\":\"Edited using the %ExTrello.Model.Board{} struct.\",\"descData\":{\"emoji\":{}},\"closed\":false,\"idOrganization\":null,\"pinned\":false,\"url\":\"https://trello.com/b/bbrTH038/edited-test-1\",\"shortUrl\":\"https://trello.com/b/bbrTH038\",\"prefs\":{\"permissionLevel\":\"private\",\"voting\":\"disabled\",\"comments\":\"members\",\"invitations\":\"members\",\"selfJoin\":true,\"cardCovers\":true,\"cardAging\":\"regular\",\"calendarFeedEnabled\":false,\"background\":\"blue\",\"backgroundImage\":null,\"backgroundImageScaled\":null,\"backgroundTile\":false,\"backgroundBrightness\":\"dark\",\"backgroundColor\":\"#0079BF\",\"canBePublic\":true,\"canBeOrg\":true,\"canBePrivate\":true,\"canInvite\":true},\"labelNames\":{\"green\":\"\",\"yellow\":\"\",\"orange\":\"\",\"red\":\"\",\"purple\":\"\",\"blue\":\"\",\"sky\":\"\",\"lime\":\"\",\"pink\":\"\",\"black\":\"\"}}",
+      "headers": {
+        "Cache-Control": "max-age=0, must-revalidate, no-cache, no-store",
+        "X-Content-Type-Options": "nosniff",
+        "Strict-Transport-Security": "max-age=15768000",
+        "X-XSS-Protection": "1; mode=block",
+        "X-FRAME-OPTIONS": "DENY",
+        "X-Trello-Version": "1.726.0",
+        "X-Trello-Environment": "Production",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET, PUT, POST, DELETE",
+        "Access-Control-Allow-Headers": "Authorization, Accept, Content-Type",
+        "X-Server-Time": "1471197089941",
+        "Expires": "Thu, 01 Jan 1970 00:00:00",
+        "Content-Type": "application/json; charset=utf-8",
+        "Content-Length": "819",
+        "ETag": "W/\"333-7626cb50\"",
+        "Vary": "Accept-Encoding",
+        "Date": "Sun, 14 Aug 2016 17:51:30 GMT",
+        "Connection": "keep-alive"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

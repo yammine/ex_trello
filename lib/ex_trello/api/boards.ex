@@ -30,6 +30,7 @@ defmodule ExTrello.API.Boards do
     |> Parser.parse_board
   end
 
+  def edit_board(%Board{id: id}, fields), do: edit_board(id, fields)
   def edit_board(id, fields) when is_list(fields) do
     request(:put, "boards/#{id}", fields)
     |> Parser.parse_board

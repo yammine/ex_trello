@@ -5,12 +5,11 @@ defmodule ExTrello.OAuth do
   @doc """
   Send a signed request
 
-  ## Options
-
-      * `stream_to` Specify a process to stream the response to when performing async requests
-      * `follow_redirects` Specify whether redirects should be followed.
+  ## Options (NOTE: these don't do anything yet.)
+    * `stream_to` Specify a process to stream the response to when performing async requests
+    * `follow_redirects` Specify whether redirects should be followed.
   """
-  def request(method, url, params, credentials, opts \\ []) do
+  def request(method, url, params, credentials, _opts \\ []) do
     signed_params = OAuther.sign(to_string(method), url, stringify_params(params), credentials)
     {header, request_params} = OAuther.header(signed_params)
 

@@ -24,7 +24,8 @@ defmodule ExTrello.Mixfile do
       {:oauther, "~> 1.0.1"},
       {:poison, "~> 2.0"},
       {:httpotion, "~> 3.0.0"},
-      {:ex_doc, ">= 0.0.0", only: :dev}
+      {:ex_doc, ">= 0.0.0", only: :dev},
+      {:exvcr, "~> 0.7", only: :test}
     ]
   end
 
