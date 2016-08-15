@@ -34,7 +34,7 @@ defmodule ExTrello.API.Base do
   def parse_result(result) do
     case result do
       %HTTPotion.Response{body: body, status_code: code} when code >= 200 and code < 300 ->
-        ExTrello.JSON.decode!(body)
+        Poison.decode!(body)
         |> Utils.snake_case_keys
       %HTTPotion.Response{body: body, status_code: code} ->
         raise(ExTrello.Error, code: code, message: body)

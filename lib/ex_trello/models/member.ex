@@ -8,7 +8,7 @@ defmodule ExTrello.Model.Member do
             avatar_source: nil, bio: nil, bio_data: nil, confirmed: nil, email: nil, gravatar_hash: nil,
             initials: nil, id_boards: nil, id_boards_pinned: nil, id_organizations: nil, id_prem_orgs_admin: nil,
             login_types: nil, member_type: nil, one_time_messages_dismissed: nil, prefs: nil, premium_features: nil,
-            products: nil, status: nil, trophies: nil, uploaded_avatar_hash: nil, board_stars: nil
+            products: nil, status: nil, trophies: nil, uploaded_avatar_hash: nil, board_stars: nil, cards: nil
 
   @type t :: %__MODULE__{}
 end

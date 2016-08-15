@@ -1,0 +1,40 @@
+[
+  {
+    "request": {
+      "body": "name=ExTrello&desc=An+Elixir+library+to+wrap+the+Trello+API",
+      "headers": {
+        "Authorization": "***",
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
+      "method": "post",
+      "options": [],
+      "request_body": "",
+      "url": "https://api.trello.com/1/boards"
+    },
+    "response": {
+      "body": "{\"id\":\"57b206dc864eadbd9c1b69c6\",\"name\":\"ExTrello\",\"desc\":\"An Elixir library to wrap the Trello API\",\"descData\":null,\"closed\":false,\"idOrganization\":null,\"pinned\":false,\"url\":\"https://trello.com/b/m36ZkROK/extrello\",\"shortUrl\":\"https://trello.com/b/m36ZkROK\",\"prefs\":{\"permissionLevel\":\"private\",\"voting\":\"disabled\",\"comments\":\"members\",\"invitations\":\"members\",\"selfJoin\":true,\"cardCovers\":true,\"cardAging\":\"regular\",\"calendarFeedEnabled\":false,\"background\":\"blue\",\"backgroundImage\":null,\"backgroundImageScaled\":null,\"backgroundTile\":false,\"backgroundBrightness\":\"dark\",\"backgroundColor\":\"#0079BF\",\"canBePublic\":true,\"canBeOrg\":true,\"canBePrivate\":true,\"canInvite\":true},\"labelNames\":{\"green\":\"\",\"yellow\":\"\",\"orange\":\"\",\"red\":\"\",\"purple\":\"\",\"blue\":\"\",\"sky\":\"\",\"lime\":\"\",\"pink\":\"\",\"black\":\"\"}}",
+      "headers": {
+        "Cache-Control": "max-age=0, must-revalidate, no-cache, no-store",
+        "X-Content-Type-Options": "nosniff",
+        "Strict-Transport-Security": "max-age=15768000",
+        "X-XSS-Protection": "1; mode=block",
+        "X-FRAME-OPTIONS": "DENY",
+        "X-Trello-Version": "1.726.0",
+        "X-Trello-Environment": "Production",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET, PUT, POST, DELETE",
+        "Access-Control-Allow-Headers": "Authorization, Accept, Content-Type",
+        "X-Server-Time": "1471284956472",
+        "Expires": "Thu, 01 Jan 1970 00:00:00",
+        "Content-Type": "application/json; charset=utf-8",
+        "Content-Length": "792",
+        "ETag": "W/\"318-8dc631d9\"",
+        "Vary": "Accept-Encoding",
+        "Date": "Mon, 15 Aug 2016 18:15:56 GMT",
+        "Connection": "keep-alive"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

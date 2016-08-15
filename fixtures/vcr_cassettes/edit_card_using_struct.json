@@ -1,0 +1,78 @@
+[
+  {
+    "request": {
+      "body": "",
+      "headers": {
+        "Authorization": "***"
+      },
+      "method": "get",
+      "options": [],
+      "request_body": "",
+      "url": "https://api.trello.com/1/cards/57b2138403d585642725f232?"
+    },
+    "response": {
+      "body": "{\"id\":\"57b2138403d585642725f232\",\"badges\":{\"votes\":0,\"viewingMemberVoted\":false,\"subscribed\":false,\"fogbugz\":\"\",\"checkItems\":0,\"checkItemsChecked\":0,\"comments\":0,\"attachments\":0,\"description\":false,\"due\":null},\"checkItemStates\":[],\"closed\":false,\"dateLastActivity\":\"2016-08-15T19:18:26.471Z\",\"desc\":\"\",\"descData\":null,\"due\":null,\"email\":null,\"idBoard\":\"57663306e4b15193fcc97483\",\"idChecklists\":[],\"idLabels\":[],\"idList\":\"57663322ac7d147b2c337e34\",\"idMembers\":[],\"idShort\":13,\"idAttachmentCover\":null,\"manualCoverAttachment\":false,\"labels\":[],\"name\":\"Feelin' structy part 2\",\"pos\":81920,\"shortUrl\":\"https://trello.com/c/MtOvwxC1\",\"url\":\"https://trello.com/c/MtOvwxC1/13-feelin-structy-part-2\"}",
+      "headers": {
+        "Cache-Control": "max-age=0, must-revalidate, no-cache, no-store",
+        "X-Content-Type-Options": "nosniff",
+        "Strict-Transport-Security": "max-age=15768000",
+        "X-XSS-Protection": "1; mode=block",
+        "X-FRAME-OPTIONS": "DENY",
+        "X-Trello-Version": "1.726.0",
+        "X-Trello-Environment": "Production",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET, PUT, POST, DELETE",
+        "Access-Control-Allow-Headers": "Authorization, Accept, Content-Type",
+        "X-Server-Time": "1471288822787",
+        "Expires": "Thu, 01 Jan 1970 00:00:00",
+        "Content-Type": "application/json; charset=utf-8",
+        "Content-Length": "692",
+        "ETag": "W/\"2b4-728f39ac\"",
+        "Vary": "Accept-Encoding",
+        "Date": "Mon, 15 Aug 2016 19:20:22 GMT",
+        "Connection": "keep-alive",
+        "Set-Cookie": "<REMOVED> Secure"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  },
+  {
+    "request": {
+      "body": "name=Feelin%27+structy+part+3",
+      "headers": {
+        "Authorization": "***",
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
+      "method": "put",
+      "options": [],
+      "request_body": "",
+      "url": "https://api.trello.com/1/cards/57b2138403d585642725f232"
+    },
+    "response": {
+      "body": "{\"id\":\"57b2138403d585642725f232\",\"badges\":{\"votes\":0,\"viewingMemberVoted\":false,\"subscribed\":false,\"fogbugz\":\"\",\"checkItems\":0,\"checkItemsChecked\":0,\"comments\":0,\"attachments\":0,\"description\":false,\"due\":null},\"checkItemStates\":[],\"closed\":false,\"dateLastActivity\":\"2016-08-15T19:20:22.938Z\",\"desc\":\"\",\"descData\":null,\"due\":null,\"email\":null,\"idBoard\":\"57663306e4b15193fcc97483\",\"idChecklists\":[],\"idLabels\":[],\"idList\":\"57663322ac7d147b2c337e34\",\"idMembers\":[],\"idShort\":13,\"idAttachmentCover\":null,\"manualCoverAttachment\":false,\"labels\":[],\"name\":\"Feelin' structy part 3\",\"pos\":81920,\"shortUrl\":\"https://trello.com/c/MtOvwxC1\",\"url\":\"https://trello.com/c/MtOvwxC1/13-feelin-structy-part-3\"}",
+      "headers": {
+        "Cache-Control": "max-age=0, must-revalidate, no-cache, no-store",
+        "X-Content-Type-Options": "nosniff",
+        "Strict-Transport-Security": "max-age=15768000",
+        "X-XSS-Protection": "1; mode=block",
+        "X-FRAME-OPTIONS": "DENY",
+        "X-Trello-Version": "1.726.0",
+        "X-Trello-Environment": "Production",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET, PUT, POST, DELETE",
+        "Access-Control-Allow-Headers": "Authorization, Accept, Content-Type",
+        "X-Server-Time": "1471288822995",
+        "Expires": "Thu, 01 Jan 1970 00:00:00",
+        "Content-Type": "application/json; charset=utf-8",
+        "Content-Length": "692",
+        "ETag": "W/\"2b4-ceda5672\"",
+        "Vary": "Accept-Encoding",
+        "Date": "Mon, 15 Aug 2016 19:20:23 GMT",
+        "Connection": "keep-alive"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

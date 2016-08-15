@@ -1,0 +1,77 @@
+[
+  {
+    "request": {
+      "body": "",
+      "headers": {
+        "Authorization": "***"
+      },
+      "method": "get",
+      "options": [],
+      "request_body": "",
+      "url": "https://api.trello.com/1/cards/57b2138403d585642725f232?"
+    },
+    "response": {
+      "body": "{\"id\":\"57b2138403d585642725f232\",\"badges\":{\"votes\":0,\"viewingMemberVoted\":false,\"subscribed\":false,\"fogbugz\":\"\",\"checkItems\":0,\"checkItemsChecked\":0,\"comments\":2,\"attachments\":0,\"description\":false,\"due\":null},\"checkItemStates\":[],\"closed\":false,\"dateLastActivity\":\"2016-08-15T19:31:06.811Z\",\"desc\":\"\",\"descData\":null,\"due\":null,\"email\":null,\"idBoard\":\"57663306e4b15193fcc97483\",\"idChecklists\":[],\"idLabels\":[],\"idList\":\"57663322ac7d147b2c337e34\",\"idMembers\":[],\"idShort\":13,\"idAttachmentCover\":null,\"manualCoverAttachment\":false,\"labels\":[],\"name\":\"Feelin' structy part 3\",\"pos\":81920,\"shortUrl\":\"https://trello.com/c/MtOvwxC1\",\"url\":\"https://trello.com/c/MtOvwxC1/13-feelin-structy-part-3\"}",
+      "headers": {
+        "Cache-Control": "max-age=0, must-revalidate, no-cache, no-store",
+        "X-Content-Type-Options": "nosniff",
+        "Strict-Transport-Security": "max-age=15768000",
+        "X-XSS-Protection": "1; mode=block",
+        "X-FRAME-OPTIONS": "DENY",
+        "X-Trello-Version": "1.726.0",
+        "X-Trello-Environment": "Production",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET, PUT, POST, DELETE",
+        "Access-Control-Allow-Headers": "Authorization, Accept, Content-Type",
+        "X-Server-Time": "1471289633574",
+        "Expires": "Thu, 01 Jan 1970 00:00:00",
+        "Content-Type": "application/json; charset=utf-8",
+        "Content-Length": "692",
+        "ETag": "W/\"2b4-453a6fa7\"",
+        "Vary": "Accept-Encoding",
+        "Date": "Mon, 15 Aug 2016 19:33:53 GMT",
+        "Connection": "keep-alive",
+        "Set-Cookie": "<REMOVED> Secure"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  },
+  {
+    "request": {
+      "body": "text=Trelling+all+day",
+      "headers": {
+        "Authorization": "***",
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
+      "method": "post",
+      "options": [],
+      "request_body": "",
+      "url": "https://api.trello.com/1/cards/57b2138403d585642725f232/actions/comments"
+    },
+    "response": {
+      "body": "{\"id\":\"57b21921645f3c21ec38dc7b\",\"idMemberCreator\":\"560ee9cc994c6f0f35fd6259\",\"data\":{\"text\":\"Trelling all day\",\"textData\":{\"emoji\":{}},\"card\":{\"id\":\"57b2138403d585642725f232\",\"name\":\"Feelin' structy part 3\",\"idShort\":13,\"shortLink\":\"MtOvwxC1\"},\"board\":{\"id\":\"57663306e4b15193fcc97483\",\"name\":\"Lunch Money\",\"shortLink\":\"PR9zqZtE\"},\"list\":{\"id\":\"57663322ac7d147b2c337e34\",\"name\":\"Icebox\"}},\"type\":\"commentCard\",\"date\":\"2016-08-15T19:33:53.695Z\",\"memberCreator\":{\"id\":\"560ee9cc994c6f0f35fd6259\",\"avatarHash\":null,\"fullName\":\"Chris Yammine\",\"initials\":\"CY\",\"username\":\"cyammine\"},\"entities\":[{\"type\":\"member\",\"id\":\"560ee9cc994c6f0f35fd6259\",\"username\":\"cyammine\",\"text\":\"Chris Yammine\"},{\"type\":\"text\",\"text\":\"on\",\"hideIfContext\":true,\"idContext\":\"57b2138403d585642725f232\"},{\"type\":\"card\",\"hideIfContext\":true,\"shortLink\":\"MtOvwxC1\",\"id\":\"57b2138403d585642725f232\",\"text\":\"Feelin' structy part 3\"},{\"type\":\"comment\",\"text\":\"Trelling all day\"}],\"display\":{\"translationKey\":\"action_comment_on_card\",\"entities\":{\"contextOn\":{\"type\":\"translatable\",\"translationKey\":\"action_on\",\"hideIfContext\":true,\"idContext\":\"57b2138403d585642725f232\"},\"card\":{\"type\":\"card\",\"hideIfContext\":true,\"shortLink\":\"MtOvwxC1\",\"id\":\"57b2138403d585642725f232\",\"text\":\"Feelin' structy part 3\"},\"comment\":{\"type\":\"comment\",\"text\":\"Trelling all day\"},\"memberCreator\":{\"type\":\"member\",\"id\":\"560ee9cc994c6f0f35fd6259\",\"username\":\"cyammine\",\"text\":\"Chris Yammine\"}}}}",
+      "headers": {
+        "Cache-Control": "max-age=0, must-revalidate, no-cache, no-store",
+        "X-Content-Type-Options": "nosniff",
+        "Strict-Transport-Security": "max-age=15768000",
+        "X-XSS-Protection": "1; mode=block",
+        "X-FRAME-OPTIONS": "DENY",
+        "X-Trello-Version": "1.726.0",
+        "X-Trello-Environment": "Production",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET, PUT, POST, DELETE",
+        "Access-Control-Allow-Headers": "Authorization, Accept, Content-Type",
+        "X-Server-Time": "1471289633730",
+        "Expires": "Thu, 01 Jan 1970 00:00:00",
+        "Content-Type": "application/json; charset=utf-8",
+        "ETag": "W/\"6B2l1BU3kM09K+8ZRRkkgA==\"",
+        "Date": "Mon, 15 Aug 2016 19:33:53 GMT",
+        "Content-Length": "1431",
+        "Connection": "keep-alive"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

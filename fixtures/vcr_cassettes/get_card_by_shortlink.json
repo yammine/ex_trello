@@ -1,0 +1,40 @@
+[
+  {
+    "request": {
+      "body": "",
+      "headers": {
+        "Authorization": "***"
+      },
+      "method": "get",
+      "options": [],
+      "request_body": "",
+      "url": "https://api.trello.com/1/cards/IQPY44Pr?"
+    },
+    "response": {
+      "body": "{\"id\":\"570ddfcab92fb2f520a02361\",\"badges\":{\"votes\":0,\"viewingMemberVoted\":false,\"subscribed\":true,\"fogbugz\":\"\",\"checkItems\":0,\"checkItemsChecked\":0,\"comments\":0,\"attachments\":0,\"description\":false,\"due\":null},\"checkItemStates\":[],\"closed\":false,\"dateLastActivity\":\"2016-04-19T06:13:55.119Z\",\"desc\":\"\",\"descData\":null,\"due\":null,\"email\":null,\"idBoard\":\"56e8e29ad0ea27cec06d7d8a\",\"idChecklists\":[],\"idLabels\":[\"56e8e4d8152c3f92fd7074a9\"],\"idList\":\"56e8e2b5554cf080c51629fe\",\"idMembers\":[\"560ee9cc994c6f0f35fd6259\",\"56e87b654e27da2d988898a0\"],\"idShort\":7,\"idAttachmentCover\":null,\"manualCoverAttachment\":false,\"labels\":[{\"id\":\"56e8e4d8152c3f92fd7074a9\",\"idBoard\":\"56e8e29ad0ea27cec06d7d8a\",\"name\":\"HIGH\",\"color\":\"red\",\"uses\":6}],\"name\":\"Write RSpecs for List model validations :)\",\"pos\":2047.96875,\"shortUrl\":\"https://trello.com/c/IQPY44Pr\",\"url\":\"https://trello.com/c/IQPY44Pr/7-write-rspecs-for-list-model-validations\"}",
+      "headers": {
+        "Cache-Control": "max-age=0, must-revalidate, no-cache, no-store",
+        "X-Content-Type-Options": "nosniff",
+        "Strict-Transport-Security": "max-age=15768000",
+        "X-XSS-Protection": "1; mode=block",
+        "X-FRAME-OPTIONS": "DENY",
+        "X-Trello-Version": "1.726.0",
+        "X-Trello-Environment": "Production",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET, PUT, POST, DELETE",
+        "Access-Control-Allow-Headers": "Authorization, Accept, Content-Type",
+        "X-Server-Time": "1471287233327",
+        "Expires": "Thu, 01 Jan 1970 00:00:00",
+        "Content-Type": "application/json; charset=utf-8",
+        "Content-Length": "918",
+        "ETag": "W/\"396-e991d649\"",
+        "Vary": "Accept-Encoding",
+        "Date": "Mon, 15 Aug 2016 18:53:53 GMT",
+        "Connection": "keep-alive",
+        "Set-Cookie": "<REMOVED> Secure"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

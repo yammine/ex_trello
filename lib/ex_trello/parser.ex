@@ -2,7 +2,7 @@ defmodule ExTrello.Parser do
   @moduledoc """
   Provides parser logic for API results.
   """
-  @nested_resources ~w(board boards card cards list lists action actions organization organizations member members)a
+  @nested_resources ~w(board boards card cards list lists actions organization organizations member members)a
 
   @doc """
   Check the possible nested resources for any given object. Should work on any arbitrarily nested objects.
@@ -36,7 +36,6 @@ defmodule ExTrello.Parser do
   defp preprocess(%{cards: cards} = object, :cards),       do: Map.put(object, :cards, Enum.map(cards, &parse_card/1))
   defp preprocess(%{list: list} = object, :list),          do: Map.put(object, :list, list |> parse_list)
   defp preprocess(%{lists: lists} = object, :lists),       do: Map.put(object, :lists, Enum.map(lists, &parse_list/1))
-  defp preprocess(%{action: action} = object, :action),    do: Map.put(object, :action, action |> parse_action)
   defp preprocess(%{actions: actions} = object, :actions), do: Map.put(object, :actions, Enum.map(actions, &parse_action/1))
   defp preprocess(%{member: member} = object, :member),    do: Map.put(object, :member, member |> parse_member)
   defp preprocess(%{members: members} = object, :members), do: Map.put(object, :members, Enum.map(members, &parse_member/1))

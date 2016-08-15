@@ -29,7 +29,7 @@ defmodule ExTrello.Mixfile do
       {:ex_doc, ">= 0.0.0", only: :dev},
       {:exvcr, "~> 0.7", only: :test},
       {:excoveralls, "~> 0.5", only: :test},
-      {:inch_ex, only: :docs}
+      {:inch_ex, ">= 0.0", only: :docs}
     ]
   end
 

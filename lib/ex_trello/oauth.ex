@@ -24,5 +24,4 @@ defmodule ExTrello.OAuth do
   defp stringify_params(params) when is_list(params) do
     Enum.map(params, fn({k, v}) ->  {to_string(k), v} end)
   end
-  defp stringify_params(params) when is_binary(params), do: params # plaintext
 end

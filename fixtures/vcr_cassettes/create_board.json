@@ -1,7 +1,7 @@
 [
   {
     "request": {
-      "body": "name=ExTrello&desc=An+Elixir+library+to+wrap+the+Trello+API",
+      "body": "name=Just+a+name.",
       "headers": {
         "Authorization": "***",
         "Content-Type": "application/x-www-form-urlencoded"
@@ -12,7 +12,7 @@
       "url": "https://api.trello.com/1/boards"
     },
     "response": {
-      "body": "{\"id\":\"57b0a6f68d499705e743f3dc\",\"name\":\"ExTrello\",\"desc\":\"An Elixir library to wrap the Trello API\",\"descData\":null,\"closed\":false,\"idOrganization\":null,\"pinned\":false,\"url\":\"https://trello.com/b/jnbc4hM1/extrello\",\"shortUrl\":\"https://trello.com/b/jnbc4hM1\",\"prefs\":{\"permissionLevel\":\"private\",\"voting\":\"disabled\",\"comments\":\"members\",\"invitations\":\"members\",\"selfJoin\":true,\"cardCovers\":true,\"cardAging\":\"regular\",\"calendarFeedEnabled\":false,\"background\":\"blue\",\"backgroundImage\":null,\"backgroundImageScaled\":null,\"backgroundTile\":false,\"backgroundBrightness\":\"dark\",\"backgroundColor\":\"#0079BF\",\"canBePublic\":true,\"canBeOrg\":true,\"canBePrivate\":true,\"canInvite\":true},\"labelNames\":{\"green\":\"\",\"yellow\":\"\",\"orange\":\"\",\"red\":\"\",\"purple\":\"\",\"blue\":\"\",\"sky\":\"\",\"lime\":\"\",\"pink\":\"\",\"black\":\"\"}}",
+      "body": "{\"id\":\"57b206db74fa3ebbffb608d7\",\"name\":\"Just a name.\",\"desc\":\"\",\"descData\":null,\"closed\":false,\"idOrganization\":null,\"pinned\":false,\"url\":\"https://trello.com/b/cL5MdEx5/just-a-name\",\"shortUrl\":\"https://trello.com/b/cL5MdEx5\",\"prefs\":{\"permissionLevel\":\"private\",\"voting\":\"disabled\",\"comments\":\"members\",\"invitations\":\"members\",\"selfJoin\":true,\"cardCovers\":true,\"cardAging\":\"regular\",\"calendarFeedEnabled\":false,\"background\":\"blue\",\"backgroundImage\":null,\"backgroundImageScaled\":null,\"backgroundTile\":false,\"backgroundBrightness\":\"dark\",\"backgroundColor\":\"#0079BF\",\"canBePublic\":true,\"canBeOrg\":true,\"canBePrivate\":true,\"canInvite\":true},\"labelNames\":{\"green\":\"\",\"yellow\":\"\",\"orange\":\"\",\"red\":\"\",\"purple\":\"\",\"blue\":\"\",\"sky\":\"\",\"lime\":\"\",\"pink\":\"\",\"black\":\"\"}}",
       "headers": {
         "Cache-Control": "max-age=0, must-revalidate, no-cache, no-store",
         "X-Content-Type-Options": "nosniff",
@@ -24,13 +24,13 @@
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Methods": "GET, PUT, POST, DELETE",
         "Access-Control-Allow-Headers": "Authorization, Accept, Content-Type",
-        "X-Server-Time": "1471194870978",
+        "X-Server-Time": "1471284955618",
         "Expires": "Thu, 01 Jan 1970 00:00:00",
         "Content-Type": "application/json; charset=utf-8",
-        "Content-Length": "792",
-        "ETag": "W/\"318-6e7e0454\"",
+        "Content-Length": "759",
+        "ETag": "W/\"2f7-2ef4daef\"",
         "Vary": "Accept-Encoding",
-        "Date": "Sun, 14 Aug 2016 17:14:31 GMT",
+        "Date": "Mon, 15 Aug 2016 18:15:55 GMT",
         "Connection": "keep-alive"
       },
       "status_code": 200,

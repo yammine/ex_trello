@@ -1,0 +1,40 @@
+[
+  {
+    "request": {
+      "body": "",
+      "headers": {
+        "Authorization": "***"
+      },
+      "method": "get",
+      "options": [],
+      "request_body": "",
+      "url": "https://api.trello.com/1/members/me?"
+    },
+    "response": {
+      "body": "{\"id\":\"560ee9cc994c6f0f35fd6259\",\"avatarHash\":null,\"bio\":\"\",\"bioData\":{\"emoji\":{}},\"confirmed\":true,\"fullName\":\"Chris Yammine\",\"idPremOrgsAdmin\":[],\"initials\":\"CY\",\"memberType\":\"normal\",\"products\":[37],\"status\":\"disconnected\",\"url\":\"https://trello.com/cyammine\",\"username\":\"cyammine\",\"avatarSource\":null,\"email\":\"cyammine91@gmail.com\",\"gravatarHash\":\"88f7fe1be53f40ff9233c12cf7c4ac34\",\"idBoards\":[\"560ee9cc994c6f0f35fd625a\",\"560ee950cf3e5f0adbe569f1\",\"56e8e29ad0ea27cec06d7d8a\",\"57663306e4b15193fcc97483\",\"576ee4d1724f111c75256509\",\"576ef188653694f9739322dd\",\"57a11ec4985cc68f7fbfd574\",\"57a11f22bbd6eda0190beeca\",\"57a1228c2faa01332768dffa\",\"57a12ae52c4ed69442b1db67\",\"57b0a4f66d8393328375bc83\",\"57b0a6f68d499705e743f3dc\",\"57b0a9692bd632657caf3859\",\"57b0aaa4b41118f8dd3c47e3\"],\"idOrganizations\":[\"56e8e25c6615e469f60938a8\"],\"loginTypes\":[\"google\",\"android\",\"password\"],\"oneTimeMessagesDismissed\":[\"PowerUpsPaneExplainer\",\"GoldIntro\"],\"prefs\":{\"sendSummaries\":true,\"minutesBetweenSummaries\":1,\"minutesBeforeDeadlineToNotify\":1440,\"colorBlind\":false,\"locale\":\"\"},\"trophies\":[],\"uploadedAvatarHash\":null,\"premiumFeatures\":[\"additionalStickers\",\"customStickers\",\"additionalBoardBackgrounds\",\"customBoardBackgrounds\",\"largeAttachments\",\"customEmoji\",\"savedSearches\",\"crown\",\"readSecrets\"],\"idBoardsPinned\":null}",
+      "headers": {
+        "Cache-Control": "max-age=0, must-revalidate, no-cache, no-store",
+        "X-Content-Type-Options": "nosniff",
+        "Strict-Transport-Security": "max-age=15768000",
+        "X-XSS-Protection": "1; mode=block",
+        "X-FRAME-OPTIONS": "DENY",
+        "X-Trello-Version": "1.726.0",
+        "X-Trello-Environment": "Production",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET, PUT, POST, DELETE",
+        "Access-Control-Allow-Headers": "Authorization, Accept, Content-Type",
+        "X-Server-Time": "1471283338626",
+        "Expires": "Thu, 01 Jan 1970 00:00:00",
+        "X-Trello-Index-Last-Update": "48",
+        "Content-Type": "application/json; charset=utf-8",
+        "ETag": "W/\"7zKCeoLx/8NIlVQLGOvdCA==\"",
+        "Date": "Mon, 15 Aug 2016 17:48:58 GMT",
+        "Content-Length": "1305",
+        "Connection": "keep-alive",
+        "Set-Cookie": "<REMOVED> Secure"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]
