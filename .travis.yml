@@ -9,3 +9,5 @@ script:
   - "mix do deps.get, compile, test"
 after_success:
   - "mix coveralls.travis"
+  - MIX_ENV=docs mix deps.get
+  - MIX_ENV=docs mix inch.report

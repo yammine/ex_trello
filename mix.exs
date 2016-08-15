@@ -28,7 +28,8 @@ defmodule ExTrello.Mixfile do
       {:httpotion, "~> 3.0.0"},
       {:ex_doc, ">= 0.0.0", only: :dev},
       {:exvcr, "~> 0.7", only: :test},
-      {:excoveralls, "~> 0.5", only: :test}
+      {:excoveralls, "~> 0.5", only: :test},
+      {:inch_ex, only: :docs}
     ]
   end
 
