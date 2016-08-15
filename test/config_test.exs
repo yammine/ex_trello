@@ -33,7 +33,9 @@ defmodule ExTrello.ConfigTest do
     test "complains if credentials are not set" do
       ExTrello.configure([])
 
-      assert %ExTrello.Error{message: "OAuth parameters are not set. Use ExTrello.configure function to set parameters in advance."} == catch_error(ExTrello.member)
+      assert_raise ExTrello.Error, "OAuth parameters are not set. Use ExTrello.configure function to set parameters in advance.", fn ->
+        ExTrello.member()
+      end
     end
 
   end

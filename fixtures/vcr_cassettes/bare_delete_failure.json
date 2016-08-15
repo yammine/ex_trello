@@ -1,0 +1,38 @@
+[
+  {
+    "request": {
+      "body": "some_param=ayy",
+      "headers": {
+        "Authorization": "***",
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
+      "method": "delete",
+      "options": [],
+      "request_body": "",
+      "url": "https://api.trello.com/1/delete-tatoes"
+    },
+    "response": {
+      "body": "Cannot DELETE /1/delete-tatoes",
+      "headers": {
+        "Cache-Control": "no-store, no-cache",
+        "X-Content-Type-Options": "nosniff",
+        "Strict-Transport-Security": "max-age=15768000",
+        "X-XSS-Protection": "1; mode=block",
+        "X-FRAME-OPTIONS": "DENY",
+        "X-Trello-Version": "1.726.0",
+        "X-Trello-Environment": "Production",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET, PUT, POST, DELETE",
+        "Access-Control-Allow-Headers": "Authorization, Accept, Content-Type",
+        "Content-Type": "text/plain; charset=utf-8",
+        "Content-Length": "30",
+        "ETag": "W/\"1e-1f88bb8f\"",
+        "Vary": "Accept-Encoding",
+        "Date": "Mon, 15 Aug 2016 23:21:51 GMT",
+        "Connection": "keep-alive"
+      },
+      "status_code": 404,
+      "type": "ok"
+    }
+  }
+]

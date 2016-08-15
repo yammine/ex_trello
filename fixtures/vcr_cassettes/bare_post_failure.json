@@ -1,7 +1,7 @@
 [
   {
     "request": {
-      "body": "name=The+best+checklist.",
+      "body": "",
       "headers": {
         "Authorization": "***",
         "Content-Type": "application/x-www-form-urlencoded"
@@ -9,12 +9,12 @@
       "method": "post",
       "options": [],
       "request_body": "",
-      "url": "https://api.trello.com/1/cards/570ddfcab92fb2f520a02361/checklists"
+      "url": "https://api.trello.com/1/potatoes/2361/yukon_gold"
     },
     "response": {
-      "body": "{\"id\":\"57b231e61c8ffb3069558a89\",\"name\":\"The best checklist.\",\"idBoard\":\"56e8e29ad0ea27cec06d7d8a\",\"idCard\":\"570ddfcab92fb2f520a02361\",\"pos\":32768,\"checkItems\":[]}",
+      "body": "Cannot POST /1/potatoes/2361/yukon_gold",
       "headers": {
-        "Cache-Control": "max-age=0, must-revalidate, no-cache, no-store",
+        "Cache-Control": "no-store, no-cache",
         "X-Content-Type-Options": "nosniff",
         "Strict-Transport-Security": "max-age=15768000",
         "X-XSS-Protection": "1; mode=block",
@@ -24,16 +24,14 @@
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Methods": "GET, PUT, POST, DELETE",
         "Access-Control-Allow-Headers": "Authorization, Accept, Content-Type",
-        "X-Server-Time": "1471295974975",
-        "Expires": "Thu, 01 Jan 1970 00:00:00",
-        "Content-Type": "application/json; charset=utf-8",
-        "Content-Length": "163",
-        "ETag": "W/\"a3-2b12b4b0\"",
+        "Content-Type": "text/plain; charset=utf-8",
+        "Content-Length": "39",
+        "ETag": "W/\"27-c7a37948\"",
         "Vary": "Accept-Encoding",
-        "Date": "Mon, 15 Aug 2016 21:19:35 GMT",
-        "Connection": "keep-alive"
+        "Date": "Mon, 15 Aug 2016 23:15:06 GMT",
+        "Connection": "close"
       },
-      "status_code": 200,
+      "status_code": 404,
       "type": "ok"
     }
   }

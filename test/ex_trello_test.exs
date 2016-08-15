@@ -35,19 +35,35 @@ defmodule ExTrelloTest do
 
   describe "Bare requests" do
     test "Uses the `ExTrello.get` function to utilize Trello's search functionality" do
-      use_cassette "base_get_request" do
+      use_cassette "bare_get_request" do
         search = ExTrello.get("search/members", query: "trello", limit: 1)
 
         assert Enum.count(search) == 1
       end
     end
 
+    test "Expect failure when trying to get invalid endpoint" do
+      use_cassette "bare_get_failure" do
+        assert_raise ExTrello.Error, "Cannot GET /1/fake_af?", fn ->
+          ExTrello.get("fake_af")
+        end
+      end
+    end
+
     test "Uses the `ExTrello.post` function to create a checklist" do
-      use_cassette "base_post_request" do
+      use_cassette "bare_post_request" do
         response = ExTrello.post("cards/570ddfcab92fb2f520a02361/checklists", name: "The best checklist.")
 
         assert response.name == "The best checklist."
         assert is_list(response.check_items)
+      end
+    end
+
+    test "Expect failure when trying to post to invalid endpoint" do
+      use_cassette "bare_post_failure" do
+        assert_raise ExTrello.Error, "Cannot POST /1/potatoes/2361/yukon_gold", fn ->
+          ExTrello.post("potatoes/2361/yukon_gold")
+        end
       end
     end
 
@@ -59,11 +75,27 @@ defmodule ExTrelloTest do
       end
     end
 
+    test "Expect failure when trying to put to invalid endpoint" do
+      use_cassette "bare_put_failure" do
+        assert_raise ExTrello.Error, "Cannot PUT /1/put-tatoes", fn ->
+          ExTrello.put("put-tatoes")
+        end
+      end
+    end
+
     test "Uses the `ExTrello.delete` function to delete a checklist" do
       use_cassette "bare_delete_request" do
         response = ExTrello.delete("checklists/57b23300b84c35298ce2d22c") #=> %{_value: nil}
 
         assert response._value == nil
+      end
+    end
+
+    test "Expect failure when trying to delete to invalid endpoint" do
+      use_cassette "bare_delete_failure" do
+        assert_raise ExTrello.Error, "Cannot DELETE /1/delete-tatoes", fn ->
+          ExTrello.delete("delete-tatoes", some_param: "ayy")
+        end
       end
     end
 
@@ -82,6 +114,17 @@ defmodule ExTrelloTest do
       use_cassette "specific_user_boards" do
         first_board = ExTrello.boards("trello") |> List.first
         assert first_board.name == "How to Use Trello for Android"
+      end
+    end
+
+    test "gets specified user's boards with options" do
+      use_cassette "specific_user_boards_with_options" do
+        boards = ExTrello.boards("trello", actions: "all", lists: "all")
+
+        assert is_list(boards)
+        assert match?([%Board{}|_], boards)
+        assert List.first(boards) |> Map.has_key?(:actions)
+        assert List.first(boards) |> Map.has_key?(:lists)
       end
     end
 
@@ -154,6 +197,19 @@ defmodule ExTrelloTest do
 
         assert is_list(card.members)
         assert match?([%Member{}|_], card.members)
+      end
+    end
+
+  end
+
+  describe "Fetching actions from Trello" do
+
+    test "gets action using specified action id" do
+      use_cassette "get_action" do
+        action = ExTrello.action("57b248970888c3d8b59ef0db")
+
+        assert action.type == "commentCard"
+        assert action.id == "57b248970888c3d8b59ef0db"
       end
     end
 

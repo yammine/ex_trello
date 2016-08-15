@@ -1,0 +1,40 @@
+[
+  {
+    "request": {
+      "body": "",
+      "headers": {
+        "Authorization": "***"
+      },
+      "method": "get",
+      "options": [],
+      "request_body": "",
+      "url": "https://api.trello.com/1/actions/57b248970888c3d8b59ef0db?"
+    },
+    "response": {
+      "body": "{\"id\":\"57b248970888c3d8b59ef0db\",\"idMemberCreator\":\"560ee9cc994c6f0f35fd6259\",\"data\":{\"list\":{\"name\":\"Icebox\",\"id\":\"57663322ac7d147b2c337e34\"},\"board\":{\"shortLink\":\"PR9zqZtE\",\"name\":\"Lunch Money\",\"id\":\"57663306e4b15193fcc97483\"},\"card\":{\"shortLink\":\"MtOvwxC1\",\"idShort\":13,\"name\":\"Feelin' structy part 3\",\"id\":\"57b2138403d585642725f232\"},\"text\":\"This feels like it's nearing completion.\"},\"type\":\"commentCard\",\"date\":\"2016-08-15T22:56:23.576Z\",\"memberCreator\":{\"id\":\"560ee9cc994c6f0f35fd6259\",\"avatarHash\":null,\"fullName\":\"Chris Yammine\",\"initials\":\"CY\",\"username\":\"cyammine\"}}",
+      "headers": {
+        "Cache-Control": "max-age=0, must-revalidate, no-cache, no-store",
+        "X-Content-Type-Options": "nosniff",
+        "Strict-Transport-Security": "max-age=15768000",
+        "X-XSS-Protection": "1; mode=block",
+        "X-FRAME-OPTIONS": "DENY",
+        "X-Trello-Version": "1.726.0",
+        "X-Trello-Environment": "Production",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET, PUT, POST, DELETE",
+        "Access-Control-Allow-Headers": "Authorization, Accept, Content-Type",
+        "X-Server-Time": "1471301893206",
+        "Expires": "Thu, 01 Jan 1970 00:00:00",
+        "Content-Type": "application/json; charset=utf-8",
+        "Content-Length": "577",
+        "ETag": "W/\"241-8401cbac\"",
+        "Vary": "Accept-Encoding",
+        "Date": "Mon, 15 Aug 2016 22:58:13 GMT",
+        "Connection": "keep-alive",
+        "Set-Cookie": "<REMOVED> Secure"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

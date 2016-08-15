@@ -1,0 +1,26 @@
+[
+  {
+    "request": {
+      "body": "",
+      "headers": {
+        "Authorization": "***"
+      },
+      "method": "get",
+      "options": [],
+      "request_body": "",
+      "url": "~r/https:\/\/api.trello.com\/1\/.+"
+    },
+    "response": {
+      "body": [
+        "conn_failed",
+        [
+          "error",
+          "nxdomain"
+        ]
+      ],
+      "headers": [],
+      "status_code": null,
+      "type": "error"
+    }
+  }
+]
