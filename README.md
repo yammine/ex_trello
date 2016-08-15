@@ -1,4 +1,4 @@
-# ExTrello
+# ExTrello [![Build Status](https://travis-ci.org/ChrisYammine/ex_trello.svg?branch=master)](https://travis-ci.org/ChrisYammine/ex_trello)
 
 A library for interfacing with the Trello API.
 
@@ -136,7 +136,7 @@ ExTrello.member() # Fetches the authenticated member record from Trello
 - [x] ~~Implement own OAuth 1.0 library to remove dependency on `erlang-oauth` (or investigate existing solutions)~~
 - [x] Usage tutorial.
 - [ ] Add models for label, checklist, ~~member~~, notification, ~~organization~~, session, token, ~~action~~
-- [ ] Tests
+- [ ] Tests (IN PROGRESS)
 - [ ] Pagination
 
 
