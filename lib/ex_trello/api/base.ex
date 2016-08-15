@@ -22,8 +22,7 @@ defmodule ExTrello.API.Base do
   end
 
   def verify_params([]) do
-    raise %ExTrello.Error{
-      message: "OAuth parameters are not set. Use ExTrello.configure function to set parameters in advance." }
+    raise(ExTrello.Error, message: "OAuth parameters are not set. Use ExTrello.configure function to set parameters in advance.")
   end
 
   def verify_params(params), do: params
@@ -38,7 +37,7 @@ defmodule ExTrello.API.Base do
         ExTrello.JSON.decode!(body)
         |> Utils.snake_case_keys
       %HTTPotion.Response{body: body, status_code: code} ->
-        raise %ExTrello.Error{code: code, message: body}
+        raise(ExTrello.Error, code: code, message: body)
     end
   end
 end

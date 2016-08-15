@@ -1,0 +1,78 @@
+[
+  {
+    "request": {
+      "body": "",
+      "headers": {
+        "Authorization": "***"
+      },
+      "method": "get",
+      "options": [],
+      "request_body": "",
+      "url": "https://api.trello.com/1/boards/57663306e4b15193fcc97483?"
+    },
+    "response": {
+      "body": "{\"id\":\"57663306e4b15193fcc97483\",\"name\":\"Lunch Money\",\"desc\":\"\",\"descData\":null,\"closed\":false,\"idOrganization\":\"56e8e25c6615e469f60938a8\",\"pinned\":false,\"url\":\"https://trello.com/b/PR9zqZtE/lunch-money\",\"shortUrl\":\"https://trello.com/b/PR9zqZtE\",\"prefs\":{\"permissionLevel\":\"org\",\"voting\":\"members\",\"comments\":\"members\",\"invitations\":\"members\",\"selfJoin\":true,\"cardCovers\":true,\"cardAging\":\"regular\",\"calendarFeedEnabled\":false,\"background\":\"orange\",\"backgroundImage\":null,\"backgroundImageScaled\":null,\"backgroundTile\":false,\"backgroundBrightness\":\"dark\",\"backgroundColor\":\"#D29034\",\"canBePublic\":true,\"canBeOrg\":true,\"canBePrivate\":true,\"canInvite\":true},\"labelNames\":{\"green\":\"\",\"yellow\":\"\",\"orange\":\"\",\"red\":\"\",\"purple\":\"\",\"blue\":\"\",\"sky\":\"\",\"lime\":\"\",\"pink\":\"\",\"black\":\"\"}}",
+      "headers": {
+        "Cache-Control": "max-age=0, must-revalidate, no-cache, no-store",
+        "X-Content-Type-Options": "nosniff",
+        "Strict-Transport-Security": "max-age=15768000",
+        "X-XSS-Protection": "1; mode=block",
+        "X-FRAME-OPTIONS": "DENY",
+        "X-Trello-Version": "1.726.0",
+        "X-Trello-Environment": "Production",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET, PUT, POST, DELETE",
+        "Access-Control-Allow-Headers": "Authorization, Accept, Content-Type",
+        "X-Server-Time": "1471204630407",
+        "Expires": "Thu, 01 Jan 1970 00:00:00",
+        "X-Trello-Index-Last-Update": "48",
+        "Content-Type": "application/json; charset=utf-8",
+        "Content-Length": "777",
+        "ETag": "W/\"309-29aec2a6\"",
+        "Vary": "Accept-Encoding",
+        "Date": "Sun, 14 Aug 2016 19:57:10 GMT",
+        "Connection": "keep-alive",
+        "Set-Cookie": "<REMOVED> Secure"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  },
+  {
+    "request": {
+      "body": "",
+      "headers": {
+        "Authorization": "***"
+      },
+      "method": "get",
+      "options": [],
+      "request_body": "",
+      "url": "https://api.trello.com/1/boards/57663306e4b15193fcc97483/cards?members=true"
+    },
+    "response": {
+      "body": "[{\"id\":\"57a90f8f732333fa17bfd341\",\"badges\":{\"votes\":0,\"viewingMemberVoted\":false,\"subscribed\":true,\"fogbugz\":\"\",\"checkItems\":0,\"checkItemsChecked\":0,\"comments\":0,\"attachments\":0,\"description\":false,\"due\":null},\"checkItemStates\":[],\"closed\":false,\"dateLastActivity\":\"2016-08-08T23:02:39.498Z\",\"desc\":\"\",\"descData\":null,\"due\":null,\"email\":null,\"idBoard\":\"57663306e4b15193fcc97483\",\"idChecklists\":[],\"idList\":\"57663322ac7d147b2c337e34\",\"idMembers\":[\"560ee9cc994c6f0f35fd6259\",\"56e87b654e27da2d988898a0\"],\"idMembersVoted\":[],\"idShort\":9,\"idAttachmentCover\":null,\"manualCoverAttachment\":false,\"labels\":[],\"idLabels\":[],\"name\":\"This card will be at the top of the list2.\",\"pos\":8192,\"shortLink\":\"zT8s9Rxc\",\"shortUrl\":\"https://trello.com/c/zT8s9Rxc\",\"subscribed\":true,\"url\":\"https://trello.com/c/zT8s9Rxc/9-this-card-will-be-at-the-top-of-the-list2\",\"members\":[{\"id\":\"560ee9cc994c6f0f35fd6259\",\"avatarHash\":null,\"fullName\":\"Chris Yammine\",\"initials\":\"CY\",\"username\":\"cyammine\"},{\"id\":\"56e87b654e27da2d988898a0\",\"avatarHash\":null,\"fullName\":\"Meichen Zhou\",\"initials\":\"MZ\",\"username\":\"meichenzhou\"}]},{\"id\":\"57a90f68463cf1d317269977\",\"badges\":{\"votes\":0,\"viewingMemberVoted\":false,\"subscribed\":false,\"fogbugz\":\"\",\"checkItems\":0,\"checkItemsChecked\":0,\"comments\":0,\"attachments\":0,\"description\":false,\"due\":null},\"checkItemStates\":[],\"closed\":false,\"dateLastActivity\":\"2016-08-08T23:02:00.297Z\",\"desc\":\"\",\"descData\":null,\"due\":null,\"email\":null,\"idBoard\":\"57663306e4b15193fcc97483\",\"idChecklists\":[],\"idList\":\"57663322ac7d147b2c337e34\",\"idMembers\":[],\"idMembersVoted\":[],\"idShort\":8,\"idAttachmentCover\":null,\"manualCoverAttachment\":false,\"labels\":[],\"idLabels\":[],\"name\":\"This card will be at the top of the list.\",\"pos\":16384,\"shortLink\":\"yy8ryz1m\",\"shortUrl\":\"https://trello.com/c/yy8ryz1m\",\"subscribed\":false,\"url\":\"https://trello.com/c/yy8ryz1m/8-this-card-will-be-at-the-top-of-the-list\",\"members\":[]},{\"id\":\"57663354b8c4fd9d06eef9d3\",\"badges\":{\"votes\":0,\"viewingMemberVoted\":false,\"subscribed\":false,\"fogbugz\":\"\",\"checkItems\":0,\"checkItemsChecked\":0,\"comments\":0,\"attachments\":0,\"description\":false,\"due\":null},\"checkItemStates\":[],\"closed\":false,\"dateLastActivity\":\"2016-06-19T05:53:24.291Z\",\"desc\":\"\",\"descData\":null,\"due\":null,\"email\":null,\"idBoard\":\"57663306e4b15193fcc97483\",\"idChecklists\":[],\"idList\":\"57663327c2a00972c72b67ee\",\"idMembers\":[],\"idMembersVoted\":[],\"idShort\":1,\"idAttachmentCover\":null,\"manualCoverAttachment\":false,\"labels\":[],\"idLabels\":[],\"name\":\"Edit controllers to consume JSON\",\"pos\":65535,\"shortLink\":\"qQCGkDHs\",\"shortUrl\":\"https://trello.com/c/qQCGkDHs\",\"subscribed\":false,\"url\":\"https://trello.com/c/qQCGkDHs/1-edit-controllers-to-consume-json\",\"members\":[]},{\"id\":\"5766335d1e786f505af45743\",\"badges\":{\"votes\":0,\"viewingMemberVoted\":false,\"subscribed\":true,\"fogbugz\":\"\",\"checkItems\":0,\"checkItemsChecked\":0,\"comments\":1,\"attachments\":0,\"description\":false,\"due\":\"2016-08-10T19:00:00.000Z\"},\"checkItemStates\":[],\"closed\":false,\"dateLastActivity\":\"2016-08-08T22:51:33.923Z\",\"desc\":\"\",\"descData\":null,\"due\":\"2016-08-10T19:00:00.000Z\",\"email\":null,\"idBoard\":\"57663306e4b15193fcc97483\",\"idChecklists\":[],\"idList\":\"57663327c2a00972c72b67ee\",\"idMembers\":[\"560ee9cc994c6f0f35fd6259\"],\"idMembersVoted\":[],\"idShort\":2,\"idAttachmentCover\":null,\"manualCoverAttachment\":false,\"labels\":[],\"idLabels\":[],\"name\":\"Replace brunch with webpack\",\"pos\":131071,\"shortLink\":\"N9PSwFGx\",\"shortUrl\":\"https://trello.com/c/N9PSwFGx\",\"subscribed\":true,\"url\":\"https://trello.com/c/N9PSwFGx/2-replace-brunch-with-webpack\",\"members\":[{\"id\":\"560ee9cc994c6f0f35fd6259\",\"avatarHash\":null,\"fullName\":\"Chris Yammine\",\"initials\":\"CY\",\"username\":\"cyammine\"}]}]",
+      "headers": {
+        "Cache-Control": "max-age=0, must-revalidate, no-cache, no-store",
+        "X-Content-Type-Options": "nosniff",
+        "Strict-Transport-Security": "max-age=15768000",
+        "X-XSS-Protection": "1; mode=block",
+        "X-FRAME-OPTIONS": "DENY",
+        "X-Trello-Version": "1.726.0",
+        "X-Trello-Environment": "Production",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET, PUT, POST, DELETE",
+        "Access-Control-Allow-Headers": "Authorization, Accept, Content-Type",
+        "X-Server-Time": "1471204630562",
+        "Expires": "Thu, 01 Jan 1970 00:00:00",
+        "Content-Type": "application/json; charset=utf-8",
+        "ETag": "W/\"BZRcSyhWBfAjNL6HC9JnBw==\"",
+        "Date": "Sun, 14 Aug 2016 19:57:10 GMT",
+        "Content-Length": "3645",
+        "Connection": "keep-alive",
+        "Set-Cookie": "<REMOVED> Secure"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

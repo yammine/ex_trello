@@ -130,4 +130,29 @@ defmodule ExTrelloTest do
 
   end
 
+  describe "Fetching cards associated with a board" do
+
+    test "fetches cards with specified board id" do
+      use_cassette "board_cards" do
+        cards = ExTrello.board_cards("57663306e4b15193fcc97483")
+
+        assert is_list(cards)
+        assert match?([%ExTrello.Model.Card{id: "57a90f8f732333fa17bfd341"}|_rest], cards)
+      end
+    end
+
+    test "fetches cards for specified board struct & options" do
+      use_cassette "board_cards_with_options" do
+        # Let's get members attached to each card.
+        [first_card| _other_cards] = cards = ExTrello.board("57663306e4b15193fcc97483")
+          |> ExTrello.board_cards(members: true)
+
+        assert is_list(cards)
+        assert first_card.name == "This card will be at the top of the list2."
+        assert match?([%ExTrello.Model.Member{full_name: "Chris Yammine"}|_], first_card.members)
+      end
+    end
+
+  end
+
 end

@@ -8,6 +8,8 @@ defmodule ExTrello.Mixfile do
      description: "An Elixir package to interface with the Trello API",
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
+     test_coverage: [tool: ExCoveralls],
+     preferred_cli_env: ["coveralls": :test, "coveralls.detail": :test, "coveralls.html": :test],
      deps: deps(),
      package: package()]
   end
@@ -25,7 +27,8 @@ defmodule ExTrello.Mixfile do
       {:poison, "~> 2.0"},
       {:httpotion, "~> 3.0.0"},
       {:ex_doc, ">= 0.0.0", only: :dev},
-      {:exvcr, "~> 0.7", only: :test}
+      {:exvcr, "~> 0.7", only: :test},
+      {:excoveralls, "~> 0.5", only: :test}
     ]
   end
 
