@@ -33,12 +33,40 @@ defmodule ExTrelloTest do
     assert Keyword.has_key?(config, :token_secret)
   end
 
-  test "Uses the `ExTrello.get` function to hit the not-yet-implemented /search/members endpoint" do
-    use_cassette "base_get_request" do
-      search = ExTrello.get("search/members", query: "trello", limit: 1)
+  describe "Bare requests" do
+    test "Uses the `ExTrello.get` function to utilize Trello's search functionality" do
+      use_cassette "base_get_request" do
+        search = ExTrello.get("search/members", query: "trello", limit: 1)
 
-      assert Enum.count(search) == 1
+        assert Enum.count(search) == 1
+      end
     end
+
+    test "Uses the `ExTrello.post` function to create a checklist" do
+      use_cassette "base_post_request" do
+        response = ExTrello.post("cards/570ddfcab92fb2f520a02361/checklists", name: "The best checklist.")
+
+        assert response.name == "The best checklist."
+        assert is_list(response.check_items)
+      end
+    end
+
+    test "Uses the `ExTrello.put` function to edit our checklist's name" do
+      use_cassette "bare_put_request" do
+        response = ExTrello.put("checklists/57b230dc836aa21fa2f869ca", name: "The second best checklist.")
+
+        assert response.name == "The second best checklist."
+      end
+    end
+
+    test "Uses the `ExTrello.delete` function to delete a checklist" do
+      use_cassette "bare_delete_request" do
+        response = ExTrello.delete("checklists/57b23300b84c35298ce2d22c") #=> %{_value: nil}
+
+        assert response._value == nil
+      end
+    end
+
   end
 
   describe "Fetching boards from Trello" do
@@ -117,6 +145,15 @@ defmodule ExTrelloTest do
 
         assert card.name == "Write RSpecs for List model validations :)"
         assert match?(%Card{}, card)
+      end
+    end
+
+    test "fetches a card and its members" do
+      use_cassette "get_card_with_members" do
+        card = ExTrello.card("IQPY44Pr", members: true)
+
+        assert is_list(card.members)
+        assert match?([%Member{}|_], card.members)
       end
     end
 

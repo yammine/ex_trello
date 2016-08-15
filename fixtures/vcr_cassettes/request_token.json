@@ -1,0 +1,38 @@
+[
+  {
+    "request": {
+      "body": "",
+      "headers": {
+        "Authorization": "***"
+      },
+      "method": "get",
+      "options": [],
+      "request_body": "",
+      "url": "https://api.trello.com/1/OAuthGetRequestToken?"
+    },
+    "response": {
+      "body": "oauth_token=71b38be804a54c661b78c852c630cf8a&oauth_token_secret=f93b366c38923498baee110c9edce4e0&oauth_callback_confirmed=true",
+      "headers": {
+        "Cache-Control": "no-store, no-cache",
+        "X-Content-Type-Options": "nosniff",
+        "Strict-Transport-Security": "max-age=15768000",
+        "X-XSS-Protection": "1; mode=block",
+        "X-FRAME-OPTIONS": "DENY",
+        "X-Trello-Version": "1.726.0",
+        "X-Trello-Environment": "Production",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET, PUT, POST, DELETE",
+        "Access-Control-Allow-Headers": "Authorization, Accept, Content-Type",
+        "Content-Type": "text/plain; charset=utf-8",
+        "Content-Length": "126",
+        "ETag": "W/\"7e-a4b3d119\"",
+        "Vary": "Accept-Encoding",
+        "Date": "Mon, 15 Aug 2016 21:39:02 GMT",
+        "Connection": "keep-alive",
+        "Set-Cookie": "<REMOVED> Secure"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

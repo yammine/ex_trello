@@ -355,26 +355,10 @@ defmodule ExTrello do
 
   ## Examples
 
-      ExTrello.get("boards/57ae3940f43e6d960e0c45da/boardStars")
-  """
-  @spec get(String.t) :: String.t
-  defdelegate get(path), to: ExTrello.API.BareRequests
-
-  @doc """
-  GET request to Trello
-
-  ## Examples
-
       ExTrello.get("boards/57ae3940f43e6d960e0c45da/boardStars", filter: "mine")
   """
   @spec get(String.t, Keyword.t) :: String.t
-  defdelegate get(path, params), to: ExTrello.API.BareRequests
-
-  @doc """
-  POST request to Trello with no body.
-  """
-  @spec post(String.t) :: String.t
-  defdelegate post(path), to: ExTrello.API.BareRequests
+  defdelegate get(path, params \\ []), to: ExTrello.API.BareRequests
 
   @doc """
   POST request to Trello
@@ -384,13 +368,7 @@ defmodule ExTrello do
       ExTrello.post("boards/57ae3940f43e6d960e0c45da/lists", name: "Best List", pos: "top")
   """
   @spec post(String.t, Keyword.t) :: String.t
-  defdelegate post(path, params), to: ExTrello.API.BareRequests
-
-  @doc """
-  PUT request to Trello with no body.
-  """
-  @spec put(String.t) :: String.t
-  defdelegate put(path), to: ExTrello.API.BareRequests
+  defdelegate post(path, params \\ []), to: ExTrello.API.BareRequests
 
   @doc """
   PUT request to Trello
@@ -400,17 +378,7 @@ defmodule ExTrello do
       ExTrello.put("boards/57ae3940f43e6d960e0c45da/labelNames/blue", value: "Bluey")
   """
   @spec put(String.t, Keyword.t) :: String.t
-  defdelegate put(path, params), to: ExTrello.API.BareRequests
-
-  @doc """
-  DELETE request to Trello with no body.
-
-  ## Examples
-
-      ExTrello.delete("boards/57ae3940f43e6d960e0c45da/powerUps/calendar")
-  """
-  @spec delete(String.t) :: String.t
-  defdelegate delete(path), to: ExTrello.API.BareRequests
+  defdelegate put(path, params \\ []), to: ExTrello.API.BareRequests
 
   @doc """
   DELETE request to Trello
@@ -420,7 +388,7 @@ defmodule ExTrello do
       ExTrello.delete("boards/57ae3940f43e6d960e0c45da/powerUps/calendar")
   """
   @spec delete(String.t, Keyword.t) :: String.t
-  defdelegate delete(path, params), to: ExTrello.API.BareRequests
+  defdelegate delete(path, params \\ []), to: ExTrello.API.BareRequests
 
   @doc """
   GET OAuthGetRequestToken
@@ -432,7 +400,6 @@ defmodule ExTrello do
   ## Reference
   https://trello.com/app-key
   """
-
   @spec request_token(String.t) :: [ExTrello.Model.RequestToken.t]
   defdelegate request_token(return_url), to: ExTrello.API.Auth
 
@@ -442,11 +409,11 @@ defmodule ExTrello do
   ## Examples
 
       token = ExTrello.request_token("http://localhost:4000/auth/trello/callback/1234")
-      ExTrello.authorize_url(token.oauth_token, %{return_url: "http://localhost:4000/auth/trello/callback/1234", scope: "read,write", expiration: "never", name: "Example Authentication"})
+      ExTrello.authorize_url(token.oauth_token, return_url: "http://localhost:4000/auth/trello/callback/1234", scope: "read,write", expiration: "never", name: "Example Authentication")
 
   Returns the URL you should redirect the user to for authorization
   """
-  @spec authorize_url(String.t, Map.t) :: {:ok, String.t} | {:error, String.t}
+  @spec authorize_url(String.t, Keyword.t | Map.t) :: {:ok, String.t}
   defdelegate authorize_url(oauth_token, options), to: ExTrello.API.Auth
 
   @doc """
@@ -459,7 +426,7 @@ defmodule ExTrello do
 
   Returns the URL you should redirect the user to for authorization
   """
-  @spec authorize_url(String.t) :: {:ok, String.t} | {:error, String.t}
+  @spec authorize_url(String.t) :: {:ok, String.t}
   defdelegate authorize_url(oauth_token), to: ExTrello.API.Auth
 
   @doc """
