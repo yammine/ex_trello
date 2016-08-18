@@ -6,7 +6,7 @@ Heavily influenced by https://github.com/parroty/extwitter with some stuff strai
 
 ## Documentation
 - https://hexdocs.pm/ex_trello
- 
+
 
 ## Installation
 
@@ -58,14 +58,14 @@ ExTrello.configure(consumer_key: "...", ...)
 
 You can also configure for the current process only:
 ```elixir
-defmodule TrelloServer do 
+defmodule TrelloServer do
   use GenServer
-  
-  def start_link(user) do 
+
+  def start_link(user) do
     GenServer.start_link(__MODULE__, user, [])
   end
-  
-  def init(%User{token: token, token_secret: token_secret}) do 
+
+  def init(%User{token: token, token_secret: token_secret}) do
     ExTrello.configure(
       :process,
       consumer_key: System.get_env("TRELLO_CONSUMER_KEY"),
@@ -75,7 +75,7 @@ defmodule TrelloServer do
     )
     {:ok, %{boards: []}}
   end
-  
+
   # Rest of your code...
 end
 ```
@@ -134,10 +134,12 @@ ExTrello.member() # Fetches the authenticated member record from Trello
 - [x] ~~Comment on Cards~~
 - [x] ~~Create & Edit Cards~~
 - [x] ~~Implement own OAuth 1.0 library to remove dependency on `erlang-oauth` (or investigate existing solutions)~~
-- [x] Usage tutorial.
+- [x] ~~Usage tutorial.~~
+- [x] ~~Tests (IN PROGRESS)~~
 - [ ] Add models for label, checklist, ~~member~~, notification, ~~organization~~, session, token, ~~action~~
-- [ ] Tests (IN PROGRESS)
 - [ ] Pagination
+- [ ] Example Application
+- [ ] Investigate handling storage of request_token.oauth_token_secret instead of leaving that up to the dev.
 
 
 ## LICENSE

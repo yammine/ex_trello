@@ -13,7 +13,7 @@ defmodule ExTrelloTest do
     ExVCR.Config.filter_sensitive_data("oauth_signature=[^\"]+", "<REMOVED>")
     ExVCR.Config.filter_sensitive_data("access_token\":\".+?\"", "access_token\":\"<REMOVED>\"")
     ExVCR.Config.filter_sensitive_data("dsc=.+;", "<REMOVED>")
-    ExVCR.Config.cassette_library_dir("fixtures/vcr_cassettes")
+    ExVCR.Config.cassette_library_dir("fixtures/vcr_cassettes", "fixtures/custom_cassettes")
 
     ExTrello.configure(
       consumer_key:    System.get_env("TRELLO_CONSUMER_KEY"),
@@ -31,6 +31,14 @@ defmodule ExTrelloTest do
     assert Keyword.has_key?(config, :consumer_secret)
     assert Keyword.has_key?(config, :token)
     assert Keyword.has_key?(config, :token_secret)
+  end
+
+  test "request fails due to connection error" do
+    use_cassette "failed_connection", custom: true do
+      assert_raise ExTrello.ConnectionError, "Connection error.", fn ->
+        ExTrello.boards()
+      end
+    end
   end
 
   describe "Bare requests" do
