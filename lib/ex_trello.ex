@@ -351,6 +351,94 @@ defmodule ExTrello do
   defdelegate action(action_id), to: ExTrello.API.Actions
 
   @doc """
+  Fetch list associated with list_id or %List{} struct
+
+  ## Examples
+
+      # Using id
+      ExTrello.list("57663322ac7d147b2c337e34")
+
+      # Using a struct
+      ExTrello.list(%ExTrello.Model.List{...})
+
+  ## Reference
+  https://developers.trello.com/advanced-reference/list#get-1-lists-idlist
+  """
+  @spec list(String.t | ExTrello.Model.List.t) :: ExTrello.Model.List.t
+  defdelegate list(id_or_struct), to: ExTrello.API.Lists
+
+  @doc """
+  Fetch list associated with list_id or %List{} struct and options. See reference for detailed list of options.
+
+  ## Examples
+
+      ExTrello.list("57663322ac7d147b2c337e34", board: true, fields: "all")
+
+  ## Reference
+  https://developers.trello.com/advanced-reference/list#get-1-lists-idlist
+  """
+  @spec list(String.t | ExTrello.Model.List.t, Keyword.t) :: ExTrello.Model.List.t
+  defdelegate list(id_or_struct, options), to: ExTrello.API.Lists
+
+  @doc """
+  Creates list on specified board using id or struct with specified name.
+
+  ## Examples
+
+      # Using board id
+      ExTrello.create_list("57663306e4b15193fcc97483", "The name of the list")
+
+      # Using board struct
+      board = ExTrello.board("57663306e4b15193fcc97483")
+      # Do some stuff with the board... then you wanna create a list
+
+      ExTrello.create_list(board, "Also the name of a list")
+
+  ## Reference
+  https://developers.trello.com/advanced-reference/list#post-1-lists
+  """
+  @spec create_list(String.t | ExTrello.Model.Board.t, String.t) :: ExTrello.Model.List.t
+  defdelegate create_list(board_id_or_struct, name), to: ExTrello.API.Lists
+
+  @doc """
+  Creates list on specified board using id or struct with specified name. See reference for detailed list of options.
+
+  ## Examples
+
+      # Using board id
+      ExTrello.create_list("57663306e4b15193fcc97483", "The name of the list", pos: "top")
+
+      # Using board struct
+      board = ExTrello.board("57663306e4b15193fcc97483")
+      # Do some stuff with the board... then you wanna create a list
+
+      ExTrello.create_list(board, "Also the name of a list", idListSource: "some_list_id")
+
+  ## Reference
+  https://developers.trello.com/advanced-reference/list#post-1-lists
+  """
+  @spec create_list(String.t | ExTrello.Model.Board.t, String.t, Keyword.t) :: ExTrello.Model.List.t
+  defdelegate create_list(board_id_or_struct, name, options), to: ExTrello.API.Lists
+
+  @doc """
+  Edits list using specified id or struct with fields
+
+  ## Examples
+
+    # Using id
+    ExTrello.edit_list("57b619a0e1714100f54bc33c", name: "Ridiculous Ideas")
+
+    # Using struct
+    ExTrello.list("57b619a0e1714100f54bc33c")
+    |> ExTrello.edit_list(name: "Pipes ahoy")
+
+  ## Reference
+  https://developers.trello.com/advanced-reference/list#put-1-lists-idlist
+  """
+  @spec edit_list(String.t | ExTrello.Model.List.t, Keyword.t) :: ExTrello.Model.List.t
+  defdelegate edit_list(list_id_or_struct, fields), to: ExTrello.API.Lists
+
+  @doc """
   GET request to Trello
 
   ## Examples

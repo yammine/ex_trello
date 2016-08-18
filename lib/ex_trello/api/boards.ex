@@ -19,7 +19,9 @@ defmodule ExTrello.API.Boards do
     |> Enum.map(&Parser.parse_board/1)
   end
 
-  def board(id, options \\ []) when is_binary(id) do
+  def board(id_or_struct), do: board(id_or_struct, [])
+  def board(%Board{id: id}, options), do: board(id, options)
+  def board(id, options) when is_binary(id) do
     request(:get, "boards/#{id}", options)
     |> Parser.parse_board
   end

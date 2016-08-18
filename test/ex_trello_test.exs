@@ -150,6 +150,19 @@ defmodule ExTrelloTest do
       end
     end
 
+    test "gets the specified board using a struct and options" do
+      use_cassette "get_board_using_struct" do
+        struct = ExTrello.board("PR9zqZtE")
+        board = struct |> ExTrello.board(actions: "all")
+
+        assert struct.name == "Lunch Money"
+        assert struct.actions == nil
+
+        assert board.name == "Lunch Money"
+        assert match?([%Action{}|_], board.actions)
+      end
+    end
+
     test "gets a board with options [actions: 'all']" do
       use_cassette "get_board_with_options" do
         board = ExTrello.board("PR9zqZtE", actions: "all")
@@ -218,6 +231,37 @@ defmodule ExTrelloTest do
 
         assert action.type == "commentCard"
         assert action.id == "57b248970888c3d8b59ef0db"
+      end
+    end
+
+  end
+
+  describe "Fetching lists from Trello" do
+
+    test "gets the specified list using id" do
+      use_cassette "get_list" do
+        list = ExTrello.list("57a1228c2faa01332768dffb")
+
+        assert list.name == "To Do"
+        assert match?(%TrelloList{}, list)
+      end
+    end
+
+    test "gets the specified list using struct & options" do
+      use_cassette "get_list_struct" do
+        list = ExTrello.list("57a1228c2faa01332768dffb")
+        list_with_options = list |> ExTrello.list(fields: "all", board: true)
+
+        assert list.name == "To Do"
+        assert list.subscribed == nil # Not fetched
+        assert list.id_board == "57a1228c2faa01332768dffa"
+        assert match?(%TrelloList{}, list)
+
+        assert list_with_options.name == "To Do"
+        assert list_with_options.subscribed == false
+        assert list_with_options.id_board == "57a1228c2faa01332768dffa"
+        assert match?(%TrelloList{}, list_with_options)
+        assert match?(%Board{}, list_with_options.board)
       end
     end
 
@@ -314,6 +358,32 @@ defmodule ExTrelloTest do
 
   end
 
+  describe "Creating lists on a Trello Board" do
+
+    test "creates a list with specified name on board with specified id" do
+      use_cassette "create_list_by_board_id" do
+        list = ExTrello.create_list("57663306e4b15193fcc97483", "Garbage Dump")
+
+        assert list.name == "Garbage Dump"
+        assert list.id_board == "57663306e4b15193fcc97483"
+        assert match?(%TrelloList{}, list)
+      end
+    end
+
+    test "creates a list with specified name using board struct with options" do
+      use_cassette "create_list_by_board_struct" do
+        list = ExTrello.board("57663306e4b15193fcc97483")
+        |> ExTrello.create_list("The last list.", pos: "bottom")
+
+
+        assert list.name == "The last list."
+        assert list.id_board == "57663306e4b15193fcc97483"
+        assert match?(%TrelloList{}, list)
+      end
+    end
+
+  end
+
   describe "Editing boards on Trello" do
 
     test "edits board with specified id" do
@@ -362,6 +432,34 @@ defmodule ExTrelloTest do
 
         assert original_card.name == "Feelin' structy part 2"
         assert edited_card.name == "Feelin' structy part 3"
+      end
+    end
+
+  end
+
+  describe "Editing lists on Trello" do
+
+    test "edits list with specified id and options" do
+      use_cassette "edit_list_by_id" do
+        original_list = ExTrello.list("57b619a0e1714100f54bc33c")
+        edited_list = ExTrello.edit_list("57b619a0e1714100f54bc33c", name: "The first list.", pos: "top")
+
+        assert original_list.name == "The last list."
+        assert match?(%TrelloList{}, original_list)
+        assert edited_list.name == "The first list."
+        assert match?(%TrelloList{}, edited_list)
+      end
+    end
+
+    test "edits list using list struct and options" do
+      use_cassette "edit_list_by_struct" do
+        original_list = ExTrello.list("57b619a0e1714100f54bc33c")
+        edited_list = original_list |> ExTrello.edit_list(name: "A girl has no name.")
+
+        assert original_list.name == "The first list."
+        assert match?(%TrelloList{}, original_list)
+        assert edited_list.name == "A girl has no name."
+        assert match?(%TrelloList{}, edited_list)
       end
     end
 

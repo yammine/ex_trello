@@ -17,7 +17,7 @@ Heavily influenced by https://github.com/parroty/extwitter with some stuff strai
     def deps do
       [
         ...,
-        {:ex_trello, "~> 0.4.2"}
+        {:ex_trello, "~> 0.5.0"}
       ]
     end
     ```
