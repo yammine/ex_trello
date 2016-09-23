@@ -11,19 +11,19 @@ defmodule ExTrello.API.BareRequests do
 
   import ExTrello.API.Base
 
-  def get(path, params \\ []) when is_list(params) do
+  defapicall get(path, params \\ []) when is_list(params) do
     request(:get, path, params)
   end
 
-  def post(path, params \\ []) when is_list(params) do
+  defapicall post(path, params \\ []) when is_list(params) do
     request(:post, path, params)
   end
 
-  def put(path, params \\ []) when is_list(params) do
+  defapicall put(path, params \\ []) when is_list(params) do
     request(:put, path, params)
   end
 
-  def delete(path, params \\ []) when is_list(params) do
+  defapicall delete(path, params \\ []) when is_list(params) do
     request(:delete, path, params)
   end
 end

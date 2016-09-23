@@ -1,0 +1,40 @@
+[
+  {
+    "request": {
+      "body": "",
+      "headers": {
+        "Authorization": "***"
+      },
+      "method": "get",
+      "options": [],
+      "request_body": "",
+      "url": "https://api.trello.com/1/checklists/57bc918bfb1103f1d32ffe01?"
+    },
+    "response": {
+      "body": "{\"id\":\"57bc918bfb1103f1d32ffe01\",\"name\":\"Da list\",\"idBoard\":\"57b206dc864eadbd9c1b69c6\",\"idCard\":\"57bc9186b8d3aca75628c202\",\"pos\":16384,\"checkItems\":[{\"state\":\"incomplete\",\"idChecklist\":\"57bc918bfb1103f1d32ffe01\",\"id\":\"57bc918e811e504b53de35d9\",\"name\":\"Item yo\",\"nameData\":null,\"pos\":17297},{\"state\":\"incomplete\",\"idChecklist\":\"57bc918bfb1103f1d32ffe01\",\"id\":\"57bc9192fc9648ad386ac364\",\"name\":\"Something else\",\"nameData\":null,\"pos\":34195},{\"state\":\"incomplete\",\"idChecklist\":\"57bc918bfb1103f1d32ffe01\",\"id\":\"57bc91b30f0d2568d49301e0\",\"name\":\"https://trello.com/c/vgQNogbc do this\",\"nameData\":null,\"pos\":51405}]}",
+      "headers": {
+        "Cache-Control": "max-age=0, must-revalidate, no-cache, no-store",
+        "X-Content-Type-Options": "nosniff",
+        "Strict-Transport-Security": "max-age=15768000",
+        "X-XSS-Protection": "1; mode=block",
+        "X-FRAME-OPTIONS": "DENY",
+        "X-Trello-Version": "1.731.0",
+        "X-Trello-Environment": "Production",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET, PUT, POST, DELETE",
+        "Access-Control-Allow-Headers": "Authorization, Accept, Content-Type",
+        "X-Server-Time": "1472014352621",
+        "Expires": "Thu, 01 Jan 1970 00:00:00",
+        "Content-Type": "application/json; charset=utf-8",
+        "Content-Length": "610",
+        "ETag": "W/\"262-3640f7c1\"",
+        "Vary": "Accept-Encoding",
+        "Date": "Wed, 24 Aug 2016 04:52:32 GMT",
+        "Connection": "keep-alive",
+        "Set-Cookie": "<REMOVED> Secure"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

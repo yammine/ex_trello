@@ -7,12 +7,12 @@ defmodule ExTrello.API.Members do
   alias  ExTrello.Parser
 
   def member, do: member([])
-  def member(options) when is_list(options) do
+  defapicall member(options) when is_list(options) do
     request(:get, "members/me", options)
     |> Parser.parse_member
   end
   def member(id_or_username) when is_binary(id_or_username), do: member(id_or_username, [])
-  def member(id_or_username, options) do
+  defapicall member(id_or_username, options) do
     request(:get, "members/#{id_or_username}", options)
     |> Parser.parse_member
   end

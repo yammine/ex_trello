@@ -2,7 +2,8 @@ defmodule ExTrello.Parser do
   @moduledoc """
   Provides parser logic for API results.
   """
-  @nested_resources ~w(board boards card cards list lists actions organization organizations member members)a
+  @nested_resources ~w(board boards card cards list lists actions organization organizations member members
+                       checklist checklists)a
 
   @doc """
   Check the possible nested resources for any given object. Should work on any arbitrarily nested objects.
@@ -41,6 +42,8 @@ defmodule ExTrello.Parser do
   defp preprocess(%{members: members} = object, :members), do: Map.put(object, :members, Enum.map(members, &parse_member/1))
   defp preprocess(%{organization: organization} = object, :organization),    do: Map.put(object, :organization, organization |> parse_organization)
   defp preprocess(%{organizations: organizations} = object, :organizations), do: Map.put(object, :organizations, Enum.map(organizations, &parse_organization/1))
+  defp preprocess(%{checklist: checklist} = object, :checklist),    do: Map.put(object, :checklist, checklist |> parse_checklist)
+  defp preprocess(%{checklists: checklists} = object, :checklists), do: Map.put(object, :checklists, Enum.map(checklists, &parse_checklist/1))
   defp preprocess(object, _), do: object
 
   @doc """
@@ -95,6 +98,15 @@ defmodule ExTrello.Parser do
     object
     |> check_nested_resources
     |> (&(struct(ExTrello.Model.Organization, &1))).()
+  end
+
+  @doc """
+  Parse checklist record returned from API response json.
+  """
+  def parse_checklist(object) do
+    object
+    |> check_nested_resources
+    |> (&(struct(ExTrello.Model.Checklist, &1))).()
   end
 
   @doc """

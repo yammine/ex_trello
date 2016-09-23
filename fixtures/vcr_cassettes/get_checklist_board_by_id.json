@@ -1,0 +1,39 @@
+[
+  {
+    "request": {
+      "body": "",
+      "headers": {
+        "Authorization": "***"
+      },
+      "method": "get",
+      "options": [],
+      "request_body": "",
+      "url": "https://api.trello.com/1/checklists/57bc918bfb1103f1d32ffe01/board?"
+    },
+    "response": {
+      "body": "{\"id\":\"57b206dc864eadbd9c1b69c6\",\"name\":\"ExTrello\",\"desc\":\"An Elixir library to wrap the Trello API\",\"descData\":null,\"closed\":false,\"idOrganization\":null,\"invited\":false,\"pinned\":false,\"starred\":false,\"url\":\"https://trello.com/b/m36ZkROK/extrello\",\"prefs\":{\"permissionLevel\":\"private\",\"voting\":\"disabled\",\"comments\":\"members\",\"invitations\":\"members\",\"selfJoin\":true,\"cardCovers\":true,\"cardAging\":\"regular\",\"calendarFeedEnabled\":false,\"background\":\"blue\",\"backgroundImage\":null,\"backgroundImageScaled\":null,\"backgroundTile\":false,\"backgroundBrightness\":\"dark\",\"backgroundColor\":\"#0079BF\",\"canBePublic\":true,\"canBeOrg\":true,\"canBePrivate\":true,\"canInvite\":true},\"invitations\":[],\"memberships\":[{\"id\":\"57b206dc864eadbd9c1b69ca\",\"idMember\":\"560ee9cc994c6f0f35fd6259\",\"memberType\":\"admin\",\"unconfirmed\":false,\"deactivated\":false}],\"shortLink\":\"m36ZkROK\",\"subscribed\":false,\"labelNames\":{\"green\":\"\",\"yellow\":\"\",\"orange\":\"\",\"red\":\"\",\"purple\":\"\",\"blue\":\"\",\"sky\":\"\",\"lime\":\"\",\"pink\":\"\",\"black\":\"\"},\"powerUps\":[],\"dateLastActivity\":\"2016-08-24T01:59:15.754Z\",\"dateLastView\":\"2016-08-24T04:43:22.839Z\",\"shortUrl\":\"https://trello.com/b/m36ZkROK\",\"idTags\":[]}",
+      "headers": {
+        "Cache-Control": "max-age=0, must-revalidate, no-cache, no-store",
+        "X-Content-Type-Options": "nosniff",
+        "Strict-Transport-Security": "max-age=15768000",
+        "X-XSS-Protection": "1; mode=block",
+        "X-FRAME-OPTIONS": "DENY",
+        "X-Trello-Version": "1.731.0",
+        "X-Trello-Environment": "Production",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET, PUT, POST, DELETE",
+        "Access-Control-Allow-Headers": "Authorization, Accept, Content-Type",
+        "X-Server-Time": "1472016431469",
+        "Expires": "Thu, 01 Jan 1970 00:00:00",
+        "Content-Type": "application/json; charset=utf-8",
+        "ETag": "W/\"0xMUWRx2h5oPYCP+I2V+iQ==\"",
+        "Date": "Wed, 24 Aug 2016 05:27:11 GMT",
+        "Content-Length": "1146",
+        "Connection": "keep-alive",
+        "Set-Cookie": "<REMOVED> Secure"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

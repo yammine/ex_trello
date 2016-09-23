@@ -21,7 +21,7 @@ defmodule ExTrello.AuthTest do
 
   test "Fetching request token from Trello" do
     use_cassette "request_token" do
-      token = ExTrello.request_token("http://localhost:4000/callback")
+      {:ok, token} = ExTrello.request_token("http://localhost:4000/callback")
 
       assert token != nil
       assert token.oauth_token != nil
@@ -30,11 +30,20 @@ defmodule ExTrello.AuthTest do
     end
   end
 
-  test "request token failure" do
+  test "request token connection failure" do
     use_cassette "failed_connection", custom: true do
-      assert_raise ExTrello.ConnectionError, "Connection error.", fn ->
-        ExTrello.request_token("something")
-      end
+      response = ExTrello.request_token("something")
+
+      assert match?({:connection_error, %ExTrello.ConnectionError{reason: "nxdomain", message: "Connection error."}}, response)
+    end
+  end
+
+  test "request token app not found failure" do
+    use_cassette "request_token_app_not_found", custom: true do
+      ExTrello.configure(consumer_key: "asdf", consumer_secret: "invalid_af")
+      response = ExTrello.request_token("something")
+
+      assert match?({:error, %ExTrello.Error{code: 500, message: "App not found"}}, response)
     end
   end
 
@@ -53,23 +62,26 @@ defmodule ExTrello.AuthTest do
       verifier     = "hey_its_me_ur_brother"
       token        = "pls"
       token_secret = "shh_dont_tell"
-      ExTrello.access_token(verifier, token, token_secret)
+      {:ok, access_token} = ExTrello.access_token(verifier, token, token_secret)
+
+      assert access_token.oauth_token == "aaaaaaaaaaaaaaaaaaaaa123"
+      assert access_token.oauth_token_secret == "bbbbbbbbbbbbbbb32"
     end
   end
 
   test "access token invalid input failure" do
     use_cassette "access_token_failure", custom: true do
-      assert_raise ExTrello.Error, "request expired", fn ->
-        ExTrello.access_token("some", "invalid", "stuff")
-      end
+      response = ExTrello.access_token("some", "invalid", "stuff")
+
+      assert match?({:error, %ExTrello.Error{code: 500, message: "request expired"}}, response)
     end
   end
 
   test "access token connection failure" do
     use_cassette "failed_connection", custom: true do
-      assert_raise ExTrello.ConnectionError, "Connection error.", fn ->
-        ExTrello.access_token("something", "strange", "in the neighborhood")
-      end
+      response = ExTrello.access_token("something", "strange", "in the neighborhood")
+
+      assert match?({:connection_error, %ExTrello.ConnectionError{reason: "nxdomain", message: "Connection error."}}, response)
     end
   end
 
