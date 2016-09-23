@@ -4,6 +4,34 @@ A library for interfacing with the Trello API.
 
 Heavily influenced by https://github.com/parroty/extwitter with some stuff straight ripped out of it.
 
+## **Important! Migration from 0.x -> 1.x**
+Since this change will break all existing projects using ExTrello upon upgrading this deserves a spot at the top :)
+
+All calls to the Trello API will now be wrapped in a tuple with the first element either being `:ok`, `:error`, or `:connection_error`
+Regular errors will no longer raise exceptions as that is not idiomatic.
+
+Here's an example(just a little sample):
+```elixir
+# Old and bad
+boards = ExTrello.boards()
+# New and great
+{:ok, boards} = ExTrello.boards()
+
+# Old and bad, yuck!
+try do
+  ExTrello.get("potato/2")
+rescue
+  %ExTrello.Error{code: code, message: message} -> IO.puts "ERROR[#{code}] - #{message}"
+end
+
+# New and fantastic
+case ExTrello.get("potato/2") do
+  {:ok, response} -> response
+  {:error, %ExTrello.Error{code: code, message: message}} -> IO.puts "ERROR[#{code}] - #{message}"
+  {:connection_error, %ExTrello.ConnectionError{reason: _, message: message}} -> IO.puts "#{message} We should retry."
+end
+```
+
 ## Documentation
 - https://hexdocs.pm/ex_trello
 
@@ -17,7 +45,7 @@ Heavily influenced by https://github.com/parroty/extwitter with some stuff strai
     def deps do
       [
         ...,
-        {:ex_trello, "~> 0.5.0"}
+        {:ex_trello, "~> 1.0.0"}
       ]
     end
     ```
@@ -66,7 +94,7 @@ defmodule TrelloServer do
   end
 
   def init(%User{token: token, token_secret: token_secret}) do
-    ExTrello.configure(
+    :ok = ExTrello.configure(
       :process,
       consumer_key: System.get_env("TRELLO_CONSUMER_KEY"),
       consumer_secret: System.get_env("TRELLO_CONSUMER_SECRET"),
@@ -88,7 +116,7 @@ Example for authorization. This is a naive solution that only works for demonstr
 TODO: Set up example application.
 ```elixir
 # First we have to get a request token from Trello.
-token = ExTrello.request_token("http://localhost:4000/auth/trello/callback/1234")
+{:ok, token} = ExTrello.request_token("http://localhost:4000/auth/trello/callback/1234")
 # We have to store this token because we need the `oauth_token_secret` after the callback to obtain our access token & secret.
 # e.g. TokenAgent.store("1234", token.oauth_token_secret)
 
@@ -122,7 +150,7 @@ ExTrello.configure(
 )
 
 # Testing our token!
-ExTrello.member() # Fetches the authenticated member record from Trello
+{:ok, member} = ExTrello.member() # Fetches the authenticated member record from Trello
 ```
 
 
@@ -136,7 +164,7 @@ ExTrello.member() # Fetches the authenticated member record from Trello
 - [x] ~~Implement own OAuth 1.0 library to remove dependency on `erlang-oauth` (or investigate existing solutions)~~
 - [x] ~~Usage tutorial.~~
 - [x] ~~Tests (IN PROGRESS)~~
-- [ ] Add models for label, checklist, ~~member~~, notification, ~~organization~~, session, token, ~~action~~
+- [ ] Add models for label, ~~checklist~~, ~~member~~, notification, ~~organization~~, session, token, ~~action~~
 - [ ] Pagination
 - [ ] Example Application
 - [ ] Investigate handling storage of request_token.oauth_token_secret instead of leaving that up to the dev.

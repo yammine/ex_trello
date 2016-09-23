@@ -1,7 +1,9 @@
 defmodule ExTrello.Error do
-  defexception [:code, :message]
+  defstruct code: nil, message: nil
+  @type t :: %__MODULE__{}
 end
 
 defmodule ExTrello.ConnectionError do
-  defexception [:reason, message: "Connection error."]
+  defstruct reason: nil, message: "Connection error."
+  @type t :: %__MODULE__{}
 end

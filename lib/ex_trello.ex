@@ -63,12 +63,12 @@ defmodule ExTrello do
 
   ## Examples
 
-      ExTrello.member()
+      {:ok, member} = ExTrello.member()
 
   ## Reference
   https://developers.trello.com/advanced-reference/member#get-1-members-idmember-or-username
   """
-  @spec member() :: ExTrello.Model.Member
+  @spec member() :: {:ok, ExTrello.Model.Member.t} | {:error, ExTrello.Error.t} | {:connection_error, ExTrello.ConnectionError.t}
   defdelegate member, to: ExTrello.API.Members
 
   @doc """
@@ -76,12 +76,12 @@ defmodule ExTrello do
 
   ## Examples
 
-      ExTrello.member(organizations: "all")
+      {:ok, member_with_organizations} = ExTrello.member(organizations: "all")
 
   ## Reference
   https://developers.trello.com/advanced-reference/member#get-1-members-idmember-or-username
   """
-  @spec member(Keyword.t) :: ExTrello.Model.Member
+  @spec member(Keyword.t) :: {:ok, ExTrello.Model.Member.t} | {:error, ExTrello.Error.t} | {:connection_error, ExTrello.ConnectionError.t}
   defdelegate member(options), to: ExTrello.API.Members
 
   @doc """
@@ -89,9 +89,9 @@ defmodule ExTrello do
 
   ## Examples
 
-      ExTrello.boards()
+      {:ok, boards} = ExTrello.boards()
   """
-  @spec boards() :: [ExTrello.Model.Board] | []
+  @spec boards() :: {:ok, [ExTrello.Model.Board.t]} | {:error, ExTrello.Error.t} | {:connection_error, ExTrello.ConnectionError.t}
   defdelegate boards, to: ExTrello.API.Boards
 
   @doc """
@@ -99,12 +99,12 @@ defmodule ExTrello do
 
   ## Examples
 
-      ExTrello.boards([filter: "pinned,public", fields: "shortLink,subscribed"])
+      {:ok, boards_with_options} = ExTrello.boards([filter: "pinned,public", fields: "shortLink,subscribed"])
 
   ## Reference
   https://developers.trello.com/advanced-reference/member#get-1-members-idmember-or-username-boards
   """
-  @spec boards(Keyword.t) :: [ExTrello.Model.Board] | []
+  @spec boards(Keyword.t) :: {:ok, [ExTrello.Model.Board.t]} | {:error, ExTrello.Error.t} | {:connection_error, ExTrello.ConnectionError.t}
   defdelegate boards(options), to: ExTrello.API.Boards
 
 
@@ -113,12 +113,12 @@ defmodule ExTrello do
 
   ## Examples
 
-      ExTrello.boards("trello")
+      {:ok, trello_user_boards} = ExTrello.boards("trello")
 
   ## Reference
   https://developers.trello.com/advanced-reference/member#get-1-members-idmember-or-username-boards
   """
-  @spec boards(String.t, Keyword.t) :: [ExTrello.Model.Board] | []
+  @spec boards(String.t, Keyword.t) :: {:ok, [ExTrello.Model.Board.t]} | {:error, ExTrello.Error.t} | {:connection_error, ExTrello.ConnectionError.t}
   defdelegate boards(user, options), to: ExTrello.API.Boards
 
   @doc """
@@ -126,12 +126,12 @@ defmodule ExTrello do
 
   ## Examples
 
-      ExTrello.board("57663306e4b15193fcc97483")
+      {:ok, board} = ExTrello.board("57663306e4b15193fcc97483")
 
   ## Reference
   https://developers.trello.com/advanced-reference/board#get-1-boards-board-id
   """
-  @spec board(String.t) :: ExTrello.Model.Board.t | nil
+  @spec board(String.t) :: {:ok, ExTrello.Model.Board.t} | {:error, ExTrello.Error.t} | {:connection_error, ExTrello.ConnectionError.t}
   defdelegate board(id), to: ExTrello.API.Boards
 
   @doc """
@@ -139,49 +139,47 @@ defmodule ExTrello do
 
   ## Examples
 
-      ExTrello.board("57663306e4b15193fcc97483", [actions_display: true])
+      # Fetching a board with an invalid id
+      {:error, 400, "invalid id"} = ExTrello.board("123")
+
+      # Board with options
+      {:ok, board_with_options} = ExTrello.board("57663306e4b15193fcc97483", [actions_display: true])
 
   ## Reference
   https://developers.trello.com/advanced-reference/board#get-1-boards-board-id
   """
 
-  @spec board(String.t, Keyword.t) :: ExTrello.Model.Board.t | nil
+  @spec board(String.t, Keyword.t) :: {:ok, ExTrello.Model.Board.t} | {:error, ExTrello.Error.t} | {:connection_error, ExTrello.ConnectionError.t}
   defdelegate board(id, options), to: ExTrello.API.Boards
 
   @doc """
   Create board with supplied `name`.
 
   ## Examples
-      # Bad
-      ExTrello.create_board(123) #=> %ExTrello.Error{code: 422, message: "You must provide a name with a length between 1 and 16384 to create a board."}
 
-      # Good
-      ExTrello.create_board("TrelloHub")
+      {:ok, board} = ExTrello.create_board("TrelloHub")
 
 
   ## Reference
   https://developers.trello.com/advanced-reference/board#post-1-boards
   """
 
-  @spec create_board(String.t) :: ExTrello.Model.Board.t | nil
+  @spec create_board(String.t) :: {:ok, ExTrello.Model.Board.t} | {:error, ExTrello.Error.t} | {:connection_error, ExTrello.ConnectionError.t}
   defdelegate create_board(name), to: ExTrello.API.Boards
 
   @doc """
   Create board with supplied `name`. See reference for detailed list of options.
 
   ## Examples
-      # Bad
-      ExTrello.create_board(123) #=> %ExTrello.Error{code: 422, message: "You must provide a name with a length between 1 and 16384 to create a board."}
 
-      # Good
-      ExTrello.create_board("TrelloHub", desc: "An application to synchronize your Trello boards with your GitHub activity.", powerups: "all")
+      {:ok, board} = ExTrello.create_board("TrelloHub", desc: "An application to synchronize your Trello boards with your GitHub activity.", powerups: "all")
 
 
   ## Reference
   https://developers.trello.com/advanced-reference/board#post-1-boards
   """
 
-  @spec create_board(String.t, Keyword.t) :: ExTrello.Model.Board.t | nil
+  @spec create_board(String.t, Keyword.t) :: {:ok, ExTrello.Model.Board.t} | {:error, ExTrello.Error.t} | {:connection_error, ExTrello.ConnectionError.t}
   defdelegate create_board(name, options), to: ExTrello.API.Boards
 
   @doc """
@@ -189,15 +187,15 @@ defmodule ExTrello do
 
   ## Examples
       # Capture the id of our newly created board.
-      %ExTrello.Model.Board{id: id} = ExTrello.create_board("Some name")
+      {:ok, %ExTrello.Model.Board{id: id}} = ExTrello.create_board("Some name")
       # Let's edit the name of our new board.
-      ExTrello.edit_board(id, name: "Another name entirely.")
+      {:ok, edited_board} = ExTrello.edit_board(id, name: "Another name entirely.")
 
   ## Reference
   https://developers.trello.com/advanced-reference/board#put-1-boards-board-id
   """
 
-  @spec edit_board(String.t, Keyword.t) :: ExTrello.Model.Board.t | nil
+  @spec edit_board(String.t, Keyword.t) :: {:ok, ExTrello.Model.Board.t} | {:error, ExTrello.Error.t} | {:connection_error, ExTrello.ConnectionError.t}
   defdelegate edit_board(id, options), to: ExTrello.API.Boards
 
   @doc """
@@ -206,16 +204,16 @@ defmodule ExTrello do
   ## Examples
 
       # Using a board_id
-      ExTrello.board_cards("57663306e4b15193fcc97483")
+      {:ok, cards} = ExTrello.board_cards("57663306e4b15193fcc97483")
 
       # Using a Board struct (Useful in case you're passing this struct around, you should just use the `cards: "all"` flag to fetch a board and its cards in the same request)
-      # board = %ExTrello.Model.Board{id: "57663306e4b15193fcc97483" blah blah blah}
+      # {:ok, board} = %ExTrello.Model.Board{id: "57663306e4b15193fcc97483" blah blah blah}
       board |> ExTrello.board_cards
 
   ## Reference
   https://developers.trello.com/advanced-reference/board#get-1-boards-board-id-cards
   """
-  @spec board_cards(String.t | ExTrello.Model.Board.t) :: [ExTrello.Model.Card.t] | []
+  @spec board_cards(String.t | ExTrello.Model.Board.t) :: {:ok, [ExTrello.Model.Card.t]} | {:error, ExTrello.Error.t} | {:connection_error, ExTrello.ConnectionError.t}
   defdelegate board_cards(board_or_id), to: ExTrello.API.Boards, as: :cards
 
   @doc """
@@ -224,17 +222,17 @@ defmodule ExTrello do
   ## Examples
 
       # Using a board_id
-      ExTrello.board_cards("57663306e4b15193fcc97483", attachments: true, checklists: "all")
+      {:ok, cards} = ExTrello.board_cards("57663306e4b15193fcc97483", attachments: true, checklists: "all")
 
       # Using a Board struct (Useful in case you're passing this struct around, you should just use the `cards: "all"` flag to fetch a board and its cards in the same request)
-      # board = %ExTrello.Model.Board{id: "57663306e4b15193fcc97483" blah blah blah}
+      # {:ok, board} = %ExTrello.Model.Board{id: "57663306e4b15193fcc97483" blah blah blah}
       board |> ExTrello.board_cards(members: true)
 
   ## Reference
   https://developers.trello.com/advanced-reference/board#get-1-boards-board-id-cards
   """
 
-  @spec board_cards(String.t | ExTrello.Model.Board.t, Keyword.t) :: [ExTrello.Model.Card.t] | []
+  @spec board_cards(String.t | ExTrello.Model.Board.t, Keyword.t) :: {:ok, [ExTrello.Model.Card.t]} | {:error, ExTrello.Error.t} | {:connection_error, ExTrello.ConnectionError.t}
   defdelegate board_cards(board_or_id, options), to: ExTrello.API.Boards, as: :cards
 
   @doc """
@@ -243,15 +241,15 @@ defmodule ExTrello do
   ## Examples
 
       # Using card id
-      ExTrello.card("56e8fa38abbbdd74b978c3cd")
+      {:ok, card} = ExTrello.card("56e8fa38abbbdd74b978c3cd")
 
       # Using shortlink
-      ExTrello.card("JyUbYknO")
+      {:ok, card} = ExTrello.card("JyUbYknO")
 
   ## Reference
   https://developers.trello.com/advanced-reference/card#get-1-cards-card-id-or-shortlink
   """
-  @spec card(String.t) :: ExTrello.Model.Card.t
+  @spec card(String.t) :: {:ok, ExTrello.Model.Card.t} | {:error, ExTrello.Error.t} | {:connection_error, ExTrello.ConnectionError.t}
   defdelegate card(card_id_or_shortlink), to: ExTrello.API.Cards
 
   @doc """
@@ -259,13 +257,13 @@ defmodule ExTrello do
 
   ## Examples
 
-      ExTrello.card("JyUbYknO", list: true)
+      {:ok, %ExTrello.Model.Card{list: %ExTrello.Model.List{}}} = ExTrello.card("JyUbYknO", list: true)
 
   ## Reference
   https://developers.trello.com/advanced-reference/card#get-1-cards-card-id-or-shortlink
   """
 
-  @spec card(String.t, Keyword.t) :: ExTrello.Model.Card.t
+  @spec card(String.t, Keyword.t) :: {:ok, ExTrello.Model.Card.t} | {:error, ExTrello.Error.t} | {:connection_error, ExTrello.ConnectionError.t}
   defdelegate card(card_id_or_shortlink, options), to: ExTrello.API.Cards
 
   @doc """
@@ -273,15 +271,15 @@ defmodule ExTrello do
 
   ## Examples
 
-      board = ExTrello.board("57663306e4b15193fcc97483", lists: "all")
-      %ExTrello.Model.List{id: id} = List.first(board.lists) # This happens to be my Icebox list
-      ExTrello.create_card(id, "Should definitely improve documentation and tests for this project.")
+      {:ok, board} = ExTrello.board("57663306e4b15193fcc97483", lists: "all")
+      {:ok, %ExTrello.Model.List{id: id}} = List.first(board.lists) # This happens to be my Icebox list
+      {:ok, card} = ExTrello.create_card(id, "Should definitely improve documentation and tests for this project.")
 
   ## Reference
   https://developers.trello.com/advanced-reference/card#post-1-cards
   """
 
-  @spec create_card(String.t | ExTrello.Model.List.t, String.t) :: ExTrello.Model.Card.t
+  @spec create_card(String.t | ExTrello.Model.List.t, String.t) :: {:ok, ExTrello.Model.Card.t} | {:error, ExTrello.Error.t} | {:connection_error, ExTrello.ConnectionError.t}
   defdelegate create_card(list_or_id, name), to: ExTrello.API.Cards
 
   @doc """
@@ -289,16 +287,17 @@ defmodule ExTrello do
 
   ## Examples
 
-      board = ExTrello.board("57663306e4b15193fcc97483", lists: "all", members: "all")
+      {:ok, board} = ExTrello.board("57663306e4b15193fcc97483", lists: "all", members: "all")
 
-      List.first(board.lists) # This happens to be my Icebox list
-      |> ExTrello.create_card("This card will be at the top of the list.", pos: "top", idMembers: Enum.map(board.members, &(&1.id)) |> Enum.join(","))
+      {:ok, card} =
+        List.first(board.lists) # This happens to be my Icebox list
+        |> ExTrello.create_card("This card will be at the top of the list.", pos: "top", idMembers: Enum.map(board.members, &(&1.id)) |> Enum.join(","))
 
   ## Reference
   https://developers.trello.com/advanced-reference/card#post-1-cards
   """
 
-  @spec create_card(String.t | ExTrello.Model.List.t, String.t, Keyword.t) :: ExTrello.Model.Card.t
+  @spec create_card(String.t | ExTrello.Model.List.t, String.t, Keyword.t) :: {:ok, ExTrello.Model.Card.t} | {:error, ExTrello.Error.t} | {:connection_error, ExTrello.ConnectionError.t}
   defdelegate create_card(list_or_id, name, options), to: ExTrello.API.Cards
 
   @doc """
@@ -307,20 +306,21 @@ defmodule ExTrello do
   ## Examples
 
       # Using ID
-      ExTrello.edit_card("56e8fa38abbbdd74b978c3cd", name: "A different name now.", desc: "Honestly does anyone even read these?", pos: "top", idList: "57663322ac7d147b2c337e34")
+      {:ok, card} = ExTrello.edit_card("56e8fa38abbbdd74b978c3cd", name: "A different name now.", desc: "Honestly does anyone even read these?", pos: "top", idList: "57663322ac7d147b2c337e34")
 
       # Using Shortlink
-      ExTrello.edit_card("JyUbYknO", closed: true, subscribed: false)
+      {:ok, card} = ExTrello.edit_card("JyUbYknO", closed: true, subscribed: false)
 
       # Using a %ExTrello.Model.Card{} struct
       ExTrello.card("JyUbYknO")
+      |> elem(1)
       |> ExTrello.edit_card(name: "I passed an ExTrello.Model.Card struct to the function to edit this card.")
 
   ## Reference
   https://developers.trello.com/advanced-reference/card#put-1-cards-card-id-or-shortlink
   """
 
-  @spec edit_card(String.t | ExTrello.Model.Card.t, Keyword.t) :: ExTrello.Model.Card.t
+  @spec edit_card(String.t | ExTrello.Model.Card.t, Keyword.t) :: {:ok, ExTrello.Model.Card.t} | {:error, ExTrello.Error.t} | {:connection_error, ExTrello.ConnectionError.t}
   defdelegate edit_card(card_or_id_or_shortlink, properties_to_edit), to: ExTrello.API.Cards
 
   @doc """
@@ -328,12 +328,12 @@ defmodule ExTrello do
 
   ## Examples
 
-      ExTrello.create_comment("JyUbYknO", "Passed code review, moving this to the `Complete` list.")
+      {:ok, action} = ExTrello.create_comment("JyUbYknO", "Passed code review, moving this to the `Complete` list.")
 
   ## Reference
   https://developers.trello.com/advanced-reference/card#post-1-cards-card-id-or-shortlink-actions-comments
   """
-  @spec create_comment(String.t | ExTrello.Model.Card.t, String.t) :: ExTrello.Model.Action.t
+  @spec create_comment(String.t | ExTrello.Model.Card.t, String.t) :: {:ok, ExTrello.Model.Action.t} | {:error, ExTrello.Error.t} | {:connection_error, ExTrello.ConnectionError.t}
   defdelegate create_comment(card_or_id_or_shortlink, text), to: ExTrello.API.Cards
 
   @doc """
@@ -341,13 +341,13 @@ defmodule ExTrello do
 
   ## Examples
 
-      ExTrello.action("57a5108615c475280d511795")
+      {:ok, action} = ExTrello.action("57a5108615c475280d511795")
 
   ## Reference
   https://developers.trello.com/advanced-reference/action#actions-idaction
   """
 
-  @spec action(String.t) :: ExTrello.Model.Action.t
+  @spec action(String.t) :: {:ok, ExTrello.Model.Action.t} | {:error, ExTrello.Error.t} | {:connection_error, ExTrello.ConnectionError.t}
   defdelegate action(action_id), to: ExTrello.API.Actions
 
   @doc """
@@ -356,15 +356,15 @@ defmodule ExTrello do
   ## Examples
 
       # Using id
-      ExTrello.list("57663322ac7d147b2c337e34")
+      {:ok, list} = ExTrello.list("57663322ac7d147b2c337e34")
 
       # Using a struct
-      ExTrello.list(%ExTrello.Model.List{...})
+      {:ok, list} = ExTrello.list(%ExTrello.Model.List{...})
 
   ## Reference
   https://developers.trello.com/advanced-reference/list#get-1-lists-idlist
   """
-  @spec list(String.t | ExTrello.Model.List.t) :: ExTrello.Model.List.t
+  @spec list(String.t | ExTrello.Model.List.t) :: {:ok, ExTrello.Model.List.t} | {:error, ExTrello.Error.t} | {:connection_error, ExTrello.ConnectionError.t}
   defdelegate list(id_or_struct), to: ExTrello.API.Lists
 
   @doc """
@@ -372,12 +372,12 @@ defmodule ExTrello do
 
   ## Examples
 
-      ExTrello.list("57663322ac7d147b2c337e34", board: true, fields: "all")
+      {:ok, list_with_options} = ExTrello.list("57663322ac7d147b2c337e34", board: true, fields: "all")
 
   ## Reference
   https://developers.trello.com/advanced-reference/list#get-1-lists-idlist
   """
-  @spec list(String.t | ExTrello.Model.List.t, Keyword.t) :: ExTrello.Model.List.t
+  @spec list(String.t | ExTrello.Model.List.t, Keyword.t) :: {:ok, ExTrello.Model.List.t} | {:error, ExTrello.Error.t} | {:connection_error, ExTrello.ConnectionError.t}
   defdelegate list(id_or_struct, options), to: ExTrello.API.Lists
 
   @doc """
@@ -386,18 +386,18 @@ defmodule ExTrello do
   ## Examples
 
       # Using board id
-      ExTrello.create_list("57663306e4b15193fcc97483", "The name of the list")
+      {:ok, list} = ExTrello.create_list("57663306e4b15193fcc97483", "The name of the list")
 
       # Using board struct
-      board = ExTrello.board("57663306e4b15193fcc97483")
+      {:ok, board} = ExTrello.board("57663306e4b15193fcc97483")
       # Do some stuff with the board... then you wanna create a list
 
-      ExTrello.create_list(board, "Also the name of a list")
+      {:ok, created_list} = ExTrello.create_list(board, "Also the name of a list")
 
   ## Reference
   https://developers.trello.com/advanced-reference/list#post-1-lists
   """
-  @spec create_list(String.t | ExTrello.Model.Board.t, String.t) :: ExTrello.Model.List.t
+  @spec create_list(String.t | ExTrello.Model.Board.t, String.t) :: {:ok, ExTrello.Model.List.t} | {:error, ExTrello.Error.t} | {:connection_error, ExTrello.ConnectionError.t}
   defdelegate create_list(board_id_or_struct, name), to: ExTrello.API.Lists
 
   @doc """
@@ -406,18 +406,18 @@ defmodule ExTrello do
   ## Examples
 
       # Using board id
-      ExTrello.create_list("57663306e4b15193fcc97483", "The name of the list", pos: "top")
+      {:ok, list} = ExTrello.create_list("57663306e4b15193fcc97483", "The name of the list", pos: "top")
 
       # Using board struct
-      board = ExTrello.board("57663306e4b15193fcc97483")
+      {:ok, board} = ExTrello.board("57663306e4b15193fcc97483")
       # Do some stuff with the board... then you wanna create a list
 
-      ExTrello.create_list(board, "Also the name of a list", idListSource: "some_list_id")
+      {:ok, copied_list} = ExTrello.create_list(board, "Also the name of a list", idListSource: "some_list_id")
 
   ## Reference
   https://developers.trello.com/advanced-reference/list#post-1-lists
   """
-  @spec create_list(String.t | ExTrello.Model.Board.t, String.t, Keyword.t) :: ExTrello.Model.List.t
+  @spec create_list(String.t | ExTrello.Model.Board.t, String.t, Keyword.t) :: {:ok, ExTrello.Model.List.t} | {:error, ExTrello.Error.t} | {:connection_error, ExTrello.ConnectionError.t}
   defdelegate create_list(board_id_or_struct, name, options), to: ExTrello.API.Lists
 
   @doc """
@@ -426,26 +426,71 @@ defmodule ExTrello do
   ## Examples
 
     # Using id
-    ExTrello.edit_list("57b619a0e1714100f54bc33c", name: "Ridiculous Ideas")
+    {:ok, edited_list} = ExTrello.edit_list("57b619a0e1714100f54bc33c", name: "Ridiculous Ideas")
 
     # Using struct
     ExTrello.list("57b619a0e1714100f54bc33c")
+    |> elem(1)
     |> ExTrello.edit_list(name: "Pipes ahoy")
 
   ## Reference
   https://developers.trello.com/advanced-reference/list#put-1-lists-idlist
   """
-  @spec edit_list(String.t | ExTrello.Model.List.t, Keyword.t) :: ExTrello.Model.List.t
+  @spec edit_list(String.t | ExTrello.Model.List.t, Keyword.t) :: {:ok, ExTrello.Model.List.t} | {:error, ExTrello.Error.t} | {:connection_error, ExTrello.ConnectionError.t}
   defdelegate edit_list(list_id_or_struct, fields), to: ExTrello.API.Lists
+
+  @doc """
+  Gets checklist using specified id.
+
+  ## Examples
+
+      {:ok, checklist} = ExTrello.checklist("57bc918bfb1103f1d32ffe01")
+
+  ## Reference
+  https://developers.trello.com/advanced-reference/checklist#get-1-checklists-idchecklist
+  """
+  @spec checklist(String.t) :: {:ok, ExTrello.Model.Checklist.t} | {:error, ExTrello.Error.t} | {:connection_error, ExTrello.ConnectionError.t}
+  defdelegate checklist(id), to: ExTrello.API.Checklists
+
+  @doc """
+  Gets checklist using specified id. See reference for detailed list of options.
+
+  ## Examples
+
+      {:ok, checklist} = ExTrello.checklist("57bc918bfb1103f1d32ffe01", cards: "all")
+
+  ## Reference
+  https://developers.trello.com/advanced-reference/checklist#get-1-checklists-idchecklist
+  """
+  @spec checklist(String.t, Keyword.t) :: {:ok, ExTrello.Model.Checklist.t} | {:error, ExTrello.Error.t} | {:connection_error, ExTrello.ConnectionError.t}
+  defdelegate checklist(id, options), to: ExTrello.API.Checklists
+
+  @doc """
+  Gets board that given checklist or checklist id belongs to.
+
+  ## Examples
+      # Using id
+      {:ok, board} = ExTrello.checklist_board("57bc918bfb1103f1d32ffe01")
+
+      # Using %Checklist{}
+      ExTrello.checklist("57bc918bfb1103f1d32ffe01")
+      |> elem(1)
+      |> ExTrello.checklist_board
+
+  ## Reference
+  https://developers.trello.com/advanced-reference/checklist#get-1-checklists-idchecklist-board
+  """
+  @spec checklist_board(String.t | ExTrello.Model.Checklist.t) :: {:ok, ExTrello.Model.Board.t} | {:error, ExTrello.Error.t} | {:connection_error, ExTrello.ConnectionError.t}
+  defdelegate checklist_board(id_or_struct), to: ExTrello.API.Checklists
 
   @doc """
   GET request to Trello
 
   ## Examples
 
-      ExTrello.get("boards/57ae3940f43e6d960e0c45da/boardStars", filter: "mine")
+      {:ok, response} = ExTrello.get("boards/57ae3940f43e6d960e0c45da/boardStars", filter: "mine")
   """
-  @spec get(String.t, Keyword.t) :: String.t
+  @spec get(String.t, Keyword.t) :: {:ok, String.t} | {:error, ExTrello.Error.t} | {:connection_error, ExTrello.ConnectionError.t}
   defdelegate get(path, params \\ []), to: ExTrello.API.BareRequests
 
   @doc """
@@ -453,9 +498,9 @@ defmodule ExTrello do
 
   ## Examples
 
-      ExTrello.post("boards/57ae3940f43e6d960e0c45da/lists", name: "Best List", pos: "top")
+      {:ok, response} = ExTrello.post("boards/57ae3940f43e6d960e0c45da/lists", name: "Best List", pos: "top")
   """
-  @spec post(String.t, Keyword.t) :: String.t
+  @spec post(String.t, Keyword.t) :: {:ok, String.t} | {:error, ExTrello.Error.t} | {:connection_error, ExTrello.ConnectionError.t}
   defdelegate post(path, params \\ []), to: ExTrello.API.BareRequests
 
   @doc """
@@ -463,9 +508,9 @@ defmodule ExTrello do
 
   ## Examples
 
-      ExTrello.put("boards/57ae3940f43e6d960e0c45da/labelNames/blue", value: "Bluey")
+      {:ok, response} = ExTrello.put("boards/57ae3940f43e6d960e0c45da/labelNames/blue", value: "Bluey")
   """
-  @spec put(String.t, Keyword.t) :: String.t
+  @spec put(String.t, Keyword.t) :: {:ok, String.t} | {:error, ExTrello.Error.t} | {:connection_error, ExTrello.ConnectionError.t}
   defdelegate put(path, params \\ []), to: ExTrello.API.BareRequests
 
   @doc """
@@ -473,9 +518,9 @@ defmodule ExTrello do
 
   ## Examples
 
-      ExTrello.delete("boards/57ae3940f43e6d960e0c45da/powerUps/calendar")
+      {:ok, response} = ExTrello.delete("boards/57ae3940f43e6d960e0c45da/powerUps/calendar")
   """
-  @spec delete(String.t, Keyword.t) :: String.t
+  @spec delete(String.t, Keyword.t) :: {:ok, String.t} | {:error, ExTrello.Error.t} | {:connection_error, ExTrello.ConnectionError.t}
   defdelegate delete(path, params \\ []), to: ExTrello.API.BareRequests
 
   @doc """
@@ -483,12 +528,12 @@ defmodule ExTrello do
 
   ## Examples
 
-      ExTrello.request_token("http://localhost:4000/auth/trello/callback/1234")
+      {:ok, request_token} = ExTrello.request_token("http://localhost:4000/auth/trello/callback/1234")
 
   ## Reference
   https://trello.com/app-key
   """
-  @spec request_token(String.t) :: [ExTrello.Model.RequestToken.t]
+  @spec request_token(String.t) :: {:ok, ExTrello.Model.RequestToken.t} | {:error, ExTrello.Error.t} | {:connection_error, ExTrello.ConnectionError.t}
   defdelegate request_token(return_url), to: ExTrello.API.Auth
 
   @doc """
@@ -496,12 +541,12 @@ defmodule ExTrello do
 
   ## Examples
 
-      token = ExTrello.request_token("http://localhost:4000/auth/trello/callback/1234")
-      ExTrello.authorize_url(token.oauth_token, return_url: "http://localhost:4000/auth/trello/callback/1234", scope: "read,write", expiration: "never", name: "Example Authentication")
+      {:ok, request_token} = ExTrello.request_token("http://localhost:4000/auth/trello/callback/1234")
+      {:ok, authorize_url} = ExTrello.authorize_url(request_token.oauth_token, return_url: "http://localhost:4000/auth/trello/callback/1234", scope: "read,write", expiration: "never", name: "Example Authentication")
 
   Returns the URL you should redirect the user to for authorization
   """
-  @spec authorize_url(String.t, Keyword.t | Map.t) :: {:ok, String.t}
+  @spec authorize_url(String.t, Keyword.t | Map.t) :: {:ok, String.t} | {:error, ExTrello.Error.t} | {:connection_error, ExTrello.ConnectionError.t}
   defdelegate authorize_url(oauth_token, options), to: ExTrello.API.Auth
 
   @doc """
@@ -509,12 +554,12 @@ defmodule ExTrello do
 
   ## Examples
 
-      token = ExTrello.request_token
-      ExTrello.authorize_url(token.oauth_token)
+      {:ok, request_token} = ExTrello.request_token
+      {:ok, authorize_url} = ExTrello.authorize_url(request_token.oauth_token)
 
   Returns the URL you should redirect the user to for authorization
   """
-  @spec authorize_url(String.t) :: {:ok, String.t}
+  @spec authorize_url(String.t) :: {:ok, String.t} | {:error, ExTrello.Error.t} | {:connection_error, ExTrello.ConnectionError.t}
   defdelegate authorize_url(oauth_token), to: ExTrello.API.Auth
 
   @doc """
@@ -522,9 +567,9 @@ defmodule ExTrello do
 
   ## Examples
 
-      ExTrello.access_token("OAUTH_VERIFIER", "OAUTH_TOKEN", "OAUTH_TOKEN_SECRET")
+      {:ok, access_token} = ExTrello.access_token("OAUTH_VERIFIER", "OAUTH_TOKEN", "OAUTH_TOKEN_SECRET")
   """
-  @spec access_token(String.t, String.t, String.t) :: {:ok, String.t} | {:error, String.t}
+  @spec access_token(String.t, String.t, String.t) :: {:ok, ExTrello.Model.AccessToken.t} | {:error, ExTrello.Error.t} | {:connection_error, ExTrello.ConnectionError.t}
   defdelegate access_token(verifier, request_token, request_token_secret), to: ExTrello.API.Auth
 
 end

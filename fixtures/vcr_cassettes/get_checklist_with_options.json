@@ -1,0 +1,39 @@
+[
+  {
+    "request": {
+      "body": "",
+      "headers": {
+        "Authorization": "***"
+      },
+      "method": "get",
+      "options": [],
+      "request_body": "",
+      "url": "https://api.trello.com/1/checklists/57bc918bfb1103f1d32ffe01?cards=all&checkItem_fields=all"
+    },
+    "response": {
+      "body": "{\"id\":\"57bc918bfb1103f1d32ffe01\",\"name\":\"Da list\",\"idBoard\":\"57b206dc864eadbd9c1b69c6\",\"idCard\":\"57bc9186b8d3aca75628c202\",\"pos\":16384,\"checkItems\":[{\"state\":\"incomplete\",\"idChecklist\":\"57bc918bfb1103f1d32ffe01\",\"id\":\"57bc918e811e504b53de35d9\",\"name\":\"Item yo\",\"nameData\":null,\"type\":null,\"pos\":17297},{\"state\":\"incomplete\",\"idChecklist\":\"57bc918bfb1103f1d32ffe01\",\"id\":\"57bc9192fc9648ad386ac364\",\"name\":\"Something else\",\"nameData\":null,\"type\":null,\"pos\":34195},{\"state\":\"incomplete\",\"idChecklist\":\"57bc918bfb1103f1d32ffe01\",\"id\":\"57bc91b30f0d2568d49301e0\",\"name\":\"https://trello.com/c/vgQNogbc do this\",\"nameData\":null,\"type\":null,\"pos\":51405}],\"cards\":[{\"id\":\"57bc9186b8d3aca75628c202\",\"checkItemStates\":null,\"closed\":false,\"dateLastActivity\":\"2016-08-24T01:59:15.754Z\",\"desc\":\"\",\"descData\":null,\"idBoard\":\"57b206dc864eadbd9c1b69c6\",\"idList\":\"57b206dc864eadbd9c1b69c7\",\"idMembersVoted\":[],\"idShort\":1,\"idAttachmentCover\":null,\"manualCoverAttachment\":false,\"idLabels\":[],\"name\":\"Checklists ahoy\",\"pos\":65535,\"shortLink\":\"LgZRSvjx\",\"badges\":{\"votes\":0,\"viewingMemberVoted\":false,\"subscribed\":false,\"fogbugz\":\"\",\"checkItems\":4,\"checkItemsChecked\":0,\"comments\":0,\"attachments\":0,\"description\":false,\"due\":null},\"due\":null,\"idChecklists\":[\"57bc918bfb1103f1d32ffe01\",\"57bcff710227b4e67d4530a4\"],\"idMembers\":[],\"labels\":[],\"shortUrl\":\"https://trello.com/c/LgZRSvjx\",\"subscribed\":false,\"url\":\"https://trello.com/c/LgZRSvjx/1-checklists-ahoy\"}]}",
+      "headers": {
+        "Cache-Control": "max-age=0, must-revalidate, no-cache, no-store",
+        "X-Content-Type-Options": "nosniff",
+        "Strict-Transport-Security": "max-age=15768000",
+        "X-XSS-Protection": "1; mode=block",
+        "X-FRAME-OPTIONS": "DENY",
+        "X-Trello-Version": "1.731.0",
+        "X-Trello-Environment": "Production",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET, PUT, POST, DELETE",
+        "Access-Control-Allow-Headers": "Authorization, Accept, Content-Type",
+        "X-Server-Time": "1472014718735",
+        "Expires": "Thu, 01 Jan 1970 00:00:00",
+        "Content-Type": "application/json; charset=utf-8",
+        "ETag": "W/\"VtXm/CcpJpZOuxkq5zdzjw==\"",
+        "Date": "Wed, 24 Aug 2016 04:58:38 GMT",
+        "Content-Length": "1438",
+        "Connection": "keep-alive",
+        "Set-Cookie": "<REMOVED> Secure"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

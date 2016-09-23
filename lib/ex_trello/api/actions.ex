@@ -8,7 +8,7 @@ defmodule ExTrello.API.Actions do
   alias ExTrello.Parser
 
   def action(id), do: action(id, [])
-  def action(id, options) when is_binary(id) and is_list(options) do
+  defapicall action(id, options) when is_binary(id) and is_list(options) do
     request(:get, "actions/#{id}", options)
     |> Parser.parse_action
   end
