@@ -3,7 +3,7 @@ defmodule ExTrelloTest do
   use ExVCR.Mock
   doctest ExTrello
 
-  alias ExTrello.Model.{Action, Board, Card, Member, Organization, Checklist}
+  alias ExTrello.Model.{Action, Board, Card, Member, Organization, Checklist, Notification}
   alias ExTrello.Model.List, as: TrelloList # Necessary because Elixit.List module is being used in these tests
 
   setup_all do
@@ -610,6 +610,76 @@ defmodule ExTrelloTest do
       end
     end
 
+    test "fetches authenticated member with notifications" do
+      use_cassette "member_with_notifications" do
+        {:ok, %Member{notifications: notifications}} = ExTrello.member(notifications: "all", notifications_display: true)
+
+        assert is_list(notifications)
+      end
+    end
+
+  end
+
+  describe "Fetching notifications" do
+    test "fetches notification with specified id" do
+      use_cassette "get_notification" do
+        {:ok, notification} = ExTrello.notification("5878621befbfe75e253fd5f6")
+        assert notification.data.text == "@cyammine Don't forget this ^"
+      end
+    end
+
+    test "fetches notification with specified id & options" do
+      use_cassette "get_notification_with_options" do
+        {:ok, notification} = ExTrello.notification("5878621befbfe75e253fd5f6", card: true, card_fields: "idChecklists")
+        assert match?(["585308c4faaf262f51cc5885"], notification.card.id_checklists)
+      end
+    end
+
+    test "fetches all of authenticated users notifications" do
+      use_cassette "get_notifications" do
+        {:ok, notifications} = ExTrello.notifications()
+
+        assert is_list(notifications)
+      end
+    end
+
+    test "fetches all of authenticated users notifications with options" do
+      use_cassette "get_notifications_with_options" do
+        {:ok, notifications} = ExTrello.notifications(limit: 1)
+
+        assert length(notifications) < 2
+      end
+    end
+
+    test "fetches member with all of notifications as a nested resource" do
+      use_cassette "get_member_with_notifications" do
+        {:ok, member} = ExTrello.member(notifications: "all")
+        %Member{notifications: notifications} = member
+
+        assert is_list(notifications)
+        assert match?([%Notification{}|_], notifications)
+      end
+    end
+
+    test "marks supplied notification as `unread: false` (read)" do
+      use_cassette "mark_notification_read" do
+        {:ok, notification} = ExTrello.notification("587862d917c90d4e25e443d5")
+        assert notification.unread == true
+
+        {:ok, response} = notification |> ExTrello.API.Notifications.mark_read
+        assert response.unread == false
+      end
+    end
+
+    test "marks supplied notification as `unread: true` (unread)" do
+      use_cassette "mark_notification_unread" do
+        {:ok, notification} = ExTrello.notification("587862d917c90d4e25e443d5")
+        assert notification.unread == false
+
+        {:ok, response} = notification |> ExTrello.API.Notifications.mark_unread
+        assert response.unread == true
+      end
+    end
   end
 
 end

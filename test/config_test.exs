@@ -12,7 +12,7 @@ defmodule ExTrello.ConfigTest do
     end
 
     test "setting process configuration doesn't pollute global config" do
-      test_pid = self
+      test_pid = self()
       test_fun = fn(pid, config) ->
         spawn(fn() ->
           ExTrello.configure(:process, config)
@@ -20,14 +20,11 @@ defmodule ExTrello.ConfigTest do
         end)
       end
 
-      p1_config = [consumer_key: "test1", consumer_secret: "test1", token: "test1", token_secret: "test1"]
-      p2_config = [consumer_key: "test2", consumer_secret: "test2", token: "test2", token_secret: "test2"]
+      test_fun.(test_pid, [consumer_key: "test1", consumer_secret: "test1", token: "test1", token_secret: "test1"])
+      test_fun.(test_pid, [consumer_key: "test2", consumer_secret: "test2", token: "test2", token_secret: "test2"])
 
-      test_fun.(test_pid, p1_config)
-      test_fun.(test_pid, p2_config)
-
-      assert_receive {:process, p1_config}
-      assert_receive {:process, p2_config}
+      assert_receive {:process, [consumer_key: "test1", consumer_secret: "test1", token: "test1", token_secret: "test1"]}
+      assert_receive {:process, [consumer_key: "test2", consumer_secret: "test2", token: "test2", token_secret: "test2"]}
     end
 
     test "complains if credentials are not set" do

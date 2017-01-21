@@ -1,0 +1,40 @@
+[
+  {
+    "request": {
+      "body": "",
+      "headers": {
+        "Authorization": "***"
+      },
+      "method": "get",
+      "options": [],
+      "request_body": "",
+      "url": "https://api.trello.com/1/notifications/5878621befbfe75e253fd5f6?"
+    },
+    "response": {
+      "body": "{\"id\":\"5878621befbfe75e253fd5f6\",\"unread\":false,\"type\":\"mentionedOnCard\",\"date\":\"2017-01-13T05:14:03.703Z\",\"data\":{\"text\":\"@cyammine Don't forget this ^\",\"card\":{\"shortLink\":\"1v9vVEkG\",\"idShort\":40,\"name\":\"Coursera: Machine Learning Specialization\",\"id\":\"5852fd3d1179f8f450bccfff\"},\"board\":{\"shortLink\":\"Dj4qhV6Y\",\"name\":\"10K Hrs Practice\",\"id\":\"581123b17cf99a01294434a9\"}},\"idMemberCreator\":\"56e87b654e27da2d988898a0\",\"memberCreator\":{\"id\":\"56e87b654e27da2d988898a0\",\"avatarHash\":null,\"fullName\":\"Meichen Zhou\",\"initials\":\"MZ\",\"username\":\"meichenzhou\"}}",
+      "headers": {
+        "Cache-Control": "max-age=0, must-revalidate, no-cache, no-store",
+        "X-Content-Type-Options": "nosniff",
+        "Strict-Transport-Security": "max-age=15768000",
+        "X-XSS-Protection": "1; mode=block",
+        "X-FRAME-OPTIONS": "DENY",
+        "X-Trello-Version": "1.861.0",
+        "X-Trello-Environment": "Production",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET, PUT, POST, DELETE",
+        "Access-Control-Allow-Headers": "Authorization, Accept, Content-Type",
+        "X-Server-Time": "1484288129740",
+        "Expires": "Thu, 01 Jan 1970 00:00:00",
+        "Content-Type": "application/json; charset=utf-8",
+        "Content-Length": "554",
+        "ETag": "W/\"22a-d25bebbd\"",
+        "Vary": "Accept-Encoding",
+        "Date": "Fri, 13 Jan 2017 06:15:29 GMT",
+        "Connection": "keep-alive",
+        "Set-Cookie": "<REMOVED> Secure"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]
