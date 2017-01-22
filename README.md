@@ -45,7 +45,7 @@ end
     def deps do
       [
         ...,
-        {:ex_trello, "~> 1.0.0"}
+        {:ex_trello, "~> 1.0.1"}
       ]
     end
     ```

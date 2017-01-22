@@ -140,7 +140,7 @@ defmodule ExTrello do
   ## Examples
 
       # Fetching a board with an invalid id
-      {:error, 400, "invalid id"} = ExTrello.board("123")
+      {:error,%ExTrello.Error{code: 400, message: "invalid id"}} = ExTrello.board("123")
 
       # Board with options
       {:ok, board_with_options} = ExTrello.board("57663306e4b15193fcc97483", [actions_display: true])
@@ -482,6 +482,58 @@ defmodule ExTrello do
   """
   @spec checklist_board(String.t | ExTrello.Model.Checklist.t) :: {:ok, ExTrello.Model.Board.t} | {:error, ExTrello.Error.t} | {:connection_error, ExTrello.ConnectionError.t}
   defdelegate checklist_board(id_or_struct), to: ExTrello.API.Checklists
+
+  @doc """
+  Gets notification using specified id
+
+  ## Examples
+
+      {:ok, notification} = ExTrello.notification("5878621befbfe75e253fd5f6")
+
+  ## Reference
+  https://developers.trello.com/advanced-reference/notification#get-1-notifications-idnotification
+  """
+  @spec notification(String.t) :: {:ok, ExTrello.Model.Notification.t} | {:error, ExTrello.Error.t} | {:connection_error, ExTrello.ConnectionError.t}
+  defdelegate notification(id), to: ExTrello.API.Notifications
+
+  @doc """
+  Gets notification using specified id & options
+
+  ## Examples
+
+      {:ok, notification_with_options} = ExTrello.notification(board: true, board_fields: "all")
+
+  ## Reference
+  https://developers.trello.com/advanced-reference/notification#get-1-notifications-idnotification
+  """
+  @spec notification(String.t, Keyword.t) :: {:ok, ExTrello.Model.Notification.t} | {:error, ExTrello.Error.t} | {:connection_error, ExTrello.ConnectionError.t}
+  defdelegate notification(id, options), to: ExTrello.API.Notifications
+
+  @doc """
+  Gets notifications of authenticated user.
+
+  ## Examples
+
+      {:ok, notifications} = ExTrello.notifications()
+
+  ## Reference
+  https://developers.trello.com/advanced-reference/member#get-1-members-idmember-or-username-notifications
+  """
+  @spec notifications() :: {:ok, list(ExTrello.Model.Notification.t)} | {:error, ExTrello.Error.t} | {:connection_error, ExTrello.ConnectionError.t}
+  defdelegate notifications(), to: ExTrello.API.Notifications
+
+  @doc """
+  Gets notifications of authenticated user with options.
+
+  ## Examples
+
+      {:ok, notifications} = ExTrello.notifications(limit: 1)
+
+  ## Reference
+  https://developers.trello.com/advanced-reference/member#get-1-members-idmember-or-username-notifications
+  """
+  @spec notifications(Keyword.t) :: {:ok, list(ExTrello.Model.Notification.t)} | {:error, ExTrello.Error.t} | {:connection_error, ExTrello.ConnectionError.t}
+  defdelegate notifications(options), to: ExTrello.API.Notifications
 
   @doc """
   GET request to Trello

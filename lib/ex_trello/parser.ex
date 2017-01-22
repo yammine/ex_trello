@@ -2,8 +2,9 @@ defmodule ExTrello.Parser do
   @moduledoc """
   Provides parser logic for API results.
   """
-  @nested_resources ~w(board boards card cards list lists actions organization organizations member members
-                       checklist checklists)a
+  @nested_resources ~w(board boards card cards list lists actions organization
+                       organizations member members checklist checklists notification
+                       notifications)a
 
   @doc """
   Check the possible nested resources for any given object. Should work on any arbitrarily nested objects.
@@ -44,6 +45,9 @@ defmodule ExTrello.Parser do
   defp preprocess(%{organizations: organizations} = object, :organizations), do: Map.put(object, :organizations, Enum.map(organizations, &parse_organization/1))
   defp preprocess(%{checklist: checklist} = object, :checklist),    do: Map.put(object, :checklist, checklist |> parse_checklist)
   defp preprocess(%{checklists: checklists} = object, :checklists), do: Map.put(object, :checklists, Enum.map(checklists, &parse_checklist/1))
+  # I don't think there's any instance where a _single_ notification is nested in a response from Trello. Keeping this here anyway.
+  defp preprocess(%{notification: notification} = object, :notification),    do: Map.put(object, :notification, notification |> parse_notification)
+  defp preprocess(%{notifications: notifications} = object, :notifications), do: Map.put(object, :notifications, Enum.map(notifications, &parse_notification/1))
   defp preprocess(object, _), do: object
 
   @doc """
@@ -107,6 +111,12 @@ defmodule ExTrello.Parser do
     object
     |> check_nested_resources
     |> (&(struct(ExTrello.Model.Checklist, &1))).()
+  end
+
+  def parse_notification(object) do
+    object
+    |> check_nested_resources
+    |> (&(struct(ExTrello.Model.Notification, &1))).()
   end
 
   @doc """
