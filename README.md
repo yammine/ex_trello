@@ -164,7 +164,7 @@ ExTrello.configure(
 - [x] ~~Implement own OAuth 1.0 library to remove dependency on `erlang-oauth` (or investigate existing solutions)~~
 - [x] ~~Usage tutorial.~~
 - [x] ~~Tests (IN PROGRESS)~~
-- [ ] Add models for label, ~~checklist~~, ~~member~~, notification, ~~organization~~, session, token, ~~action~~
+- [ ] Add models for ~~label~~, ~~checklist~~, ~~member~~, notification, ~~organization~~, session, token, ~~action~~
 - [ ] Pagination
 - [ ] Example Application
 - [ ] Investigate handling storage of request_token.oauth_token_secret instead of leaving that up to the dev.

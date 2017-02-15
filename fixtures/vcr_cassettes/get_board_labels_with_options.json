@@ -1,0 +1,40 @@
+[
+  {
+    "request": {
+      "body": "",
+      "headers": {
+        "Authorization": "***"
+      },
+      "method": "get",
+      "options": [],
+      "request_body": "",
+      "url": "https://api.trello.com/1/boards/57fb9dfd566ee0dbedbc100b/labels?limit=3"
+    },
+    "response": {
+      "body": "[{\"id\":\"5808c23584e677fd36f01fea\",\"idBoard\":\"57fb9dfd566ee0dbedbc100b\",\"name\":\"User Story\",\"color\":\"orange\",\"uses\":28},{\"id\":\"5808c5d484e677fd36f0344e\",\"idBoard\":\"57fb9dfd566ee0dbedbc100b\",\"name\":\"Technical User Story\",\"color\":\"yellow\",\"uses\":24},{\"id\":\"5808cd9f84e677fd36f060b8\",\"idBoard\":\"57fb9dfd566ee0dbedbc100b\",\"name\":\"Registration\",\"color\":\"green\",\"uses\":11}]",
+      "headers": {
+        "Cache-Control": "max-age=0, must-revalidate, no-cache, no-store",
+        "X-Content-Type-Options": "nosniff",
+        "Strict-Transport-Security": "max-age=15768000",
+        "X-XSS-Protection": "1; mode=block",
+        "X-FRAME-OPTIONS": "DENY",
+        "X-Trello-Version": "1.885.2",
+        "X-Trello-Environment": "Production",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET, PUT, POST, DELETE",
+        "Access-Control-Allow-Headers": "Authorization, Accept, Content-Type",
+        "X-Server-Time": "1486978195739",
+        "Expires": "Thu, 01 Jan 1970 00:00:00",
+        "Content-Type": "application/json; charset=utf-8",
+        "Content-Length": "366",
+        "ETag": "W/\"16e-8291c787\"",
+        "Vary": "Accept-Encoding",
+        "Date": "Mon, 13 Feb 2017 09:29:55 GMT",
+        "Connection": "keep-alive",
+        "Set-Cookie": "<REMOVED> Secure"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

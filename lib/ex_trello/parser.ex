@@ -2,7 +2,7 @@ defmodule ExTrello.Parser do
   @moduledoc """
   Provides parser logic for API results.
   """
-  @nested_resources ~w(board boards card cards list lists actions organization
+  @nested_resources ~w(board boards labels card cards list lists actions organization
                        organizations member members checklist checklists notification
                        notifications)a
 
@@ -34,6 +34,9 @@ defmodule ExTrello.Parser do
   # TODO: Maybe look into writing a macro to define these functions from the `@nested_resources` word list
   defp preprocess(%{board: board} = object, :board),       do: Map.put(object, :board, board |> parse_board)
   defp preprocess(%{boards: boards} = object, :boards),    do: Map.put(object, :boards, Enum.map(boards, &parse_board/1))
+
+  defp preprocess(%{labels: labels} = object, :labels),    do: Map.put(object, :labels, Enum.map(labels, &parse_label/1))
+
   defp preprocess(%{card: card} = object, :card),          do: Map.put(object, :card, card |> parse_card)
   defp preprocess(%{cards: cards} = object, :cards),       do: Map.put(object, :cards, Enum.map(cards, &parse_card/1))
   defp preprocess(%{list: list} = object, :list),          do: Map.put(object, :list, list |> parse_list)
@@ -58,6 +61,16 @@ defmodule ExTrello.Parser do
     |> check_nested_resources
     |> (&(struct(ExTrello.Model.Board, &1))).()
   end
+
+  @doc """
+  Parse board labels returned from API response json.
+  """
+  def parse_label(object) do
+    object
+    |> check_nested_resources
+    |> (&(struct(ExTrello.Model.Label, &1))).()
+  end
+
 
   @doc """
   Parse list record returned from API response json.

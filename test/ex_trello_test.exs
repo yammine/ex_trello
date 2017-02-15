@@ -3,7 +3,7 @@ defmodule ExTrelloTest do
   use ExVCR.Mock
   doctest ExTrello
 
-  alias ExTrello.Model.{Action, Board, Card, Member, Organization, Checklist, Notification}
+  alias ExTrello.Model.{Action, Board, Card, Label, Member, Organization, Checklist, Notification}
   alias ExTrello.Model.List, as: TrelloList # Necessary because Elixit.List module is being used in these tests
 
   setup_all do
@@ -192,16 +192,46 @@ defmodule ExTrelloTest do
 
   end
 
-  describe "Fetching cards from Trello" do
 
-    test "fetches card with specified id" do
-      use_cassette "get_card_by_id" do
-        {:ok, card} = ExTrello.card("570ddfcab92fb2f520a02361")
+  describe "Fetching labels from Trello" do
 
-        assert card.name == "Write RSpecs for List model validations :)"
-        assert match?(%Card{}, card)
+    test "fetches labels from board by board id " do
+      use_cassette "get_board_labels" do
+        {:ok, labels} = ExTrello.board_labels("57fb9dfd566ee0dbedbc100b")
+        assert is_list(labels)
+        assert match?([%Label{id: "5797726584e677fd36abf5d8"}|_rest], labels)
       end
     end
+
+    test "fetches labels from board by board id without options" do
+      use_cassette "get_board_labels" do
+        {:ok, labels} = ExTrello.board_labels("57fb9dfd566ee0dbedbc100b", [])
+        for label <- labels do
+          assert match?(%Label{}, label)
+        end
+      end
+    end
+
+    test "fetches labels from board by board id with options" do
+      use_cassette "get_board_labels_with_options" do
+        {:ok, labels} = ExTrello.board_labels(%Board{id: "57fb9dfd566ee0dbedbc100b"}, limit: 3)
+        assert is_list(labels)
+        assert length(labels) == 3
+        for label <- labels do
+          assert match?(%Label{}, label)
+        end
+      end
+    end
+
+
+
+  end
+
+
+
+
+
+  describe "Fetching cards from Trello" do
 
     test "fetches card with specified shortlink" do
       use_cassette "get_card_by_shortlink" do
