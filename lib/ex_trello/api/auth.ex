@@ -12,13 +12,13 @@ defmodule ExTrello.API.Auth do
     params = if redirect_url, do: [{"oauth_callback", redirect_url}], else: []
 
     case OAuth.request(:get, request_url("OAuthGetRequestToken"), params, credentials) do
-      %HTTPotion.Response{body: body, status_code: code} when code in 200..300 ->
+      %HTTPoison.Response{body: body, status_code: code} when code in 200..300 ->
         URI.decode_query(body)
         |> Utils.snake_case_keys
         |> Parser.parse_request_token
-      %HTTPotion.Response{body: body, status_code: code} ->
+      %HTTPoison.Response{body: body, status_code: code} ->
         throw(%ExTrello.Error{code: code, message: body})
-      %HTTPotion.ErrorResponse{message: message} ->
+      %HTTPoison.Error{reason: message} ->
         throw(%ExTrello.ConnectionError{reason: message})
     end
   end
@@ -38,13 +38,13 @@ defmodule ExTrello.API.Auth do
     credentials = [{:token, request_token}, {:token_secret, request_token_secret} | consumer] |> OAuther.credentials
 
     case OAuth.request(:get, request_url("OAuthGetAccessToken"), [oauth_verifier: verifier], credentials) do
-      %HTTPotion.Response{body: body, status_code: 200} ->
+      %HTTPoison.Response{body: body, status_code: 200} ->
         URI.decode_query(body)
         |> Utils.snake_case_keys
         |> Parser.parse_access_token
-      %HTTPotion.Response{body: body, status_code: code} ->
+      %HTTPoison.Response{body: body, status_code: code} ->
         throw(%ExTrello.Error{code: code, message: body})
-      %HTTPotion.ErrorResponse{message: message} ->
+      %HTTPoison.Error{reason: message} ->
         throw(%ExTrello.ConnectionError{reason: message})
     end
   end

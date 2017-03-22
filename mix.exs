@@ -3,8 +3,8 @@ defmodule ExTrello.Mixfile do
 
   def project do
     [app: :ex_trello,
-     version: "1.0.1",
-     elixir: "~> 1.3",
+     version: "1.1.0",
+     elixir: "~> 1.0",
      description: "An Elixir package to interface with the Trello API",
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
@@ -18,14 +18,14 @@ defmodule ExTrello.Mixfile do
   #
   # Type "mix help compile.app" for more information
   def application do
-    [applications: [:logger, :inets, :ssl, :crypto, :httpotion]]
+    [applications: [:logger, :inets, :ssl, :crypto, :httpoison]]
   end
 
   defp deps do
     [
       {:oauther, "~> 1.0.1"},
       {:poison, "~> 2.2"},
-      {:httpotion, "~> 3.0.0"},
+      {:httpoison, "~> 0.11.0"},
       {:ex_doc, ">= 0.0.0", only: :dev},
       {:exvcr, "~> 0.7", only: :test},
       {:excoveralls, "~> 0.5", only: :test},

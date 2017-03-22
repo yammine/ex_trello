@@ -34,4 +34,13 @@ defmodule ExTrello.API.Cards do
     request(:post, "cards/#{id_or_shortlink}/actions/comments", [text: text])
     |> Parser.parse_action
   end
+
+  def add_attachment(card, file_path) when is_binary(file_path), do: add_attachment(card, [])
+  def add_attachment(%Card{id: id}, file_path, options) when is_binary(file_path) and is_list(options) do
+    add_attachment(id, file_path, options)
+  end
+  defapicall add_attachment(id, file_path, options) when is_binary(id) and is_binary(file_path) and is_list(options) do
+    opts = [{:file, file_path}|options]
+    request(:file, "cards/#{id}/attachments", opts)
+  end
 end

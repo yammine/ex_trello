@@ -1,9 +1,9 @@
 defmodule ExTrello.AuthTest do
   use ExUnit.Case, async: false
-  use ExVCR.Mock
+  use ExVCR.Mock, adapter: ExVCR.Adapter.Hackney
 
   setup_all do
-    HTTPotion.start # Ensure :httpotion is started.
+    HTTPoison.start # Ensure :httpoison is started.
 
     ExVCR.Config.filter_request_headers("Authorization")
     ExVCR.Config.filter_sensitive_data("oauth_signature=[^\"]+", "<REMOVED>")
@@ -34,7 +34,7 @@ defmodule ExTrello.AuthTest do
     use_cassette "failed_connection", custom: true do
       response = ExTrello.request_token("something")
 
-      assert match?({:connection_error, %ExTrello.ConnectionError{reason: "nxdomain", message: "Connection error."}}, response)
+      assert match?({:connection_error, %ExTrello.ConnectionError{reason: ["conn_failed", ["error", "nxdomain"]], message: "Connection error."}}, response)
     end
   end
 
@@ -81,7 +81,7 @@ defmodule ExTrello.AuthTest do
     use_cassette "failed_connection", custom: true do
       response = ExTrello.access_token("something", "strange", "in the neighborhood")
 
-      assert match?({:connection_error, %ExTrello.ConnectionError{reason: "nxdomain", message: "Connection error."}}, response)
+      assert match?({:connection_error, %ExTrello.ConnectionError{reason: ["conn_failed", ["error", "nxdomain"]], message: "Connection error."}}, response)
     end
   end
 

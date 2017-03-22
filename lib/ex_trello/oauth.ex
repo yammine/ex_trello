@@ -15,19 +15,27 @@ defmodule ExTrello.OAuth do
 
     case method do
       :get ->
-        HTTPotion.request(method, url <> "?#{URI.encode_query(request_params)}", headers: to_keyword([authorization_header]))
+        HTTPoison.get(url <> "?#{URI.encode_query(request_params)}", [authorization_header])
+      :file ->
+        HTTPoison.post(url, {:multipart, prep_file_upload(request_params)}, [authorization_header])
       _ ->
-        HTTPotion.request(
+        # https://hexdocs.pm/httpoison/HTTPoison.html#request/5
+        HTTPoison.request(
           method,
           url,
-          headers: to_keyword([authorization_header, {"Content-Type", "application/x-www-form-urlencoded"}]),
-          body: URI.encode_query(request_params)
+          {:form, request_params},
+          [authorization_header]
         )
-    end
+    end |> elem(1)
   end
 
-  defp to_keyword(list) when is_list(list) do
-    list |> Enum.map(fn ({k, v}) -> {:"#{k}", v} end)
+  defp prep_file_upload(params) do
+    params |> Enum.map(fn
+      {"file", value} ->
+        {:file, value}
+      any ->
+        any
+    end)
   end
 
   defp stringify_params(params) when is_list(params) do

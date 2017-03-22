@@ -34,14 +34,14 @@ defmodule ExTrello.API.Base do
     credentials = ExTrello.Config.get |> verify_params |> OAuther.credentials
 
     case ExTrello.OAuth.request(method, url, params, credentials) do
-      %HTTPotion.Response{body: body, status_code: code} when code >= 200 and code < 300 ->
+      %HTTPoison.Response{body: body, status_code: code} when code >= 200 and code < 300 ->
         Poison.decode!(body)
         |> Utils.snake_case_keys
 
-      %HTTPotion.Response{body: body, status_code: code} ->
+      %HTTPoison.Response{body: body, status_code: code} ->
         throw(%ExTrello.Error{code: code, message: body})
 
-      %HTTPotion.ErrorResponse{message: message} ->
+      %HTTPoison.Error{reason: message} ->
         throw(%ExTrello.ConnectionError{reason: message})
     end
   end

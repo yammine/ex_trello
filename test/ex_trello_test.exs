@@ -1,13 +1,13 @@
 defmodule ExTrelloTest do
   use ExUnit.Case, async: false
-  use ExVCR.Mock
+  use ExVCR.Mock, adapter: ExVCR.Adapter.Hackney
   doctest ExTrello
 
   alias ExTrello.Model.{Action, Board, Card, Label, Member, Organization, Checklist, Notification}
   alias ExTrello.Model.List, as: TrelloList # Necessary because Elixit.List module is being used in these tests
 
   setup_all do
-    HTTPotion.start # Ensure :httpotion is started.
+    HTTPoison.start # Ensure :httpoison is started.
 
     ExVCR.Config.filter_request_headers("Authorization")
     ExVCR.Config.filter_sensitive_data("oauth_signature=[^\"]+", "<REMOVED>")
@@ -37,7 +37,7 @@ defmodule ExTrelloTest do
     use_cassette "failed_connection", custom: true do
       response = ExTrello.boards()
 
-      assert match?({:connection_error, %ExTrello.ConnectionError{reason: "nxdomain", message: "Connection error."}}, response)
+      assert match?({:connection_error, %ExTrello.ConnectionError{reason: ["conn_failed", ["error", "nxdomain"]], message: "Connection error."}}, response)
     end
   end
 

@@ -34,9 +34,7 @@ defmodule ExTrello.Parser do
   # TODO: Maybe look into writing a macro to define these functions from the `@nested_resources` word list
   defp preprocess(%{board: board} = object, :board),       do: Map.put(object, :board, board |> parse_board)
   defp preprocess(%{boards: boards} = object, :boards),    do: Map.put(object, :boards, Enum.map(boards, &parse_board/1))
-
   defp preprocess(%{labels: labels} = object, :labels),    do: Map.put(object, :labels, Enum.map(labels, &parse_label/1))
-
   defp preprocess(%{card: card} = object, :card),          do: Map.put(object, :card, card |> parse_card)
   defp preprocess(%{cards: cards} = object, :cards),       do: Map.put(object, :cards, Enum.map(cards, &parse_card/1))
   defp preprocess(%{list: list} = object, :list),          do: Map.put(object, :list, list |> parse_list)
