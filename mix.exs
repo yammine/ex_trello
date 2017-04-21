@@ -3,7 +3,7 @@ defmodule ExTrello.Mixfile do
 
   def project do
     [app: :ex_trello,
-     version: "1.1.0",
+     version: "1.1.1",
      elixir: "~> 1.0",
      description: "An Elixir package to interface with the Trello API",
      build_embedded: Mix.env == :prod,
@@ -23,13 +23,13 @@ defmodule ExTrello.Mixfile do
 
   defp deps do
     [
-      {:oauther, "~> 1.0.1"},
-      {:poison, "~> 2.2"},
-      {:httpoison, "~> 0.11.0"},
+      {:oauther, "~> 1.0"},
+      {:poison, "~> 3.0"},
+      {:httpoison, "~> 0.11"},
       {:ex_doc, ">= 0.0.0", only: :dev},
-      {:exvcr, "~> 0.7", only: :test},
-      {:excoveralls, "~> 0.5", only: :test},
-      {:inch_ex, ">= 0.0.0", only: :docs},
+      {:exvcr, "~> 0.8", only: :test},
+      {:excoveralls, "~> 0.6", only: :test},
+      {:inch_ex, "~> 0.5", only: :docs},
       {:dialyxir, ">= 0.0.0", only: :dev}
     ]
   end
