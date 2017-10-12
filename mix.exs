@@ -23,7 +23,7 @@ defmodule ExTrello.Mixfile do
 
   defp deps do
     [
-      {:oauther, "~> 1.0"},
+      {:oauther, "~> 1.1"},
       {:poison, "~> 3.0"},
       {:httpoison, "~> 0.11"},
       {:ex_doc, ">= 0.0.0", only: :dev},
